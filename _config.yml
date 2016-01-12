@@ -68,7 +68,6 @@ theme: yilia
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
-  type:
-
-# 自定义
-avatar: /uploads/avatar.jpg
+  type: git
+  repository: git@github.com:PanXianyue/PanXianyue.github.io.git
+  branch: master
