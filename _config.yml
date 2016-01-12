@@ -3,11 +3,11 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: Panda
 subtitle:
 description:
-author: John Doe
-language:
+author: Xianyue Pan 
+language: zh-Hans
 timezone:
 
 # URL
@@ -69,3 +69,6 @@ theme: yilia
 ## Docs: http://hexo.io/docs/deployment.html
 deploy:
   type:
+
+# 自定义
+avatar: /uploads/avatar.jpg
