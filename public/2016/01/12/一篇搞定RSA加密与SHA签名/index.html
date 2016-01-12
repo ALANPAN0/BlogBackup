@@ -6,16 +6,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>一篇搞定RSA加密与SHA签名 | Panda</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="看到这篇文章的同学可幸福了，当时在做RSA加密与签名的时候网上的资料简直不要太老，做完后实在是忍受不下去了，这篇文章我会详细讲解iOS如何实现RSA加密与签名，并且与Java完全同步，这是我的第二篇博客，若有什么不足之处还请大家指教。">
+  <meta name="description" content="看到这篇文章的同学可幸福了，当时在做RSA加密与签名的时候网上的资料简直不要太老，做完后实在是忍受不下去了，这篇文章我会详细讲解iOS如何实现RSA加密与签名，并且与Java完全同步。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一篇搞定RSA加密与SHA签名">
 <meta property="og:url" content="http://yoursite.com/2016/01/12/一篇搞定RSA加密与SHA签名/index.html">
 <meta property="og:site_name" content="Panda">
-<meta property="og:description" content="看到这篇文章的同学可幸福了，当时在做RSA加密与签名的时候网上的资料简直不要太老，做完后实在是忍受不下去了，这篇文章我会详细讲解iOS如何实现RSA加密与签名，并且与Java完全同步，这是我的第二篇博客，若有什么不足之处还请大家指教。">
-<meta property="og:updated_time" content="2016-01-12T09:31:46.000Z">
+<meta property="og:description" content="看到这篇文章的同学可幸福了，当时在做RSA加密与签名的时候网上的资料简直不要太老，做完后实在是忍受不下去了，这篇文章我会详细讲解iOS如何实现RSA加密与签名，并且与Java完全同步。">
+<meta property="og:updated_time" content="2016-01-12T14:07:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一篇搞定RSA加密与SHA签名">
-<meta name="twitter:description" content="看到这篇文章的同学可幸福了，当时在做RSA加密与签名的时候网上的资料简直不要太老，做完后实在是忍受不下去了，这篇文章我会详细讲解iOS如何实现RSA加密与签名，并且与Java完全同步，这是我的第二篇博客，若有什么不足之处还请大家指教。">
+<meta name="twitter:description" content="看到这篇文章的同学可幸福了，当时在做RSA加密与签名的时候网上的资料简直不要太老，做完后实在是忍受不下去了，这篇文章我会详细讲解iOS如何实现RSA加密与签名，并且与Java完全同步。">
   
     <link rel="alternative" href="/atom.xml" title="Panda" type="application/atom+xml">
   
@@ -38,7 +38,7 @@
 		</a>
 
 		<hgroup>
-		  <h1 class="header-author"><a href="/">Xianyue Pan</a></h1>
+		  <h1 class="header-author"><a href="/">Dreamer Panda</a></h1>
 		</hgroup>
 
 		
@@ -111,7 +111,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						
+						<a href="/tags/rsa加密/" style="font-size: 10px;">rsa加密</a> <a href="/tags/sha签名/" style="font-size: 10px;">sha签名</a>
 					</div>
 				</section>
 				
@@ -149,7 +149,7 @@
       <nav id="mobile-nav">
   	<div class="overlay">
   		<div class="slider-trigger"></div>
-  		<h1 class="header-author js-mobile-header hide">Xianyue Pan</h1>
+  		<h1 class="header-author js-mobile-header hide">Dreamer Panda</h1>
   	</div>
 	<div class="intrude-less">
 		<header id="header" class="inner">
@@ -159,7 +159,7 @@
 			
 			</div>
 			<hgroup>
-			  <h1 class="header-author">Xianyue Pan</h1>
+			  <h1 class="header-author">Dreamer Panda</h1>
 			</hgroup>
 			
 			<nav class="header-menu">
@@ -210,6 +210,10 @@
       
       <div class="article-info article-info-post">
         
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/rsa加密/">rsa加密</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sha签名/">sha签名</a></li></ul>
+	</div>
+
         
 
         <div class="clearfix"></div>
@@ -218,20 +222,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>看到这篇文章的同学可幸福了，当时在做RSA加密与签名的时候网上的资料简直不要太老，做完后实在是忍受不下去了，这篇文章我会详细讲解iOS如何实现RSA加密与签名，并且与Java完全同步，这是我的第二篇博客，若有什么不足之处还请大家指教。</p>
-</blockquote>
+        <p>看到这篇文章的同学可幸福了，当时在做RSA加密与签名的时候网上的资料简直不要太老，做完后实在是忍受不下去了，这篇文章我会详细讲解iOS如何实现RSA加密与签名，并且与Java完全同步。</p>
 <a id="more"></a>
-<p>#基础知识<br> </p><p></p>
+<h1 id="u57FA_u7840_u77E5_u8BC6"><a href="#u57FA_u7840_u77E5_u8BC6" class="headerlink" title="基础知识"></a>基础知识</h1> <p>
+
 <ol>
-<li><p><strong>什么是RSA？</strong><br>答：RSA是一种非对称加密算法，常用来对传输数据进行加密，配合上数字摘要算法，也可以进行文字签名。</p>
+<li><p><strong>什么是RSA？</strong></p><p><br>答：RSA是一种非对称加密算法，常用来对传输数据进行加密，配合上数字摘要算法，也可以进行文字签名。</p>
 </li>
-<li><p><strong>RSA加密中padding？</strong><br>答：padding即填充方式，由于RSA加密算法中要加密的明文是要比模数小的，padding就是通过一些填充方式来限制明文的长度。后面会详细介绍padding的几种模式以及分段加密。</p>
+<li><p><strong>RSA加密中padding？</strong></p><p><br>答：padding即填充方式，由于RSA加密算法中要加密的明文是要比模数小的，padding就是通过一些填充方式来限制明文的长度。后面会详细介绍padding的几种模式以及分段加密。</p>
 </li>
-<li><p><strong>加密和加签有什么区别？</strong><br>答：加密：公钥放在客户端，并使用公钥对数据进行加密，服务端拿到数据后用私钥进行解密；<br>   加签：私钥放在客户端，并使用私钥对数据进行加签，服务端拿到数据后用公钥进行验签。<br>前者完全为了加密；后者主要是为了防恶意攻击，防止别人模拟我们的客户端对我们的服务器进行攻击，导致服务器瘫痪。</p>
+<li><p><strong>加密和加签有什么区别？</strong></p><p><br>答：加密：公钥放在客户端，并使用公钥对数据进行加密，服务端拿到数据后用私钥进行解密；<br>   加签：私钥放在客户端，并使用私钥对数据进行加签，服务端拿到数据后用公钥进行验签。<br>前者完全为了加密；后者主要是为了防恶意攻击，防止别人模拟我们的客户端对我们的服务器进行攻击，导致服务器瘫痪。</p>
 </li>
 </ol>
-<h1 id="u57FA_u672C_u539F_u7406"><a href="#u57FA_u672C_u539F_u7406" class="headerlink" title="基本原理"></a>基本原理<p></p></h1><p>RSA使用“密钥对”对数据进行加密解密，在加密解密前需要先生存公钥（Public Key）和私钥（Private Key）。<br><strong>公钥(Public key):</strong> 用于加密数据. 用于公开, 一般存放在数据提供方, 例如iOS客户端。<br><strong>私钥(Private key):</strong> 用于解密数据. 必须保密, 私钥泄露会造成安全问题。<br>iOS中的Security.framework提供了对RSA算法的支持，这种方式需要对密匙对进行处理, 根据public key生成证书, 通过private key生成p12格式的密匙。想想jave直接用字符串进行加密解密简单多了。(⊙o⊙)…</p>
+</p><h1 id="u57FA_u672C_u539F_u7406"><a href="#u57FA_u672C_u539F_u7406" class="headerlink" title="基本原理"></a>基本原理<p></p></h1><p>RSA使用“密钥对”对数据进行加密解密，在加密解密前需要先生存公钥（Public Key）和私钥（Private Key）。</p><p><br><strong>公钥(Public key):</strong> 用于加密数据. 用于公开, 一般存放在数据提供方, 例如iOS客户端。</p><p><br><strong>私钥(Private key):</strong> 用于解密数据. 必须保密, 私钥泄露会造成安全问题。</p><p><br>iOS中的Security.framework提供了对RSA算法的支持，这种方式需要对密匙对进行处理, 根据public key生成证书, 通过private key生成p12格式的密匙。想想jave直接用字符串进行加密解密简单多了。(⊙o⊙)…</p>
 <h1 id="u5B9E_u6218"><a href="#u5B9E_u6218" class="headerlink" title="实战"></a>实战</h1><p></p><p></p>
 <h2 id="u8BC1_u4E66_u751F_u6210"><a href="#u8BC1_u4E66_u751F_u6210" class="headerlink" title="证书生成"></a>证书生成</h2><p>RSA加密这块公钥、私钥必不可少的。<strong>Apple是不支持直接使用字符串进行加密解密的，推荐使用p12文件</strong>。这边教大家去生成在加密中使用到的所有文件，并提供给Java使用，想当年这个公钥私钥搞了半天了。 %&gt;_&lt;%</p>
 <blockquote>
@@ -246,169 +249,22 @@
 </ul>
 </blockquote>
 <p><strong>以上所有的步骤都是在终端下完成的哦  (<em>^__^</em>)</strong></p>
-<h2 id="u751F_u6210_u516C_u94A5_u548C_u79C1_u94A5_u7684secKeyRef"><a href="#u751F_u6210_u516C_u94A5_u548C_u79C1_u94A5_u7684secKeyRef" class="headerlink" title="生成公钥和私钥的secKeyRef"></a>生成公钥和私钥的secKeyRef<p></p></h2><pre><code>//根据你的p12文件生成私钥对应的SecKeyRef 这边返回若是nil 请检查你p12文件的生成步骤
-- (SecKeyRef)getPrivateKeyRefrenceFromData:(NSData*)p12Data password:(NSString*)password {
-
-SecKeyRef privateKeyRef = NULL;
-NSMutableDictionary * options = [[NSMutableDictionary alloc] init];
-[options setObject: password forKey:(__bridge id)kSecImportExportPassphrase];
-CFArrayRef items = CFArrayCreate(NULL, 0, 0, NULL);
-OSStatus securityError = SecPKCS12Import((__bridge CFDataRef) p12Data, (__bridge CFDictionaryRef)options, &amp;items);
-if (securityError == noErr &amp;&amp; CFArrayGetCount(items) &gt; 0) {
-    CFDictionaryRef identityDict = CFArrayGetValueAtIndex(items, 0);
-    SecIdentityRef identityApp = (SecIdentityRef)CFDictionaryGetValue(identityDict, kSecImportItemIdentity);
-    securityError = SecIdentityCopyPrivateKey(identityApp, &amp;privateKeyRef);
-    if (securityError != noErr) {
-        privateKeyRef = NULL;
-    }
-}
-CFRelease(items);
-
-return privateKeyRef;
-}
-</code></pre><p>-</p>
-<pre><code> //根据你的der文件公钥对应的SecKeyRef
- - (SecKeyRef)getPublicKeyRefrenceFromeData:    (NSData*)derData {
-
-SecCertificateRef myCertificate = SecCertificateCreateWithData(kCFAllocatorDefault, (__bridge CFDataRef)derData);
-SecPolicyRef myPolicy = SecPolicyCreateBasicX509();
-SecTrustRef myTrust;
-OSStatus status = SecTrustCreateWithCertificates(myCertificate,myPolicy,&amp;myTrust);
-SecTrustResultType trustResult;
-if (status == noErr) {
-    status = SecTrustEvaluate(myTrust, &amp;trustResult);
-}
-SecKeyRef securityKey = SecTrustCopyPublicKey(myTrust);
-CFRelease(myCertificate);
-CFRelease(myPolicy);
-CFRelease(myTrust);
-
-return securityKey;
-}
-</code></pre><h2 id="u52A0_u5BC6_u4E0E_u89E3_u5BC6"><a href="#u52A0_u5BC6_u4E0E_u89E3_u5BC6" class="headerlink" title="加密与解密"></a>加密与解密 <p></p></h2><pre><code>- (NSData*)rsaEncryptData:(NSData*)data {
-    SecKeyRef key = [self getPublicKey];
-    size_t cipherBufferSize = SecKeyGetBlockSize(key);
-    uint8_t *cipherBuffer = malloc(cipherBufferSize * sizeof(uint8_t));
-    size_t blockSize = cipherBufferSize - 11;
-      size_t blockCount = (size_t)ceil([data length] / (double)blockSize);
-      NSMutableData *encryptedData = [[NSMutableData alloc] init];
-    for (int i=0; i&lt;blockCount; i++) {
-    unsigned long bufferSize = MIN(blockSize , [data length] - i * blockSize);
-    NSData *buffer = [data subdataWithRange:NSMakeRange(i * blockSize, bufferSize)];
-    OSStatus status = SecKeyEncrypt(key, kSecPaddingPKCS1, (const uint8_t *)[buffer bytes], [buffer length], cipherBuffer, &amp;cipherBufferSize);
-
-    if (status != noErr) {
-        return nil;
-    }
-
-    NSData *encryptedBytes = [[NSData alloc] initWithBytes:(const void *)cipherBuffer length:cipherBufferSize];
-    [encryptedData appendData:encryptedBytes];
-    }
-
-  if (cipherBuffer){
-    free(cipherBuffer);
-  }
-
-  return encryptedData;
-  }
-</code></pre><p>-</p>
-<pre><code>- (NSData*)rsaDecryptData:(NSData*)data {
-SecKeyRef key = [self getPrivatKey];
-
-size_t cipherBufferSize = SecKeyGetBlockSize(key);
-size_t blockSize = cipherBufferSize;
-size_t blockCount = (size_t)ceil([data length] / (double)blockSize);
-
-NSMutableData *decryptedData = [[NSMutableData alloc] init];
-
-for (int i = 0; i &lt; blockCount; i++) {
-    unsigned long bufferSize = MIN(blockSize , [data length] - i * blockSize);
-    NSData *buffer = [data subdataWithRange:NSMakeRange(i * blockSize, bufferSize)];
-
-    size_t cipherLen = [buffer length];
-    void *cipher = malloc(cipherLen);
-    [buffer getBytes:cipher length:cipherLen];
-    size_t plainLen = SecKeyGetBlockSize(key);
-    void *plain = malloc(plainLen);
-
-    OSStatus status = SecKeyDecrypt(key, kSecPaddingPKCS1, cipher, cipherLen, plain, &amp;plainLen);
-
-    if (status != noErr) {
-        return nil;
-    }
-
-    NSData *decryptedBytes = [[NSData alloc] initWithBytes:(const void *)plain length:plainLen];
-    [decryptedData appendData:decryptedBytes];
-}
-
-return decryptedData;
-}
-</code></pre><p>
-
-</p><h5 id="RSA_u52A0_u5BC6_u4E2D_u7684Padding"><a href="#RSA_u52A0_u5BC6_u4E2D_u7684Padding" class="headerlink" title="RSA加密中的Padding"></a>RSA加密中的Padding<p></p></h5><ul>
-<li><p>RSA_PKCS1_PADDING 填充模式，最常用的模式<br>要求: 输入：必须 比 RSA 钥模长(modulus) 短至少11个字节, 也就是　RSA_size(rsa) – 11 如果输入的明文过长，必须切割，然后填充。<br>输出：和modulus一样长<br>根据这个要求，对于1024bit的密钥，block length = 1024/8 – 11 = 117 字节</p>
+<h2 id="u751F_u6210_u516C_u94A5_u548C_u79C1_u94A5_u7684secKeyRef"><a href="#u751F_u6210_u516C_u94A5_u548C_u79C1_u94A5_u7684secKeyRef" class="headerlink" title="生成公钥和私钥的secKeyRef"></a>生成公钥和私钥的secKeyRef<p></p></h2>   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">   //&#26681;&#25454;&#20320;&#30340;p12&#25991;&#20214;&#29983;&#25104;&#31169;&#38053;&#23545;&#24212;&#30340;SecKeyRef &#36825;&#36793;&#36820;&#22238;&#33509;&#26159;nil &#35831;&#26816;&#26597;&#20320;p12&#25991;&#20214;&#30340;&#29983;&#25104;&#27493;&#39588;&#10;- (SecKeyRef)getPrivateKeyRefrenceFromData:(NSData*)p12Data password:(NSString*)password &#123;&#10;&#10;SecKeyRef privateKeyRef = NULL;&#10;NSMutableDictionary * options = [[NSMutableDictionary alloc] init];&#10;[options setObject: password forKey:(__bridge id)kSecImportExportPassphrase];&#10;CFArrayRef items = CFArrayCreate(NULL, 0, 0, NULL);&#10;OSStatus securityError = SecPKCS12Import((__bridge CFDataRef) p12Data, (__bridge CFDictionaryRef)options, &#38;items);&#10;if (securityError == noErr &#38;&#38; CFArrayGetCount(items) &#62; 0) &#123;&#10;    CFDictionaryRef identityDict = CFArrayGetValueAtIndex(items, 0);&#10;    SecIdentityRef identityApp = (SecIdentityRef)CFDictionaryGetValue(identityDict, kSecImportItemIdentity);&#10;    securityError = SecIdentityCopyPrivateKey(identityApp, &#38;privateKeyRef);&#10;    if (securityError != noErr) &#123;&#10;        privateKeyRef = NULL;&#10;    &#125;&#10;&#125;&#10;CFRelease(items);&#10;&#10;return privateKeyRef;&#10;&#125;</span><br></pre></td></tr></table></figure>
+   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">    //&#26681;&#25454;&#20320;&#30340;der&#25991;&#20214;&#20844;&#38053;&#23545;&#24212;&#30340;SecKeyRef&#10; - (SecKeyRef)getPublicKeyRefrenceFromeData:    (NSData*)derData &#123;&#10;&#10;SecCertificateRef myCertificate = SecCertificateCreateWithData(kCFAllocatorDefault, (__bridge CFDataRef)derData);&#10;SecPolicyRef myPolicy = SecPolicyCreateBasicX509();&#10;SecTrustRef myTrust;&#10;OSStatus status = SecTrustCreateWithCertificates(myCertificate,myPolicy,&#38;myTrust);&#10;SecTrustResultType trustResult;&#10;if (status == noErr) &#123;&#10;    status = SecTrustEvaluate(myTrust, &#38;trustResult);&#10;&#125;&#10;SecKeyRef securityKey = SecTrustCopyPublicKey(myTrust);&#10;CFRelease(myCertificate);&#10;CFRelease(myPolicy);&#10;CFRelease(myTrust);&#10;&#10;return securityKey;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="u52A0_u5BC6_u4E0E_u89E3_u5BC6"><a href="#u52A0_u5BC6_u4E0E_u89E3_u5BC6" class="headerlink" title="加密与解密"></a>加密与解密 <p></p></h2> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- (NSData*)rsaEncryptData:(NSData*)data &#123;&#10;   SecKeyRef key = [self getPublicKey];&#10;   size_t cipherBufferSize = SecKeyGetBlockSize(key);&#10;   uint8_t *cipherBuffer = malloc(cipherBufferSize * sizeof(uint8_t));&#10;   size_t blockSize = cipherBufferSize - 11;&#10;     size_t blockCount = (size_t)ceil([data length] / (double)blockSize);&#10;     NSMutableData *encryptedData = [[NSMutableData alloc] init];&#10;   for (int i=0; i&#60;blockCount; i++) &#123;&#10;   unsigned long bufferSize = MIN(blockSize , [data length] - i * blockSize);&#10;   NSData *buffer = [data subdataWithRange:NSMakeRange(i * blockSize, bufferSize)];&#10;   OSStatus status = SecKeyEncrypt(key, kSecPaddingPKCS1, (const uint8_t *)[buffer bytes], [buffer length], cipherBuffer, &#38;cipherBufferSize);&#10;&#10;   if (status != noErr) &#123;&#10;       return nil;&#10;   &#125;&#10;&#10;   NSData *encryptedBytes = [[NSData alloc] initWithBytes:(const void *)cipherBuffer length:cipherBufferSize];&#10;   [encryptedData appendData:encryptedBytes];&#10;   &#125;&#10;&#10; if (cipherBuffer)&#123;&#10;   free(cipherBuffer);&#10; &#125;&#10;&#10; return encryptedData;&#10; &#125;</span><br></pre></td></tr></table></figure>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> - (NSData*)rsaDecryptData:(NSData*)data &#123;&#10;SecKeyRef key = [self getPrivatKey];&#10;&#10;size_t cipherBufferSize = SecKeyGetBlockSize(key);&#10;size_t blockSize = cipherBufferSize;&#10;size_t blockCount = (size_t)ceil([data length] / (double)blockSize);&#10;&#10;NSMutableData *decryptedData = [[NSMutableData alloc] init];&#10;&#10;for (int i = 0; i &#60; blockCount; i++) &#123;&#10;    unsigned long bufferSize = MIN(blockSize , [data length] - i * blockSize);&#10;    NSData *buffer = [data subdataWithRange:NSMakeRange(i * blockSize, bufferSize)];&#10;&#10;    size_t cipherLen = [buffer length];&#10;    void *cipher = malloc(cipherLen);&#10;    [buffer getBytes:cipher length:cipherLen];&#10;    size_t plainLen = SecKeyGetBlockSize(key);&#10;    void *plain = malloc(plainLen);&#10;&#10;    OSStatus status = SecKeyDecrypt(key, kSecPaddingPKCS1, cipher, cipherLen, plain, &#38;plainLen);&#10;&#10;    if (status != noErr) &#123;&#10;        return nil;&#10;    &#125;&#10;&#10;    NSData *decryptedBytes = [[NSData alloc] initWithBytes:(const void *)plain length:plainLen];&#10;    [decryptedData appendData:decryptedBytes];&#10;&#125;&#10;&#10;return decryptedData;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="RSA_u52A0_u5BC6_u4E2D_u7684Padding"><a href="#RSA_u52A0_u5BC6_u4E2D_u7684Padding" class="headerlink" title="RSA加密中的Padding"></a>RSA加密中的Padding</h3><ul>
+<li><p>RSA_PKCS1_PADDING 填充模式，最常用的模式</p><p><br>要求: 输入：必须 比 RSA 钥模长(modulus) 短至少11个字节, 也就是　RSA_size(rsa) – 11 如果输入的明文过长，必须切割，然后填充。</p><p><br>输出：和modulus一样长</p><p><br>根据这个要求，对于1024bit的密钥，block length = 1024/8 – 11 = 117 字节</p><p></p>
 </li>
-<li><p>RSA_PKCS1_OAEP_PADDING<br>输入：RSA_size(rsa) – 41<br>输出：和modulus一样长</p>
+<li><p>RSA_PKCS1_OAEP_PADDING</p><p><br>输入：RSA_size(rsa) – 41</p><p><br>输出：和modulus一样长</p><p></p>
 </li>
-<li><p>RSA_NO_PADDING　　不填充<br>输入：可以和RSA钥模长一样长，如果输入的明文过长，必须切割，　然后填充<br>输出：和modulus一样长</p>
+<li><p>RSA_NO_PADDING　　不填充</p><p><br>输入：可以和RSA钥模长一样长，如果输入的明文过长，必须切割，　然后填充</p><p><br>输出：和modulus一样长</p><p></p>
 </li>
 </ul>
-<h2 id="u7B7E_u540D_u4E0E_u9A8C_u8BC1"><a href="#u7B7E_u540D_u4E0E_u9A8C_u8BC1" class="headerlink" title="签名与验证"></a>签名与验证<p></p></h2><pre><code>//对数据进行sha256签名
-  - (NSData *)rsaSHA256SignData:(NSData *)plainData {
-  SecKeyRef key = [self getPrivatKey];
-
-  size_t signedHashBytesSize = SecKeyGetBlockSize(key);
-  uint8_t* signedHashBytes = malloc(signedHashBytesSize);
-  memset(signedHashBytes, 0x0, signedHashBytesSize);
-
-  size_t hashBytesSize = CC_SHA256_DIGEST_LENGTH;
-  uint8_t* hashBytes = malloc(hashBytesSize);
-  if (!CC_SHA256([plainData bytes], (CC_LONG)[plainData length], hashBytes)) {
-    return nil;
-}
-
-       SecKeyRawSign(key,
-              kSecPaddingPKCS1SHA256,
-              hashBytes,
-              hashBytesSize,
-              signedHashBytes,
-              &amp;signedHashBytesSize);
-
-    NSData* signedHash = [NSData dataWithBytes:signedHashBytes
-                                    length:(NSUInteger)signedHashBytesSize];
-
-    if (hashBytes)
-    free(hashBytes);
-    if (signedHashBytes)
-    free(signedHashBytes);
-
-    return signedHash;
-    }
-</code></pre><p>-</p>
-<pre><code>  //这边对签名的数据进行验证 验签成功，则返回YES
-- (BOOL)rsaSHA256VerifyData:(NSData *)plainData     withSignature:(NSData *)signature {
-SecKeyRef key = [self getPublicKey];
-
-size_t signedHashBytesSize = SecKeyGetBlockSize(key);
-const void* signedHashBytes = [signature bytes];
-
-size_t hashBytesSize = CC_SHA256_DIGEST_LENGTH;
-uint8_t* hashBytes = malloc(hashBytesSize);
-if (!CC_SHA256([plainData bytes], (CC_LONG)[plainData length], hashBytes)) {
-   return NO;
-}
-
-  OSStatus status = SecKeyRawVerify(key,
-                              kSecPaddingPKCS1SHA256,
-                              hashBytes,
-                              hashBytesSize,
-                              signedHashBytes,
-                              signedHashBytesSize);
-
-return status == errSecSuccess;
-}
-</code></pre><blockquote>
-<p>文章到此就结束了，希望这篇文章对大家有所帮助。想看demo的请点击：<a href="https://github.com/panxianyue/RSACryptor.git" target="_blank" rel="external">XYRSACryptor</a></p>
+<h2 id="u7B7E_u540D_u4E0E_u9A8C_u8BC1"><a href="#u7B7E_u540D_u4E0E_u9A8C_u8BC1" class="headerlink" title="签名与验证"></a>签名与验证</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> //&#23545;&#25968;&#25454;&#36827;&#34892;sha256&#31614;&#21517;&#10;- (NSData *)rsaSHA256SignData:(NSData *)plainData &#123;&#10;&#160;    &#160;SecKeyRef key = [self getPrivatKey];&#10;&#160;&#160; &#160;&#10;&#160; &#160;   size_t signedHashBytesSize = SecKeyGetBlockSize(key);&#10;&#160; &#160;   uint8_t* signedHashBytes = malloc(signedHashBytesSize);&#10;&#160; &#160;   memset(signedHashBytes, 0x0, signedHashBytesSize);&#10;&#160;&#160; &#160;&#10;&#160; &#160;   size_t hashBytesSize = CC_SHA256_DIGEST_LENGTH;&#10;&#160; &#160;   uint8_t* hashBytes = malloc(hashBytesSize);&#10;&#160; &#160;   if (!CC_SHA256([plainData bytes], (CC_LONG)[plainData length], hashBytes)) &#123;&#10;&#160; &#160; &#160; &#160; return nil;&#10;&#160; &#160; &#125;&#10;&#160;&#160; &#160;&#10;&#160; &#160;        SecKeyRawSign(key,&#10;&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; kSecPaddingPKCS1SHA256,&#10;&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; hashBytes,&#10;&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; hashBytesSize,&#10;&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; signedHashBytes,&#10;&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#38;signedHashBytesSize);&#10;&#160;&#160; &#160;&#10;&#160; &#160;     NSData* signedHash = [NSData dataWithBytes:signedHashBytes&#10;&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; length:(NSUInteger)signedHashBytesSize];&#10;&#160;&#160; &#160;&#10;&#160; &#160;     if (hashBytes)&#10;&#160; &#160; &#160; &#160; free(hashBytes);&#10;&#160; &#160; if (signedHashBytes)&#10;&#160; &#160; &#160; &#160; free(signedHashBytes);&#10;&#160;&#160; &#160;&#10;&#160; &#160;     return signedHash;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#10;//&#36825;&#36793;&#23545;&#31614;&#21517;&#30340;&#25968;&#25454;&#36827;&#34892;&#39564;&#35777; &#39564;&#31614;&#25104;&#21151;&#65292;&#21017;&#36820;&#22238;YES&#10;- (BOOL)rsaSHA256VerifyData:(NSData *)plainData     withSignature:(NSData *)signature &#123;&#10;&#160; &#160;     SecKeyRef key = [self getPublicKey];&#10;  &#10;&#160;     &#160; size_t signedHashBytesSize = SecKeyGetBlockSize(key);&#10;&#160; &#160;     const void* signedHashBytes = [signature bytes];&#10;&#160;&#160; &#160;&#10;&#160; &#160;     size_t hashBytesSize = CC_SHA256_DIGEST_LENGTH;&#10;&#160; &#160;     uint8_t* hashBytes = malloc(hashBytesSize);&#10;&#160;     &#160; if (!CC_SHA256([plainData bytes], (CC_LONG)[plainData length], hashBytes)) &#123;&#10;&#160; &#160; &#160; &#160;    return NO;&#10;&#160; &#160;     &#125;&#10;&#160;&#160; &#160;&#10;&#160; &#160;       OSStatus status = SecKeyRawVerify(key,&#10;&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; kSecPaddingPKCS1SHA256,&#10;&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; hashBytes,&#10;&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; hashBytesSize,&#10;&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; signedHashBytes,&#10;&#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; &#160; signedHashBytesSize);&#10;&#160;&#160; &#160;&#10;&#160; &#160;     return status == errSecSuccess;&#10;&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>文章到此就结束了，希望大家能够喜欢。Demo<a href="https://github.com/panxianyue/RSACryptor.git" target="_blank" rel="external">请点击</a></strong></p>
 </blockquote>
 
       
@@ -471,7 +327,7 @@ return status == errSecSuccess;
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2016 Xianyue Pan
+    		&copy; 2016 Dreamer Panda
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
