@@ -71,3 +71,6 @@ deploy:
   type: git
   repository: git@github.com:PanXianyue/PanXianyue.github.io.git
   branch: master
+
+# 首页文章只显示一部分,文章内需添加 <!--more-->
+archive: 1
