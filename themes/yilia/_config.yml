@@ -2,6 +2,7 @@
 menu:
   主页: /
   所有文章: /archives
+  相册: /instagram
   # 随笔: /tags/随笔
 
 # SubNav
@@ -59,4 +60,4 @@ friends:
 #不开启——
 #aboutme: false
 #开启——
-aboutme: 我是谁，我从哪里来，我到哪里去？我就是我，是颜色不一样的吃货…
+aboutme: "Talk is cheap, show me the code。"
