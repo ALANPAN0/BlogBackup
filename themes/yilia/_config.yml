@@ -2,7 +2,7 @@
 menu:
   主页: /
   所有文章: /archives
-  相册: /instagram
+  # 相册: /instagram
   # 随笔: /tags/随笔
 
 # SubNav
@@ -51,13 +51,13 @@ tagcloud: true
 #friends: false
 #开启——
 friends:
-  唐巧的博客: http://blog.devtang.com/
-  sunnyxx的博客: http://blog.sunnyxx.com/
-  kevin的博客: http://blog.zhowkev.in/
-  ibireme的博客: http://blog.ibireme.com/archive/
+  唐巧: http://blog.devtang.com/
+  Sunnyxx: http://blog.sunnyxx.com/
+  Kevin: http://blog.zhowkev.in/
+  Ibireme: http://blog.ibireme.com/archive/
 
 #是否开启“关于我”。
 #不开启——
 #aboutme: false
 #开启——
-aboutme: "Talk is cheap, show me the code。"
+aboutme: "平凡的脚步也可以走完伟大的行程。"
