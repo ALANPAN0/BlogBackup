@@ -36,7 +36,7 @@ google_analytics: ''
 favicon: /favicon.png
 
 #你的头像url
-avatar: https://raw.githubusercontent.com/PanXianyue/PanXianyue.github.io/master/uploads/avatar.png
+avatar: http://7xq5ax.com1.z0.glb.clouddn.com/pandaavatar.jpg
 #是否开启分享
 share_jia: true
 share_addthis: false
