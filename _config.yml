@@ -5,8 +5,8 @@
 # Site
 title: "潘先生的博客"
 subtitle: "Just do it !"
-description: 
-author: Dreamer Panda  
+description: "平凡的脚步也可以走完伟大的行程。"
+author: Panda  
 language: zh-Hans
 timezone:
 
@@ -63,7 +63,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: http://hexo.io/plugins/
 ## Themes: http://hexo.io/themes/
-theme: yilia
+theme: next
 
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
@@ -74,3 +74,19 @@ deploy:
 
 # 首页文章只显示一部分,文章内需添加 <!--more-->
 archive: 1
+
+# next 相关配置
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  hub:
+
+# title, chinese available
+links_title: Links
+# links
+links:
+  唐巧: http://blog.devtang.com/
+  Sunnyxx: http://blog.sunnyxx.com/
+  Kevin: http://blog.zhowkev.in/
+  Ibireme: http://blog.ibireme.com/archive/
