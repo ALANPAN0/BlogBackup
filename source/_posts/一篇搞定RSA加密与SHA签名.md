@@ -1,7 +1,8 @@
 ---
 title: 一篇搞定RSA加密与SHA签名
 date: 2016-01-12 17:19:25
-tags: [rsa加密, sha签名]
+categories: iOS
+tags: [RSA加密, SHA签名]
 ---
 看到这篇文章的同学可幸福了，当时在做RSA加密与签名的时候网上的资料简直不要太老，做完后实在是忍受不下去了，这篇文章我会详细讲解iOS如何实现RSA加密与签名，并且与Java完全同步。
 
@@ -239,5 +240,5 @@ return decryptedData;
         return status == errSecSuccess;
 }
 ```
-
->**文章到此就结束了，希望大家能够喜欢。Demo[请点击](https://github.com/panxianyue/RSACryptor.git)**
+<p>
+**文章到此就结束了，希望大家能够喜欢。请点击[Git](https://github.com/panxianyue/RSACryptor.git)获取相关demo**
