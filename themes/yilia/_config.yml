@@ -8,7 +8,7 @@ menu:
 # SubNav
 subnav:
   github: "https://github.com/PanXianyue"
-  weibo: http://weibo.com/u/2792583194/home"
+  weibo: http://weibo.com/2792583194"
   #rss: "#"
   #zhihu: "#"
   #douban: "#"
@@ -54,7 +54,7 @@ friends:
   唐巧: http://blog.devtang.com/
   Sunnyxx: http://blog.sunnyxx.com/
   Kevin: http://blog.zhowkev.in/
-  Ibireme: http://blog.ibireme.com/archive/
+  Ibireme: http://blog.ibireme.com/
 
 #是否开启“关于我”。
 #不开启——
