@@ -241,4 +241,4 @@ return decryptedData;
 }
 ```
 <p>
-**文章到此就结束了，希望大家能够喜欢。请点击[Git](https://github.com/panxianyue/RSACryptor.git)获取相关demo**
+**文章到此就结束了，希望大家能够喜欢。请点击[Git](https://github.com/PanXianyue/XYCryption)获取相关demo**
