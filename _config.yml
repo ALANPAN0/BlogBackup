@@ -3,11 +3,12 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: "潘先生的技术博客"
+title: "Panda's Blog"
 subtitle: "Just do it !"
 description: "平凡的脚步也可以走完伟大的行程。"
 author: Panda  
-language: zh-Hans
+# language: zh-Hans
+language: en 
 timezone:
 
 # URL
@@ -63,7 +64,8 @@ pagination_dir: page
 # Extensions
 ## Plugins: http://hexo.io/plugins/
 ## Themes: http://hexo.io/themes/
-theme: next
+# theme: next
+theme: apollo
 
 # Deployment
 ## Docs: http://hexo.io/docs/deployment.html
@@ -89,4 +91,4 @@ links:
   唐巧: http://blog.devtang.com/
   Sunnyxx: http://blog.sunnyxx.com/
   Kevin: http://blog.zhowkev.in/
-  Ibireme: http://blog.ibireme.com/
+  ibireme: http://blog.ibireme.com/
