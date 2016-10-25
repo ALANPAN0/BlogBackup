@@ -1,0 +1,52 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 利用XCTool实现自动化打包 · dreamerpanda</title><meta name="description" content="利用XCTool实现自动化打包 - panda"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://yoursite.com/atom.xml" title="dreamerpanda"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/avatar.jpg"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/2792583194" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/PanXianyue" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">利用XCTool实现自动化打包</h1><div class="post-info">Feb 13, 2016</div><div class="post-content"><p>一个不会偷懒的程序员不是一个好程序员。每次编译打包都要花好长的时间，看了本篇博客后，就可以帮这些无聊的事情交给XCTool来做，我们喝喝茶，撩撩妹就行。<br><a id="more"></a></p>
+<h1 id="XCTool"><a href="#XCTool" class="headerlink" title="XCTool"></a>XCTool</h1><p>xctool是Facebook开源的一个命令行工具，用来代替苹果的xcodebuild工具。</p>
+<p>功能如下：</p>
+<ul>
+<li>像xcode一样能够编译程序</li>
+<li>编译的结果能够以结构化的形式输出</li>
+<li>编译内容输出彩色且方便阅读</li>
+</ul>
+<h2 id="u5B89_u88C5XCTool"><a href="#u5B89_u88C5XCTool" class="headerlink" title="安装XCTool"></a>安装XCTool</h2><p>最简单的办法就是用homebrew安装xctool，这边就不介绍如何安装homebrew了。</p>
+<p><code>brew install xctool</code></p>
+<p>注：在用brew安装xctool的时候可能会出现can not install with HEAD error，当时尝试很多办法都没有搞定，像卸了重装… 终极解决方案：直接删除/usr/local里面里面所有的文件，<em>这边会导致你之前安装的一些插件会被删除，像CocoaPods</em>。</p>
+<h2 id="u7F16_u8BD1"><a href="#u7F16_u8BD1" class="headerlink" title="编译"></a>编译</h2><p><code>xctool -workspace ${project_path}/${project_name}.xcworkspace -scheme ${project_name} archive -archivePath ${project_path}/build/Debug-iphoneos/${project_name}_Debug.xcarchive -configuration ${build_Mode} || exit</code></p>
+<h1 id="XcodeBuild"><a href="#XcodeBuild" class="headerlink" title="XcodeBuild"></a>XcodeBuild</h1><p>shell里面会利用xcodebuild进行打包、清理工程</p>
+<h2 id="u6253_u5305"><a href="#u6253_u5305" class="headerlink" title="打包"></a>打包</h2><p><code>xcodebuild -exportArchive -archivePath ${project_path}/build/Debug-iphoneos/${project_name}_Debug.xcarchive -exportPath ${buildExportPath}/debug.ipa -exportFormat ipa \
+-exportProvisioningProfile &quot;${profile_name}&quot; || exit</code></p>
+<h2 id="u6E05_u7406_u5DE5_u7A0B"><a href="#u6E05_u7406_u5DE5_u7A0B" class="headerlink" title="清理工程"></a>清理工程</h2><p><code>xcodebuild clean -configuration ${build_Mode} || exit</code></p>
+<h1 id="Linux_u547D_u4EE4"><a href="#Linux_u547D_u4EE4" class="headerlink" title="Linux命令"></a>Linux命令</h1><p>shell里面会涉及到一些Linux命令：</p>
+<p><code>echo &quot;输出内容&quot;</code></p>
+<p><code>echo &#39;输出内容&#39;</code></p>
+<p>输出你想要输出的东西，<em>‘ ’表示要输出的内容为纯字符串，不可引用变量，“”表示输出的内容可包含变量</em></p>
+<p><code>cd ..</code></p>
+<p>回退上一级目录</p>
+<p><code>makdir</code></p>
+<p>新建一个目录</p>
+<p><code>rm -rf &quot;content&quot;</code></p>
+<p>删除文件夹里面的所有内容</p>
+<p><strong>以上内容纯属虚构，若不感兴趣，完全可以跳过，直奔使用~</strong></p>
+<h1 id="u4F7F_u7528_u6559_u7A0B"><a href="#u4F7F_u7528_u6559_u7A0B" class="headerlink" title="使用教程"></a>使用教程</h1><ol>
+<li><p>将ipa_build这个文件夹移到和.xcodeproj或.xcworkspace同一级目录</p>
+</li>
+<li><p>打开build_debug或者build_release文件，替换profile_name字段，替换为你要打包项目的profile name</p>
+</li>
+<li><p>打开你的字段  <code>cd 脚本所在的目录</code> -&gt; <code>chmod 777 build_debug.sh (仅第一次的时候需要)</code> -&gt; <code>./build_debug.sh</code></p>
+</li>
+<li><p>查看你的桌面即可以查看导出的IPA包</p>
+</li>
+</ol>
+<p></p><p></p>
+<blockquote>
+<p>感谢大家花费时间来查看这篇blog，需要下载shell的同学请猛戳<a href="https://github.com/PanXianyue/ipa_build" target="_blank" rel="external">Git</a>。</p>
+</blockquote>
+</div></article></div></section><footer><div class="paginator"><a href="/2016/05/11/Runtime-tabBarItem/" class="prev">上一篇</a><a href="/2016/01/17/Summary/" class="next">下一篇</a></div><div data-thread-key="2016/02/13/xctool-package/" data-title="利用XCTool实现自动化打包" data-url="http://yoursite.com/2016/02/13/xctool-package/" data-author-key="1" class="ds-thread"></div><script>var duoshuoQuery = {short_name:"iipanda"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+
+</script><div class="copyright"><p>© 2015 - 2016 <a href="http://yoursite.com">panda</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-83145135-1",'auto');ga('send','pageview');</script></body></html>

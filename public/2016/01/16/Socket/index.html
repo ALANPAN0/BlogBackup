@@ -1,0 +1,90 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> 浅谈Socket学习中的那些事 · dreamerpanda</title><meta name="description" content="浅谈Socket学习中的那些事 - panda"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://yoursite.com/atom.xml" title="dreamerpanda"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/avatar.jpg"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/2792583194" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/PanXianyue" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">浅谈Socket学习中的那些事</h1><div class="post-info">Jan 16, 2016</div><div class="post-content"><p>Socket是为网络服务提供的一种机制，希望经过此次的学习，能够揭开Socket神秘面纱。在此仅想记录自己的学习历程和一些学习心得。<br><a id="more"></a></p>
+<h1 id="OSI_u3001TCP_5CIP_u53C2_u8003_u6A21_u578B"><a href="#OSI_u3001TCP_5CIP_u53C2_u8003_u6A21_u578B" class="headerlink" title="OSI、TCP\IP参考模型"></a>OSI、TCP\IP参考模型</h1><p>
+
+</p><p><img src="http://7xq5ax.com1.z0.glb.clouddn.com/OSI%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B.png" alt=""></p>
+<p>
+
+</p><h2 id="u7B80_u5355_u89E3_u91CA"><a href="#u7B80_u5355_u89E3_u91CA" class="headerlink" title="简单解释"></a>简单解释</h2><ol>
+<li><p>物理层：主要定义物理设备标准，如网线的接口类型、各种传输介质的传输速率等。2. </p>
+</li>
+<li><p>数据链路层：主要将从物理层接收的数据进行MAC地址的封装与解封装。</p>
+</li>
+<li><p>网络层：选择合适的网间路由和交换结点，确保数据及时传送，将从下层接收到的数据进行IP地址的封装与解封装。</p>
+</li>
+<li><p>传输层：定义了一些传输数据的协议和端口，如TCP、UDP协议，主要将从下层接收的数据进行分段和传输，到达目的地址后再进行重组，以往把这一层数据叫做段。</p>
+</li>
+<li><p>会话层：通过传输层建立数据传输通路。</p>
+</li>
+<li><p>表示层：主要是进行对接收的数据进行解释、压缩与解压缩等，即把计算机能够识别的东西转化成人能够识别的东西（如图片、声音等）。</p>
+</li>
+<li><p>应用层：主要是一些终端的应用，比如说FTP（各种文件下载）、浏览器、QQ等，可以将其理解为在电脑屏幕上可以看到的东西，也就是终端应用。</p><p></p>
+</li>
+</ol>
+<h2 id="u7F51_u7EDC_u901A_u8BAF_u8981_u7D20"><a href="#u7F51_u7EDC_u901A_u8BAF_u8981_u7D20" class="headerlink" title="网络通讯要素"></a>网络通讯要素</h2><p><strong>IP地址</strong>：网络中设备的标示</p>
+<p><strong>端口号</strong>：用来标示进程的逻辑地址，不同进程的标示</p>
+<p><strong>传输协议</strong>：用什么样的方式进行交互，常见协议TCP/UDP</p>
+<h1 id="TCP/UDP"><a href="#TCP/UDP" class="headerlink" title="TCP/UDP"></a>TCP/UDP</h1><p><strong>TCP（传输控制协议）</strong></p>
+<ol>
+<li><p>建立连接，形成数据传输的通道</p>
+</li>
+<li><p>在连接中可进行大数据传输（数据的大小不受限制）</p>
+</li>
+<li><p>通过三次握手建立连接，可靠协议，安全送达</p>
+</li>
+<li><p>先建立连接，效率较低</p><p></p>
+</li>
+</ol>
+<p><strong>UDP（用户数据报协议）</strong></p>
+<ol>
+<li><p>不需要建立连接，将数据封装在数据包中</p>
+</li>
+<li><p>每个数据包得大小限制在64k之内</p>
+</li>
+<li><p>无需连接，是不可靠协议</p>
+</li>
+<li><p>不需要连接，速度较快</p>
+</li>
+</ol>
+<h1 id="Socket"><a href="#Socket" class="headerlink" title="Socket"></a>Socket</h1><h2 id="u7B80_u5355_u89E3_u91CA-1"><a href="#u7B80_u5355_u89E3_u91CA-1" class="headerlink" title="简单解释"></a>简单解释</h2><ol>
+<li><p>网络提供服务的一种机制</p>
+</li>
+<li><p>通信的两端都是socket</p>
+</li>
+<li><p>网络通信其实就是socket间的通信</p>
+</li>
+<li><p>数据在两个socket间通过IO传输</p>
+</li>
+</ol>
+<p><img src="http://7xq5ax.com1.z0.glb.clouddn.com/%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%B5%81.png" alt=""></p>
+<h2 id="iOS_u4E2D_u5E38_u7528_u7684_u4E24_u79CDSocket_u7C7B_u578B"><a href="#iOS_u4E2D_u5E38_u7528_u7684_u4E24_u79CDSocket_u7C7B_u578B" class="headerlink" title="iOS中常用的两种Socket类型"></a>iOS中常用的两种Socket类型</h2><p><strong>流式Socket（SOCK_STREAM）</strong>：流式是一种面向连接的Socket，针对于面向连接的TCP服务应用</p>
+<p><strong>数据报式Socket（SOCK_DGRAM）</strong>：数据报式Socket是一种无连接的Socket，对应于无连接的UDP服务应用</p>
+<h2 id="Http_u4E0ESocket_u7684_u533A_u522B"><a href="#Http_u4E0ESocket_u7684_u533A_u522B" class="headerlink" title="Http与Socket的区别"></a>Http与Socket的区别</h2><ol>
+<li><p>Http是基于Socket的实现；Http应用层协议，主要解决如何包装数据</p>
+</li>
+<li><p>Http传输的数据格式是规定好的，Socket实现数据传输是最原始，Socket实现的数据传输格式可自定义</p>
+</li>
+<li><p>Http建立的连接称为短连接，Socket建立的连接为长连接</p>
+</li>
+<li><p>Socket是对TCP/IP协议的封装，Socket本身并不是协议，而是一个调用接口(API),通过Socket我们才能使用TCP/IP协议</p>
+</li>
+</ol>
+<h1 id="u6700_u540E"><a href="#u6700_u540E" class="headerlink" title="最后"></a>最后</h1><p></p><p><br>在学习的过程中会模仿微信做类似的demo，涉及到的一些相关地址如下：</p>
+<ol>
+<li><p>iOS XMPP框架：<a href="https://github.com/robbiehanson/XMPPFramework" target="_blank" rel="external">https://github.com/robbiehanson/XMPPFramework</a></p>
+</li>
+<li><p>Server：<a href="http://www.igniterealtime.org/downloads/index.jsp" target="_blank" rel="external">http://www.igniterealtime.org/downloads/index.jsp</a></p>
+</li>
+<li><p>数据库：<a href="http://dev.mysql.com/downloads/mysql/" target="_blank" rel="external">http://dev.mysql.com/downloads/mysql/</a></p>
+</li>
+</ol>
+</div></article></div></section><footer><div class="paginator"><a href="/2016/01/17/Summary/" class="prev">上一篇</a><a href="/2016/01/12/RSA-SHA/" class="next">下一篇</a></div><div data-thread-key="2016/01/16/Socket/" data-title="浅谈Socket学习中的那些事" data-url="http://yoursite.com/2016/01/16/Socket/" data-author-key="1" class="ds-thread"></div><script>var duoshuoQuery = {short_name:"iipanda"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+
+</script><div class="copyright"><p>© 2015 - 2016 <a href="http://yoursite.com">panda</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-83145135-1",'auto');ga('send','pageview');</script></body></html>

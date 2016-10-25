@@ -1,0 +1,563 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>dreamerpanda</title>
+  <subtitle>Just do it !</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2016-09-26T09:39:43.000Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>panda</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Sketch--makeicons</title>
+    <link href="http://yoursite.com/2016/09/26/sketch-makeicons/"/>
+    <id>http://yoursite.com/2016/09/26/sketch-makeicons/</id>
+    <published>2016-09-26T09:05:53.000Z</published>
+    <updated>2016-09-26T09:39:43.000Z</updated>
+    
+    <content type="html">&lt;p&gt;一枚不务正业的iOS工程师&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xq5ax.com1.z0.glb.clouddn.com/makeicons.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;模仿&lt;a href=&quot;http://weibo.com/wangchaohui?from=myfollow_all&amp;amp;is_all=1#1474879197597&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Allen朝辉&lt;/a&gt;实现了一遍，So good！初学设计，有什么不足之处还望指导。&lt;br&gt;资源放在&lt;a href=&quot;https://github.com/PanXianyue/BlogDemo/tree/master/Sketch&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;git&lt;/a&gt;上，方便管理。&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;一枚不务正业的iOS工程师&lt;br&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>执着</title>
+    <link href="http://yoursite.com/2016/08/25/%E6%89%A7%E7%9D%80/"/>
+    <id>http://yoursite.com/2016/08/25/执着/</id>
+    <published>2016-08-25T13:16:00.000Z</published>
+    <updated>2016-08-25T13:18:39.000Z</updated>
+    
+    <content type="html">&lt;p&gt;有些东西明明一文不值，却不舍得丢掉，&lt;br&gt;&lt;br&gt;有时候找不着还会急得坐立不安。&lt;br&gt;&lt;br&gt;问题是它们越来越旧，越来越老，而我已经渐渐不敢看它们。&lt;br&gt;&lt;br&gt;它们装在盒子里，放在角落里，像一部部电影，&lt;br&gt;&lt;br&gt;随时都能让我重新看到一场大雨，&lt;br&gt;&lt;br&gt;一次分离，一杯咖啡，一个拥抱……&lt;br&gt;&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;有些东西明明一文不值，却不舍得丢掉，&lt;br&gt;&lt;br&gt;有时候找不着还会急得坐立不安。&lt;br&gt;&lt;br&gt;问题是它们越来越旧，越来越老，而我已经渐渐不敢看它们。&lt;br&gt;&lt;br&gt;它们装在盒子里，放在角落里，像一部部电影，&lt;br&gt;&lt;br&gt;随时都能让我重新看到一场大雨，&lt;br&gt;&lt;br&gt;一次分离，一杯咖啡，一个拥抱……&lt;br&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>YYKit源码分析---YYCache</title>
+    <link href="http://yoursite.com/2016/07/18/YYCache-analyzing/"/>
+    <id>http://yoursite.com/2016/07/18/YYCache-analyzing/</id>
+    <published>2016-07-18T14:47:35.000Z</published>
+    <updated>2016-08-25T03:46:24.000Z</updated>
+    
+    <content type="html">&lt;p&gt;&lt;a href=&quot;https://github.com/ibireme/YYCache&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;YYCache&lt;/a&gt;是用于Objective-C中用于缓存的第三方框架。此文主要用来讲解该框架的实现细节，性能分析、设计思路ibireme已经讲得很清楚了，我这边就不在分析了。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;u6587_u4EF6_u7ED3_u6784&quot;&gt;&lt;a href=&quot;#u6587_u4EF6_u7ED3_u6784&quot; class=&quot;headerlink&quot; title=&quot;文件结构&quot;&gt;&lt;/a&gt;文件结构&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xq5ax.com1.z0.glb.clouddn.com/yycache-tree.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;YYCache：同时实现内存缓存和磁盘缓存且是线程安全的&lt;/li&gt;
+&lt;li&gt;YYMemoryCache：实现内存缓存，所有的API都是线程安全的，与其他缓存方式比较不同的是内部利用LRU淘汰算法（后面会介绍）来提高性能&lt;/li&gt;
+&lt;li&gt;YYDiskCache：实现磁盘缓存，所有的API都是线程安全的，内部也采用了LRU淘汰算法，主要SQLite和文件存储两种方式&lt;/li&gt;
+&lt;li&gt;YYKVStorage：实现磁盘存储，不推荐直接使用该类，该类不是线程安全的&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;LRU&quot;&gt;&lt;a href=&quot;#LRU&quot; class=&quot;headerlink&quot; title=&quot;LRU&quot;&gt;&lt;/a&gt;LRU&lt;/h2&gt;&lt;p&gt;LRU(Least recently used，最近最少使用)算法，根据访问的历史记录来对数据进行淘汰&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;img src=&quot;http://7xq5ax.com1.z0.glb.clouddn.com/lru.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;简单的来说3点：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;有新数据加入时添加到链表的头部&lt;/li&gt;
+&lt;li&gt;每当缓存命中（即缓存数据被访问），则将数据移到链表头部&lt;/li&gt;
+&lt;li&gt;当链表满的时候，将链表尾部的数据丢弃&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;在YYMemoryCache中使用来双向链表和NSDictionary实现了LRU淘汰算法，后面会介绍&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&quot;u5173_u4E8E_u9501&quot;&gt;&lt;a href=&quot;#u5173_u4E8E_u9501&quot; class=&quot;headerlink&quot; title=&quot;关于锁&quot;&gt;&lt;/a&gt;关于锁&lt;/h2&gt;&lt;p&gt;YYCache 使用到两种锁&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;OSSpinLock ：自旋锁，上一篇博客也提及到&lt;a href=&quot;http://iipanda.com/2016/06/21/YYKit-pthread/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;pthread_mutex&lt;/a&gt; &lt;/li&gt;
+&lt;li&gt;dispatch_semaphore：信号量，当信号量为1的时候充当锁来用&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;内存缓存用的pthread_mutex：由于pthread_mutex相当于do while忙等，等待时会消耗大量的CPU资源&lt;br&gt;磁盘缓存使用的dispatch_semaphore：优势在于等待时不会消耗CPU资源&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;简单的科普就到这，现在来开始源码的探索&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;YYLinkedMap&quot;&gt;&lt;a href=&quot;#YYLinkedMap&quot; class=&quot;headerlink&quot; title=&quot;_YYLinkedMap&quot;&gt;&lt;/a&gt;_YYLinkedMap&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;@interface _YYLinkedMapNode : NSObject &amp;#123;&amp;#10;    @package&amp;#10;    __unsafe_unretained _YYLinkedMapNode *_prev; // retained by dic&amp;#10;    __unsafe_unretained _YYLinkedMapNode *_next; // retained by dic&amp;#10;    id _key;&amp;#10;    id _value;&amp;#10;    NSUInteger _cost;&amp;#10;    NSTimeInterval _time;&amp;#10;&amp;#125;&amp;#10;@end&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;_YYLinkedMapNode&lt;/strong&gt;：链表的节点&lt;br&gt;&lt;br&gt;_prev、_next：分别表示指向上一个节点、下一个节点&lt;br&gt;&lt;br&gt;_key：缓存的key&lt;br&gt;&lt;br&gt;_value：缓存对象&lt;br&gt;&lt;br&gt;_cost：内存消耗&lt;br&gt;&lt;br&gt;_time：缓存时间&lt;br&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;@interface _YYLinkedMap : NSObject &amp;#123;&amp;#10;    @package&amp;#10;    CFMutableDictionaryRef _dic; // do not set object directly&amp;#10;    NSUInteger _totalCost;&amp;#10;    NSUInteger _totalCount;&amp;#10;    _YYLinkedMapNode *_head; // MRU&amp;#65288;&amp;#26368;&amp;#36817;&amp;#26368;&amp;#24120;&amp;#20351;&amp;#29992;&amp;#31639;&amp;#27861;&amp;#65289;, do not change it directly&amp;#10;    _YYLinkedMapNode *_tail; // LRU&amp;#65288;&amp;#26368;&amp;#36817;&amp;#26368;&amp;#23569;&amp;#20351;&amp;#29992;&amp;#31639;&amp;#27861;-&amp;#28165;&amp;#38500;&amp;#36739;&amp;#19981;&amp;#24120;&amp;#20351;&amp;#29992;&amp;#25968;&amp;#25454;&amp;#65289;, do not change it directly&amp;#10;    BOOL _releaseOnMainThread;&amp;#10;    BOOL _releaseAsynchronously;&amp;#10;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;_YYLinkedMap&lt;/strong&gt;：链表&lt;br&gt;&lt;br&gt;_dic：用来保存节点&lt;br&gt;&lt;br&gt;_totalCost：总缓存开销&lt;br&gt;&lt;br&gt;_head、_tail：头节点、尾节点&lt;br&gt;&lt;br&gt;_releaseOnMainThread：是否在主线程释放_YYLinkedMapNode&lt;br&gt;&lt;br&gt;_releaseAsynchronously：是否异步释放_YYLinkedMapNode&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;双向链表&lt;/strong&gt;&lt;br&gt;&lt;br&gt;&lt;img src=&quot;http://7xq5ax.com1.z0.glb.clouddn.com/LinkedMap@1x.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;插入节点到头部&lt;/li&gt;
+&lt;li&gt;将除两边的节点移到头部&lt;/li&gt;
+&lt;li&gt;移除除两边的节点&lt;/li&gt;
+&lt;li&gt;移除尾部节点&lt;/li&gt;
+&lt;li&gt;移除所有节点&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;看下移除所有节点的代码：&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;- (void)removeAll &amp;#123;&amp;#10;    _totalCost = 0;&amp;#10;    _totalCount = 0;&amp;#10;    _head = nil;&amp;#10;    _tail = nil;&amp;#10;    if (CFDictionaryGetCount(_dic) &amp;#62; 0) &amp;#123;&amp;#10;        CFMutableDictionaryRef holder = _dic;&amp;#10;        _dic = CFDictionaryCreateMutable(CFAllocatorGetDefault(), 0, &amp;#38;kCFTypeDictionaryKeyCallBacks, &amp;#38;kCFTypeDictionaryValueCallBacks);&amp;#10;        &amp;#10;        if (_releaseAsynchronously) &amp;#123;&amp;#10;            dispatch_queue_t queue = _releaseOnMainThread ? dispatch_get_main_queue() : YYMemoryCacheGetReleaseQueue();&amp;#10;            dispatch_async(queue, ^&amp;#123;&amp;#10;                CFRelease(holder); // hold and release in specified queue&amp;#10;            &amp;#125;);&amp;#10;        &amp;#125; else if (_releaseOnMainThread &amp;#38;&amp;#38; !pthread_main_np()) &amp;#123;&amp;#10;            dispatch_async(dispatch_get_main_queue(), ^&amp;#123;&amp;#10;                CFRelease(holder); // hold and release in specified queue&amp;#10;            &amp;#125;);&amp;#10;        &amp;#125; else &amp;#123;&amp;#10;            CFRelease(holder);&amp;#10;        &amp;#125;&amp;#10;    &amp;#125;&amp;#10;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;这边通过双向链表来对数据进行操作，和NSDictionary实现了LRU淘汰算法。时间复杂度0（1），5种操作基本上都是对头尾节点和链表节点的上一个节点和下一个节点进行操作。&lt;/p&gt;
+&lt;h2 id=&quot;YYMemoryCache&quot;&gt;&lt;a href=&quot;#YYMemoryCache&quot; class=&quot;headerlink&quot; title=&quot;YYMemoryCache&quot;&gt;&lt;/a&gt;YYMemoryCache&lt;/h2&gt;&lt;p&gt;这边介绍两个主要的操作：添加缓存，查找缓存&lt;/p&gt;&lt;p&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;添加缓存&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;- (void)setObject:(id)object forKey:(id)key withCost:(NSUInteger)cost &amp;#123;&amp;#10;    if (!key) return;&amp;#10;    if (!object) &amp;#123;&amp;#10;        // &amp;#32531;&amp;#23384;&amp;#23545;&amp;#35937;&amp;#20026;nil&amp;#65292;&amp;#30452;&amp;#25509;&amp;#31227;&amp;#38500;&amp;#10;        [self removeObjectForKey:key];&amp;#10;        return;&amp;#10;    &amp;#125;&amp;#10;    // &amp;#20026;&amp;#20102;&amp;#20445;&amp;#35777;&amp;#32447;&amp;#31243;&amp;#23433;&amp;#20840;&amp;#65292;&amp;#25968;&amp;#25454;&amp;#25805;&amp;#20316;&amp;#21069;&amp;#36827;&amp;#34892;&amp;#21152;&amp;#38145;&amp;#10;    pthread_mutex_lock(&amp;#38;_lock);&amp;#10;    // &amp;#26597;&amp;#25214;&amp;#32531;&amp;#23384;&amp;#10;    _YYLinkedMapNode *node = CFDictionaryGetValue(_lru-&amp;#62;_dic, (__bridge const void *)(key));&amp;#10;    // &amp;#24403;&amp;#21069;&amp;#26102;&amp;#38388;&amp;#10;    NSTimeInterval now = CACurrentMediaTime();&amp;#10;    if (node) &amp;#123;&amp;#10;        // &amp;#32531;&amp;#23384;&amp;#23545;&amp;#35937;&amp;#24050;&amp;#23384;&amp;#22312;&amp;#65292;&amp;#26356;&amp;#26032;&amp;#25968;&amp;#25454;&amp;#65292;&amp;#24182;&amp;#31227;&amp;#21040;&amp;#26632;&amp;#39030;&amp;#10;        _lru-&amp;#62;_totalCost -= node-&amp;#62;_cost;&amp;#10;        _lru-&amp;#62;_totalCost += cost;&amp;#10;        node-&amp;#62;_cost = cost;&amp;#10;        node-&amp;#62;_time = now;&amp;#10;        node-&amp;#62;_value = object;&amp;#10;        [_lru bringNodeToHead:node];&amp;#10;    &amp;#125; else &amp;#123;&amp;#10;        // &amp;#32531;&amp;#23384;&amp;#23545;&amp;#35937;&amp;#19981;&amp;#23384;&amp;#22312;&amp;#65292;&amp;#28155;&amp;#21152;&amp;#25968;&amp;#25454;&amp;#65292;&amp;#24182;&amp;#31227;&amp;#21040;&amp;#26632;&amp;#39030;&amp;#10;        node = [_YYLinkedMapNode new];&amp;#10;        node-&amp;#62;_cost = cost;&amp;#10;        node-&amp;#62;_time = now;&amp;#10;        node-&amp;#62;_key = key;&amp;#10;        node-&amp;#62;_value = object;&amp;#10;        [_lru insertNodeAtHead:node];&amp;#10;    &amp;#125;&amp;#10;    // &amp;#21028;&amp;#26029;&amp;#24403;&amp;#21069;&amp;#30340;&amp;#32531;&amp;#23384;&amp;#36827;&amp;#34892;&amp;#26159;&amp;#21542;&amp;#36229;&amp;#20986;&amp;#20102;&amp;#35774;&amp;#23450;&amp;#20540;&amp;#65292;&amp;#33509;&amp;#36229;&amp;#20986;&amp;#21017;&amp;#36827;&amp;#34892;&amp;#25972;&amp;#29702;&amp;#10;    if (_lru-&amp;#62;_totalCost &amp;#62; _costLimit) &amp;#123;&amp;#10;        dispatch_async(_queue, ^&amp;#123;&amp;#10;            [self trimToCost:_costLimit];&amp;#10;        &amp;#125;);&amp;#10;    &amp;#125;&amp;#10;    &amp;#10;    // &amp;#27599;&amp;#27425;&amp;#28155;&amp;#21152;&amp;#25968;&amp;#25454;&amp;#20165;&amp;#26377;&amp;#19968;&amp;#20010;&amp;#65292;&amp;#25968;&amp;#37327;&amp;#19978;&amp;#36229;&amp;#20986;&amp;#26102;&amp;#65292;&amp;#30452;&amp;#25509;&amp;#31227;&amp;#38500;&amp;#23614;&amp;#37096;&amp;#37027;&amp;#20010;object&amp;#21363;&amp;#21487;&amp;#10;    if (_lru-&amp;#62;_totalCount &amp;#62; _countLimit) &amp;#123;&amp;#10;        _YYLinkedMapNode *node = [_lru removeTailNode];&amp;#10;        if (_lru-&amp;#62;_releaseAsynchronously) &amp;#123;&amp;#10;            dispatch_queue_t queue = _lru-&amp;#62;_releaseOnMainThread ? dispatch_get_main_queue() : YYMemoryCacheGetReleaseQueue();&amp;#10;            dispatch_async(queue, ^&amp;#123;&amp;#10;                [node class]; //hold and release in queue&amp;#10;            &amp;#125;);&amp;#10;        &amp;#125; else if (_lru-&amp;#62;_releaseOnMainThread &amp;#38;&amp;#38; !pthread_main_np()) &amp;#123;&amp;#10;            dispatch_async(dispatch_get_main_queue(), ^&amp;#123;&amp;#10;                [node class]; //hold and release in queue&amp;#10;            &amp;#125;);&amp;#10;        &amp;#125;&amp;#10;    &amp;#125;&amp;#10;    // &amp;#25805;&amp;#20316;&amp;#32467;&amp;#26463;&amp;#65292;&amp;#35299;&amp;#38145;&amp;#10;    pthread_mutex_unlock(&amp;#38;_lock);&amp;#10;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;异步线程释放&lt;/strong&gt;&lt;br&gt;&lt;img src=&quot;http://7xq5ax.com1.z0.glb.clouddn.com/%E5%BC%82%E6%AD%A5%E9%87%8A%E6%94%BE.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;里面很多都用到类似的方法，将一个对象在异步线程中释放，来分析下：&lt;br&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;pre&gt;&lt;code&gt;- p
+1. 首先通过node来对其进行持有，以至于不会在方法调用结束的时候被销毁
+2. 我要要在其他线程中进行销毁，所以将销毁操作放在block中，block就会对其进行持有
+3. 这边在block中随便调用了个方法，保证编译器不会优化掉这个操作
+4. 当block结束后，node没有被持有的时候，就会在当前线程被release掉了
+&lt;/code&gt;&lt;/pre&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;添加缓存&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;// &amp;#36825;&amp;#36793;&amp;#20174;memory&amp;#20013;&amp;#21462;&amp;#25968;&amp;#25454;&amp;#26102;&amp;#65292;&amp;#26681;&amp;#25454;LRU&amp;#21407;&amp;#21017;&amp;#65292;&amp;#23558;&amp;#26368;&amp;#26032;&amp;#21462;&amp;#20986;&amp;#30340;object&amp;#25918;&amp;#21040;&amp;#26632;&amp;#22836;&amp;#10;- (id)objectForKey:(id)key &amp;#123;&amp;#10;    if (!key) return nil;&amp;#10;    pthread_mutex_lock(&amp;#38;_lock);&amp;#10;    _YYLinkedMapNode *node = CFDictionaryGetValue(_lru-&amp;#62;_dic, (__bridge const void *)(key));&amp;#10;    if (node) &amp;#123;&amp;#10;        node-&amp;#62;_time = CACurrentMediaTime();&amp;#10;        [_lru bringNodeToHead:node];&amp;#10;    &amp;#125;&amp;#10;    pthread_mutex_unlock(&amp;#38;_lock);&amp;#10;    return node ? node-&amp;#62;_value : nil;&amp;#10;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;YYKVStorage&quot;&gt;&lt;a href=&quot;#YYKVStorage&quot; class=&quot;headerlink&quot; title=&quot;YYKVStorage&quot;&gt;&lt;/a&gt;YYKVStorage&lt;/h2&gt;&lt;p&gt;该文件主要以两种方式来实现磁盘存储：SQLite、File，使用两种方式混合进行存储主要为了提高读写效率。写入数据时，SQLite要比文件的方式更快；读取数据的速度主要取决于文件的大小。据测试，在iPhone6中，当文件大小超过20kb时，File要比SQLite快的多。所以当大文件存储时建议用File的方式，小文件更适合用SQLite。&lt;/p&gt;&lt;p&gt;&lt;br&gt;下边分别对Save、Remove、Get分别进行分析&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Save&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;- (BOOL)saveItemWithKey:(NSString *)key value:(NSData *)value filename:(NSString *)filename extendedData:(NSData *)extendedData &amp;#123;&amp;#10;    // &amp;#26465;&amp;#20214;&amp;#19981;&amp;#31526;&amp;#21512;&amp;#10;    if (key.length == 0 || value.length == 0) return NO;&amp;#10;    if (_type == YYKVStorageTypeFile &amp;#38;&amp;#38; filename.length == 0) &amp;#123;&amp;#10;        return NO;&amp;#10;    &amp;#125;&amp;#10;    &amp;#10;    if (filename.length) &amp;#123;    // filename&amp;#23384;&amp;#22312; SQLite File&amp;#20004;&amp;#31181;&amp;#26041;&amp;#24335;&amp;#24182;&amp;#34892;&amp;#10;        // &amp;#29992;&amp;#25991;&amp;#20214;&amp;#36827;&amp;#34892;&amp;#23384;&amp;#20648;&amp;#10;        if (![self _fileWriteWithName:filename data:value]) &amp;#123;&amp;#10;            return NO;&amp;#10;        &amp;#125;&amp;#10;        // &amp;#29992;SQLite&amp;#36827;&amp;#34892;&amp;#23384;&amp;#20648;&amp;#10;        if (![self _dbSaveWithKey:key value:value fileName:filename extendedData:extendedData]) &amp;#123;&amp;#10;            // &amp;#24403;&amp;#20351;&amp;#29992;SQLite&amp;#26041;&amp;#24335;&amp;#23384;&amp;#20648;&amp;#22833;&amp;#36133;&amp;#26102;&amp;#65292;&amp;#21024;&amp;#38500;&amp;#26412;&amp;#22320;&amp;#25991;&amp;#20214;&amp;#23384;&amp;#20648;&amp;#10;            [self _fileDeleteWithName:filename];&amp;#10;            return NO;&amp;#10;        &amp;#125;&amp;#10;        return YES;&amp;#10;    &amp;#125; else &amp;#123;               // filename&amp;#19981;&amp;#23384;&amp;#22312; SQLite&amp;#10;        if (_type != YYKVStorageTypeSQLite) &amp;#123;&amp;#10;            // &amp;#36825;&amp;#36793;&amp;#21435;&amp;#21040;filename&amp;#21518;&amp;#65292;&amp;#21024;&amp;#38500;filename&amp;#23545;&amp;#24212;&amp;#30340;file&amp;#25991;&amp;#20214;&amp;#10;            NSString *filename = [self _dbGetFilenameWithKey:key];&amp;#10;            if (filename) &amp;#123;&amp;#10;                [self _fileDeleteWithName:filename];&amp;#10;            &amp;#125;&amp;#10;        &amp;#125;&amp;#10;        // SQLite &amp;#36827;&amp;#34892;&amp;#23384;&amp;#20648;&amp;#10;        return [self _dbSaveWithKey:key value:value fileName:nil extendedData:extendedData];&amp;#10;    &amp;#125;&amp;#10;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Remove&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;- (BOOL)removeItemForKey:(NSString *)key &amp;#123;&amp;#10;    if (key.length == 0) return NO;&amp;#10;    switch (_type) &amp;#123;&amp;#10;        case YYKVStorageTypeSQLite: &amp;#123;&amp;#10;            // &amp;#21024;&amp;#38500;SQLite&amp;#25991;&amp;#20214;&amp;#10;            return [self _dbDeleteItemWithKey:key];&amp;#10;        &amp;#125; break;&amp;#10;        case YYKVStorageTypeFile:&amp;#10;        case YYKVStorageTypeMixed: &amp;#123;&amp;#10;            // &amp;#33719;&amp;#21462;filename&amp;#10;            NSString *filename = [self _dbGetFilenameWithKey:key];&amp;#10;            if (filename) &amp;#123;&amp;#10;                // &amp;#21024;&amp;#38500;filename&amp;#23545;&amp;#30340;file&amp;#10;                [self _fileDeleteWithName:filename];&amp;#10;            &amp;#125;&amp;#10;            // &amp;#21024;&amp;#38500;SQLite&amp;#25991;&amp;#20214;&amp;#10;            return [self _dbDeleteItemWithKey:key];&amp;#10;        &amp;#125; break;&amp;#10;        default: return NO;&amp;#10;    &amp;#125;&amp;#10;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Get&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;- (NSData *)getItemValueForKey:(NSString *)key &amp;#123;&amp;#10;    if (key.length == 0) return nil;&amp;#10;    NSData *value = nil;&amp;#10;    switch (_type) &amp;#123;&amp;#10;        case YYKVStorageTypeFile: &amp;#123; //File&amp;#10;            NSString *filename = [self _dbGetFilenameWithKey:key];&amp;#10;            if (filename) &amp;#123;&amp;#10;                // &amp;#26681;&amp;#25454;filename&amp;#33719;&amp;#21462;File&amp;#10;                value = [self _fileReadWithName:filename];&amp;#10;                if (!value) &amp;#123;&amp;#10;                    // &amp;#24403;value&amp;#19981;&amp;#23384;&amp;#22312;&amp;#65292;&amp;#29992;&amp;#23545;&amp;#24212;&amp;#30340;key&amp;#21024;&amp;#38500;SQLite&amp;#25991;&amp;#20214;&amp;#10;                    [self _dbDeleteItemWithKey:key];&amp;#10;                    value = nil;&amp;#10;                &amp;#125;&amp;#10;            &amp;#125;&amp;#10;        &amp;#125; break;&amp;#10;        case YYKVStorageTypeSQLite: &amp;#123;&amp;#10;            // SQLite &amp;#26041;&amp;#24335;&amp;#33719;&amp;#21462;&amp;#10;            value = [self _dbGetValueWithKey:key];&amp;#10;        &amp;#125; break;&amp;#10;        case YYKVStorageTypeMixed: &amp;#123;&amp;#10;            NSString *filename = [self _dbGetFilenameWithKey:key];&amp;#10;            // filename &amp;#23384;&amp;#22312;&amp;#25991;&amp;#20214;&amp;#33719;&amp;#21462;&amp;#65292;&amp;#19981;&amp;#23384;&amp;#22312;SQLite&amp;#26041;&amp;#24335;&amp;#33719;&amp;#21462;&amp;#10;            if (filename) &amp;#123;&amp;#10;                value = [self _fileReadWithName:filename];&amp;#10;                if (!value) &amp;#123;&amp;#10;                    [self _dbDeleteItemWithKey:key];&amp;#10;                    value = nil;&amp;#10;                &amp;#125;&amp;#10;            &amp;#125; else &amp;#123;&amp;#10;                value = [self _dbGetValueWithKey:key];&amp;#10;            &amp;#125;&amp;#10;        &amp;#125; break;&amp;#10;    &amp;#125;&amp;#10;    if (value) &amp;#123;&amp;#10;        // &amp;#26356;&amp;#26032;&amp;#25991;&amp;#20214;&amp;#25805;&amp;#20316;&amp;#26102;&amp;#38388;&amp;#10;        [self _dbUpdateAccessTimeWithKey:key];&amp;#10;    &amp;#125;&amp;#10;    return value;&amp;#10;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;File方式主要使用的writeToFile进行存储，SQLte直接使用的sqlite3来对文件进行操作，具体数据库相关的操作这边就不在进行分析了，感兴趣的自己可以阅读下&lt;/p&gt;
+&lt;h2 id=&quot;YYDiskCache&quot;&gt;&lt;a href=&quot;#YYDiskCache&quot; class=&quot;headerlink&quot; title=&quot;YYDiskCache&quot;&gt;&lt;/a&gt;YYDiskCache&lt;/h2&gt;&lt;p&gt;YYDiskCache是对YYKVStorage进行的一次封装，是线程安全的，这边使用的是dispatch_semaphore_signal来确保线程的安全。另外他结合LRU算法，根据文件的大小自动选择存储方式来达到更好的性能。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;- (instancetype)initWithPath:(NSString *)path&amp;#10;             inlineThreshold:(NSUInteger)threshold &amp;#123;&amp;#10;    self = [super init];&amp;#10;    if (!self) return nil;&amp;#10;    &amp;#10;    // &amp;#33719;&amp;#21462;&amp;#32531;&amp;#23384;&amp;#30340; YYDiskCache&amp;#10;    YYDiskCache *globalCache = _YYDiskCacheGetGlobal(path);&amp;#10;    if (globalCache) return globalCache;&amp;#10;    &amp;#10;    // &amp;#30830;&amp;#23450;&amp;#23384;&amp;#20648;&amp;#30340;&amp;#26041;&amp;#24335;&amp;#10;    YYKVStorageType type;&amp;#10;    if (threshold == 0) &amp;#123;&amp;#10;        type = YYKVStorageTypeFile;&amp;#10;    &amp;#125; else if (threshold == NSUIntegerMax) &amp;#123;&amp;#10;        type = YYKVStorageTypeSQLite;&amp;#10;    &amp;#125; else &amp;#123;&amp;#10;        type = YYKVStorageTypeMixed;&amp;#10;    &amp;#125;&amp;#10;    &amp;#10;    // &amp;#21021;&amp;#22987;&amp;#21270; YYKVStorage&amp;#10;    YYKVStorage *kv = [[YYKVStorage alloc] initWithPath:path type:type];&amp;#10;    if (!kv) return nil;&amp;#10;    &amp;#10;    // &amp;#21021;&amp;#22987;&amp;#21270;&amp;#25968;&amp;#25454;&amp;#10;    _kv = kv;&amp;#10;    _path = path;&amp;#10;    _lock = dispatch_semaphore_create(1);&amp;#10;    _queue = dispatch_queue_create(&amp;#34;com.ibireme.cache.disk&amp;#34;, DISPATCH_QUEUE_CONCURRENT);&amp;#10;    _inlineThreshold = threshold;&amp;#10;    _countLimit = NSUIntegerMax;&amp;#10;    _costLimit = NSUIntegerMax;&amp;#10;    _ageLimit = DBL_MAX;&amp;#10;    _freeDiskSpaceLimit = 0;&amp;#10;    _autoTrimInterval = 60;&amp;#10;    &amp;#10;    // &amp;#36882;&amp;#24402;&amp;#30340;&amp;#21435;&amp;#25972;&amp;#29702;&amp;#25991;&amp;#20214;&amp;#10;    [self _trimRecursively];&amp;#10;    // &amp;#23545;&amp;#24403;&amp;#21069;&amp;#23545;&amp;#35937;&amp;#36827;&amp;#34892;&amp;#32531;&amp;#23384;&amp;#10;    _YYDiskCacheSetGlobal(self);&amp;#10;    &amp;#10;    // &amp;#36890;&amp;#30693; APP&amp;#21363;&amp;#23558;&amp;#34987;&amp;#26432;&amp;#27515;&amp;#26102;&amp;#10;    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_appWillBeTerminated) name:UIApplicationWillTerminateNotification object:nil];&amp;#10;    return self;&amp;#10;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;其他的一些操作基本上都是对YYKVStorage的一些封装，这边就不一一分析了。&lt;/p&gt;
+&lt;h2 id=&quot;u53C2_u8003_u6587_u732E&quot;&gt;&lt;a href=&quot;#u53C2_u8003_u6587_u732E&quot; class=&quot;headerlink&quot; title=&quot;参考文献&quot;&gt;&lt;/a&gt;参考文献&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;a href=&quot;http://blog.ibireme.com/2015/10/26/yycache/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://blog.ibireme.com/2015/10/26/yycache/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://blog.csdn.net/yunhua_lee/article/details/7599671&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://blog.csdn.net/yunhua_lee/article/details/7599671&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;https://github.com/ibireme/YYCache&quot;&gt;YYCache&lt;/a&gt;是用于Objective-C中用于缓存的第三方框架。此文主要用来讲解该框架的实现细节，性能分析、设计思路ibireme已经讲得很清楚了，我这边就不在分析了。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="iOS" scheme="http://yoursite.com/categories/iOS/"/>
+    
+    
+      <category term="YYCache" scheme="http://yoursite.com/tags/YYCache/"/>
+    
+      <category term="YYKit" scheme="http://yoursite.com/tags/YYKit/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>YYKit源码分析---pthread</title>
+    <link href="http://yoursite.com/2016/06/21/YYKit-pthread/"/>
+    <id>http://yoursite.com/2016/06/21/YYKit-pthread/</id>
+    <published>2016-06-21T09:43:18.000Z</published>
+    <updated>2016-08-25T03:48:20.000Z</updated>
+    
+    <content type="html">&lt;p&gt;大家都知道ibireme的&lt;a href=&quot;https://github.com/ibireme/YYKit&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;YYKit&lt;/a&gt;很强大，个人也特别佩服ibireme。大神常常教导我们这样的小白说：多读源码能够大幅度的提高功力。 &lt;/p&gt;&lt;p&gt;每当项目上线后，需求还没有下来时，都会有一段闲暇时间。这段时间学习是极佳的。YYKit这个框架刚开始看的时候就遇到pthread这个玩意，之前很少接触。在此，记录自己的所学所得，并分享给大家。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;u5148_u6765_u770B_u4E0BYY_u5B9A_u4E49_u7684_u5B8F&quot;&gt;&lt;a href=&quot;#u5148_u6765_u770B_u4E0BYY_u5B9A_u4E49_u7684_u5B8F&quot; class=&quot;headerlink&quot; title=&quot;先来看下YY定义的宏&quot;&gt;&lt;/a&gt;先来看下YY定义的宏&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;static inline void pthread_mutex_init_recursive(pthread_mutex_t *mutex, bool recursive) &amp;#123;&amp;#10;#define YYMUTEX_ASSERT_ON_ERROR(x_) do &amp;#123; \&amp;#10;__unused volatile int res = (x_); \&amp;#10;assert(res == 0); \&amp;#10;&amp;#125; while (0)&amp;#10;    assert(mutex != NULL);&amp;#10;    if (!recursive) &amp;#123;&amp;#10;        YYMUTEX_ASSERT_ON_ERROR(pthread_mutex_init(mutex, NULL));&amp;#10;    &amp;#125; else &amp;#123;&amp;#10;        pthread_mutexattr_t attr;&amp;#10;        &amp;#10;        YYMUTEX_ASSERT_ON_ERROR(pthread_mutexattr_init (&amp;#38;attr));&amp;#10;        YYMUTEX_ASSERT_ON_ERROR(pthread_mutexattr_settype (&amp;#38;attr, PTHREAD_MUTEX_RECURSIVE));&amp;#10;        YYMUTEX_ASSERT_ON_ERROR(pthread_mutex_init (mutex, &amp;#38;attr));&amp;#10;        YYMUTEX_ASSERT_ON_ERROR(pthread_mutexattr_destroy (&amp;#38;attr));&amp;#10;    &amp;#125;&amp;#10;#undef YYMUTEX_ASSERT_ON_ERROR&amp;#10;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;大神的代码都是晦涩难懂的，看到这段代码后劳资突然产生了好几个问题：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;这个方法是用来干嘛的呢？&lt;/li&gt;
+&lt;li&gt;pthread_mutex_t是什么鬼？&lt;/li&gt;
+&lt;li&gt;pthread_mutexattr_t是用来配置pthread_mutex_t的吗？&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;u89E3_u8BFB&quot;&gt;&lt;a href=&quot;#u89E3_u8BFB&quot; class=&quot;headerlink&quot; title=&quot;解读&quot;&gt;&lt;/a&gt;解读&lt;/h2&gt;&lt;h4 id=&quot;u529F_u80FD&quot;&gt;&lt;a href=&quot;#u529F_u80FD&quot; class=&quot;headerlink&quot; title=&quot;功能&quot;&gt;&lt;/a&gt;功能&lt;/h4&gt;&lt;p&gt;其实就是创建个互斥线程，并没有想象中的可怕&lt;/p&gt;
+&lt;h4 id=&quot;pthread_mutex_t&quot;&gt;&lt;a href=&quot;#pthread_mutex_t&quot; class=&quot;headerlink&quot; title=&quot;pthread_mutex_t&quot;&gt;&lt;/a&gt;pthread_mutex_t&lt;/h4&gt;&lt;p&gt;&lt;code&gt;int pthread_mutex_init(pthread_mutex_t * __restrict,
+        const pthread_mutexattr_t * __restrict);&lt;/code&gt; 是用这个函数创建出来的。函数是以动态的方式创建互斥锁的，参数attr指定了新建互斥锁的属性。&lt;br&gt;&lt;code&gt;recursive&lt;/code&gt;这个&lt;code&gt;bool&lt;/code&gt;值为false时，attr为空，则使用默认的互斥锁属性，默认属性为快速互斥锁。&lt;br&gt;&lt;code&gt;recursive&lt;/code&gt;这个&lt;code&gt;bool&lt;/code&gt;值为true时，配置互斥锁属性创建相应的互斥锁。&lt;/p&gt;
+&lt;h4 id=&quot;YYMUTEX_ASSERT_ON_ERROR&quot;&gt;&lt;a href=&quot;#YYMUTEX_ASSERT_ON_ERROR&quot; class=&quot;headerlink&quot; title=&quot;YYMUTEX_ASSERT_ON_ERROR&quot;&gt;&lt;/a&gt;YYMUTEX_ASSERT_ON_ERROR&lt;/h4&gt;&lt;p&gt;断言来进行检查错误，所有操作返回非0时，表示有异常错误发生&lt;/p&gt;
+&lt;h4 id=&quot;Mutex_type_attributes&quot;&gt;&lt;a href=&quot;#Mutex_type_attributes&quot; class=&quot;headerlink&quot; title=&quot;Mutex type attributes&quot;&gt;&lt;/a&gt;Mutex type attributes&lt;/h4&gt;&lt;p&gt;&lt;strong&gt;PTHREAD_MUTEX_NORMAL&lt;/strong&gt;：不进行deadlock detection（死锁检测）。当进行relock时，这个mutex就导致deadlock。对一个没有进行lock或者已经unlock的对象进行unlock操作，结果也是未知的。&lt;br&gt;&lt;strong&gt;PTHREAD_MUTEX_ERRORCHECK&lt;/strong&gt;：和PTHREAD_MUTEX_NORMAL相比，PTHREAD_MUTEX_ERRORCHECK会进行错误检测，以上错误行为都会返回一个错误。&lt;br&gt;&lt;strong&gt;PTHREAD_MUTEX_RECURSIVE&lt;/strong&gt;：和semaphore（信号量）有个类似的东西，mutex会有个锁住次数的概念，第一次锁住mutex的时候，锁住次数设置为1，每一次一个线程unlock这个mutex时，锁住次数就会减1。当锁住次数为0时，其他线程就可以获得该mutex锁了。同样，对一个没有进行lock或者已经unlock的对象进行unlock操作，将返回一个错误。&lt;br&gt;&lt;strong&gt;PTHREAD_MUTEX_DEFAULT&lt;/strong&gt;：默认PTHREAD_MUTEX_NORMAL。&lt;/p&gt;
+&lt;h2 id=&quot;u518D_u770B_u770BYY_u5982_u4F55_u4F7F_u7528_u8BE5_u5B8F&quot;&gt;&lt;a href=&quot;#u518D_u770B_u770BYY_u5982_u4F55_u4F7F_u7528_u8BE5_u5B8F&quot; class=&quot;headerlink&quot; title=&quot;再看看YY如何使用该宏&quot;&gt;&lt;/a&gt;再看看YY如何使用该宏&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;- (YYImageFrame *)frameAtIndex:(NSUInteger)index decodeForDisplay:(BOOL)decodeForDisplay &amp;#123;&amp;#10;    YYImageFrame *result = nil;&amp;#10;    pthread_mutex_lock(&amp;#38;_lock);&amp;#10;    result = [self _frameAtIndex:index decodeForDisplay:decodeForDisplay];&amp;#10;    pthread_mutex_unlock(&amp;#38;_lock);&amp;#10;    return result;&amp;#10;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;这边为了防止多线程资源抢夺的问题，先进行lock下，等数据操作完毕后释放unlock，有没有一种豁然开朗的感觉呢&lt;br&gt;平时我们在多线程操作的时候也可以使用NSLock、synchronized来进行加锁，yy使用了更加偏向底层的pthread&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&quot;pthread_t_u548CNSThread&quot;&gt;&lt;a href=&quot;#pthread_t_u548CNSThread&quot; class=&quot;headerlink&quot; title=&quot;pthread_t和NSThread&quot;&gt;&lt;/a&gt;pthread_t和NSThread&lt;/h2&gt;&lt;p&gt;两者都是用来操作线程的对象，平时我们使用上层的NSThread比较多，像[NSThread mainThread]获取主线程，[NSThread currentThread] 获取当前线程。pthread_t和NSThread是一一对应的，同样可以通过pthread_main_thread_np() 、pthread_self()来获取。NSThread只是对pthread_t的一层封装而已。&lt;/p&gt;
+&lt;h2 id=&quot;u5B9E_u6218&quot;&gt;&lt;a href=&quot;#u5B9E_u6218&quot; class=&quot;headerlink&quot; title=&quot;实战&quot;&gt;&lt;/a&gt;实战&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;声明函数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;void *func(void *argu) &amp;#123;&amp;#10;    char *m = (char *)argu;&amp;#10;&amp;#10;    pthread_mutex_lock(&amp;#38;mutex);&amp;#10;    while (*m != &amp;#39;\0&amp;#39;) &amp;#123;&amp;#10;        printf(&amp;#34;%c&amp;#34;, *m);&amp;#10;        fflush(stdout);&amp;#10;        sleep(3);&amp;#10;        m++;&amp;#10;    &amp;#125;&amp;#10;    printf(&amp;#34;\n&amp;#34;);&amp;#10;    pthread_mutex_unlock(&amp;#38;mutex);&amp;#10;    return 0;&amp;#10;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;mutex使用 &lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;   int rc1, rc2;&amp;#10;   &amp;#10;   char *str1 = &amp;#34;Hi&amp;#34;;&amp;#10;   char *str2 = &amp;#34;Boy!&amp;#34;;&amp;#10;   &amp;#10;   pthread_t thread1, thread2;&amp;#10;   pthread_mutex_init(&amp;#38;mutex, NULL);&amp;#10;&amp;#10;   if ((rc1 = pthread_create(&amp;#38;thread1, NULL, func, str1))) &amp;#123;&amp;#10;       fprintf(stdout, &amp;#34;thread1 creat fail : %d \n!&amp;#34;, rc1);&amp;#10;   &amp;#125;&amp;#10;   if ((rc2 = pthread_create(&amp;#38;thread2, NULL, func, str2))) &amp;#123;&amp;#10;       fprintf(stdout, &amp;#34;thread2 creat fail : %d \n!&amp;#34;, rc2);&amp;#10;   &amp;#125;&amp;#10;&amp;#10;   // https://developer.apple.com/legacy/library/documentation/Darwin/Reference/ManPages/man3/pthread_join.3.html#//apple_ref/c/func/pthread_join&amp;#10;   // &amp;#31561;&amp;#24453;&amp;#19968;&amp;#20010;&amp;#32447;&amp;#31243;&amp;#30340;&amp;#32467;&amp;#26463;&amp;#65292;&amp;#24403;&amp;#20989;&amp;#25968;&amp;#36820;&amp;#22238;&amp;#26102;&amp;#65292;&amp;#34987;&amp;#31561;&amp;#24453;&amp;#30340;&amp;#32447;&amp;#31243;&amp;#36164;&amp;#28304;&amp;#34987;&amp;#25910;&amp;#22238;&amp;#12290;&amp;#33509;&amp;#32447;&amp;#31243;&amp;#24050;&amp;#32463;&amp;#34987;&amp;#25910;&amp;#22238;&amp;#65292;&amp;#37027;&amp;#20040;&amp;#35813;&amp;#20989;&amp;#25968;&amp;#20250;&amp;#31435;&amp;#21363;&amp;#36820;&amp;#22238;&amp;#10;   pthread_join(thread1, NULL);&amp;#10;   pthread_join(thread2, NULL);&amp;#10;&amp;#10;printf(&amp;#34;&amp;#36825;&amp;#36793;&amp;#21482;&amp;#26377;&amp;#32447;&amp;#31243;&amp;#34987;&amp;#22238;&amp;#25910;&amp;#21518;&amp;#25165;&amp;#20250;&amp;#25191;&amp;#34892;&amp;#65281;&amp;#34;);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;可以帮pthread_mutex_lock(&amp;amp;mutex)和pthread_mutex_unlock(&amp;amp;mutex)注释掉看下打印&lt;p&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;感谢大家花费时间来查看这篇blog，需要下载demo的同学请猛戳&lt;a href=&quot;https://github.com/PanXianyue/BlogDemo&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Git&lt;/a&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;大家都知道ibireme的&lt;a href=&quot;https://github.com/ibireme/YYKit&quot;&gt;YYKit&lt;/a&gt;很强大，个人也特别佩服ibireme。大神常常教导我们这样的小白说：多读源码能够大幅度的提高功力。 &lt;p&gt;每当项目上线后，需求还没有下来时，都会有一段闲暇时间。这段时间学习是极佳的。YYKit这个框架刚开始看的时候就遇到pthread这个玩意，之前很少接触。在此，记录自己的所学所得，并分享给大家。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="iOS" scheme="http://yoursite.com/categories/iOS/"/>
+    
+    
+      <category term="YYKit" scheme="http://yoursite.com/tags/YYKit/"/>
+    
+      <category term="pthread" scheme="http://yoursite.com/tags/pthread/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Runtime实战之定制TabBarItem大小</title>
+    <link href="http://yoursite.com/2016/05/11/Runtime-tabBarItem/"/>
+    <id>http://yoursite.com/2016/05/11/Runtime-tabBarItem/</id>
+    <published>2016-05-11T14:17:26.000Z</published>
+    <updated>2016-08-25T13:12:23.000Z</updated>
+    
+    <content type="html">&lt;p&gt;本篇blog主要讲解如何定制TabBarItem的大小，最终实现AppStore各大主流APP TabBarItem超出TabBar的效果。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&quot;u65B9_u6848_u4E00_uFF1AUIEdgeInsets&quot;&gt;&lt;a href=&quot;#u65B9_u6848_u4E00_uFF1AUIEdgeInsets&quot; class=&quot;headerlink&quot; title=&quot;方案一：UIEdgeInsets&quot;&gt;&lt;/a&gt;方案一：UIEdgeInsets&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;适用场景：&lt;/strong&gt; &lt;br&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;适合APP的TabBarItemImage的图片资源放在本地&lt;/li&gt;
+&lt;li&gt;图片超出tabbar的高度，需移动其位置，来进行适应&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;弊端：&lt;/strong&gt; &lt;br&gt;&lt;/p&gt;
+&lt;p&gt;若在本地配置好后，tabbar的图片就不能改动了，若tabbar的图片来自服务端，且不停的切换图片的大小，以上则很难满足。若有此方面的需求请看方案二。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;实现：&lt;/strong&gt; &lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;[tabbarItem setImageInsets:UIEdgeInsetsMake(&amp;lt;#CGFloat top#&amp;gt;, &amp;lt;#CGFloat left#&amp;gt;, &amp;lt;#CGFloat bottom#&amp;gt;, &amp;lt;#CGFloat right#&amp;gt;)]&lt;/code&gt; &lt;/p&gt;
+&lt;p&gt;注：图片太大超出tabbar时，系统并不会调整image和title的位置，你需要根据图片的高度，计算出需要往上移动的高度，然后设置top和bottom属性即可。切记top = - bottom，否则image将会被拉伸或者被压缩。&lt;/p&gt;
+&lt;h1 id=&quot;u65B9_u6848_u4E8C_uFF1ARuntime&quot;&gt;&lt;a href=&quot;#u65B9_u6848_u4E8C_uFF1ARuntime&quot; class=&quot;headerlink&quot; title=&quot;方案二：Runtime&quot;&gt;&lt;/a&gt;方案二：Runtime&lt;/h1&gt;&lt;p&gt;利用runtime的话相对方案一来说要比较复杂一点，但其灵活度比较高，我们能够根据服务端所给的image来动态的变化TabBarItem的大小，类似像淘宝、京东活动时。思想：主要是利用runtime对UITabBar的layoutSubviews进行重写，然后调整UITabBarItem的位置。另外，当时在做的APP已经有4-5年的历史了，一开始打算自已定制tabbar，发现要改动的还是挺多的，于是就放弃了。做之前也看了前辈iOS程序犭袁的&lt;a href=&quot;https://github.com/ChenYilong/CYLTabBarController&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;CYLTabBarController&lt;/a&gt;，从中也学到了不少思路。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;实现：&lt;/strong&gt; &lt;br&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;首先我们使用runtime method swizzling交换系统的&lt;code&gt;- (void)layoutSubviews;&lt;/code&gt; &lt;br&gt;&lt;/li&gt;
+&lt;li&gt;使用KVC对系统的UITabBarButton、UITabBarSwappableImageView、UITabBarButtonLabel、_UIBadgeView进行捕获 &lt;br&gt; &lt;/li&gt;
+&lt;li&gt;拿到控件后我们对其的frame进行计算，判断当前有没有超出tabbar的高度，若超出则进行处理 &lt;br&gt;&lt;/li&gt;
+&lt;li&gt;再次利用runtime method swizzling交换系统的&lt;code&gt;- (nullable UIView *)hitTest:(CGPoint)point withEvent:(nullable UIEvent *)event;&lt;/code&gt;使图片超过后也能接受点击 &lt;br&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;代码：&lt;/strong&gt; &lt;br&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;method swizzling：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;static void ExchangedMethod(SEL originalSelector, SEL swizzledSelector, Class class) &amp;#123;&amp;#10;    &amp;#10;    Method originalMethod = class_getInstanceMethod(class, originalSelector);&amp;#10;    Method swizzledMethod = class_getInstanceMethod(class, swizzledSelector);&amp;#10;    &amp;#10;    BOOL didAddMethod =&amp;#10;    class_addMethod(class,&amp;#10;                    originalSelector,&amp;#10;                    method_getImplementation(swizzledMethod),&amp;#10;                    method_getTypeEncoding(swizzledMethod));&amp;#10;    &amp;#10;    if (didAddMethod) &amp;#123;&amp;#10;        class_replaceMethod(class,&amp;#10;                            swizzledSelector,&amp;#10;                            method_getImplementation(originalMethod),&amp;#10;                            method_getTypeEncoding(originalMethod));&amp;#10;    &amp;#125;&amp;#10;    else &amp;#123;&amp;#10;        method_exchangeImplementations(originalMethod, swizzledMethod);&amp;#10;    &amp;#125;&amp;#10;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;计算frame，并对其重新布局&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;UIView *tabBarImageView, *tabBarButtonLabel, *tabBarBadgeView;&amp;#10;        for (UIView *sTabBarItem in childView.subviews) &amp;#123;&amp;#10;            if ([sTabBarItem isKindOfClass:NSClassFromString(@&amp;#34;UITabBarSwappableImageView&amp;#34;)]) &amp;#123;&amp;#10;                tabBarImageView = sTabBarItem;&amp;#10;            &amp;#125;&amp;#10;            else if ([sTabBarItem isKindOfClass:NSClassFromString(@&amp;#34;UITabBarButtonLabel&amp;#34;)]) &amp;#123;&amp;#10;                tabBarButtonLabel = sTabBarItem;&amp;#10;            &amp;#125;&amp;#10;            else if ([sTabBarItem isKindOfClass:NSClassFromString(@&amp;#34;_UIBadgeView&amp;#34;)]) &amp;#123;&amp;#10;                tabBarBadgeView = sTabBarItem;&amp;#10;            &amp;#125;&amp;#10;        &amp;#125;&amp;#10;&amp;#10;        NSString *tabBarButtonLabelText = ((UILabel *)tabBarButtonLabel).text;&amp;#10;  &amp;#10;        CGFloat y = CGRectGetHeight(self.bounds) - (CGRectGetHeight(tabBarButtonLabel.bounds) + CGRectGetHeight(tabBarImageView.bounds));&amp;#10;        if (y &amp;#60; 3) &amp;#123;&amp;#10;            if (!tabBarButtonLabelText.length) &amp;#123;&amp;#10;                space -= tabBarButtonLabelHeight;&amp;#10;            &amp;#125;&amp;#10;            &amp;#10;            childView.frame = CGRectMake(childView.frame.origin.x,&amp;#10;                                         y - space,&amp;#10;                                         childView.frame.size.width,&amp;#10;                                         childView.frame.size.height - y + space&amp;#10;                                         );&amp;#10;        &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;让图片超出部分也能响应点击事件&lt;/li&gt;
+&lt;/ul&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;- (UIView *)s_hitTest:(CGPoint)point withEvent:(UIEvent *)event &amp;#123;&amp;#10;    if (!self.clipsToBounds &amp;#38;&amp;#38; !self.hidden &amp;#38;&amp;#38; self.alpha &amp;#62; 0) &amp;#123;&amp;#10;        UIView *result = [super hitTest:point withEvent:event];&amp;#10;        if (result) &amp;#123;&amp;#10;            return result;&amp;#10;        &amp;#125;&amp;#10;        else &amp;#123;&amp;#10;            for (UIView *subview in self.subviews.reverseObjectEnumerator) &amp;#123;&amp;#10;                CGPoint subPoint = [subview convertPoint:point fromView:self];&amp;#10;                result = [subview hitTest:subPoint withEvent:event];&amp;#10;                if (result) &amp;#123;&amp;#10;                    return result;&amp;#10;                &amp;#125;&amp;#10;            &amp;#125;&amp;#10;        &amp;#125;&amp;#10;    &amp;#125;&amp;#10;    return nil;&amp;#10;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h1 id=&quot;u6CE8_u610F_u4E8B_u9879&quot;&gt;&lt;a href=&quot;#u6CE8_u610F_u4E8B_u9879&quot; class=&quot;headerlink&quot; title=&quot;注意事项&quot;&gt;&lt;/a&gt;注意事项&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;在给tabbar设置图片的时候一定要设置图片的&lt;code&gt;renderingMode&lt;/code&gt;，否则就会出现下图中图片丢失的现象&lt;/li&gt;
+&lt;li&gt;UITabBarButton被修改frame之后，仅有UITabBarSwappableImageView能够响应点击事件，不过我们能够在UITabBar的&lt;code&gt;- (void)touchesBegan:(NSSet&amp;lt;UITouch *&amp;gt; *)touches withEvent:(nullable UIEvent *)event;&lt;/code&gt;方法中捕获到&lt;/li&gt;
+&lt;li&gt;当适配图片后不要忘记适配&lt;code&gt;_UIBadgeView&lt;/code&gt;的frame&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;u6548_u679C_u56FE&quot;&gt;&lt;a href=&quot;#u6548_u679C_u56FE&quot; class=&quot;headerlink&quot; title=&quot;效果图&quot;&gt;&lt;/a&gt;效果图&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;正常中间超出 &lt;br&gt;&lt;br&gt;&lt;img src=&quot;http://7xq5ax.com1.z0.glb.clouddn.com/tabbar_image_render.png&quot; alt=&quot;部分超出&quot;&gt;&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;做活动时全部超出 &lt;br&gt;&lt;br&gt;&lt;img src=&quot;http://7xq5ax.com1.z0.glb.clouddn.com/tabbar_more_all.png&quot; alt=&quot;全部超出&quot;&gt;&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;图片丢失 &lt;br&gt;&lt;br&gt;&lt;img src=&quot;http://7xq5ax.com1.z0.glb.clouddn.com/tabbar_more.png&quot; alt=&quot;图片丢失&quot;&gt;&lt;br&gt;&lt;/li&gt;
+&lt;li&gt;UIBadgeView &lt;br&gt;&lt;br&gt;&lt;img src=&quot;http://7xq5ax.com1.z0.glb.clouddn.com/badgevalue.png&quot; alt=&quot;&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;blockquote&gt;
+&lt;p&gt;感谢大家花费时间来查看这篇blog，需要下载demo的同学请猛戳&lt;a href=&quot;https://github.com/PanXianyue/BlogDemo&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Git&lt;/a&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本篇blog主要讲解如何定制TabBarItem的大小，最终实现AppStore各大主流APP TabBarItem超出TabBar的效果。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="iOS" scheme="http://yoursite.com/categories/iOS/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>利用XCTool实现自动化打包</title>
+    <link href="http://yoursite.com/2016/02/13/xctool-package/"/>
+    <id>http://yoursite.com/2016/02/13/xctool-package/</id>
+    <published>2016-02-13T05:17:21.000Z</published>
+    <updated>2016-08-25T07:25:30.000Z</updated>
+    
+    <content type="html">&lt;p&gt;一个不会偷懒的程序员不是一个好程序员。每次编译打包都要花好长的时间，看了本篇博客后，就可以帮这些无聊的事情交给XCTool来做，我们喝喝茶，撩撩妹就行。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&quot;XCTool&quot;&gt;&lt;a href=&quot;#XCTool&quot; class=&quot;headerlink&quot; title=&quot;XCTool&quot;&gt;&lt;/a&gt;XCTool&lt;/h1&gt;&lt;p&gt;xctool是Facebook开源的一个命令行工具，用来代替苹果的xcodebuild工具。&lt;/p&gt;
+&lt;p&gt;功能如下：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;像xcode一样能够编译程序&lt;/li&gt;
+&lt;li&gt;编译的结果能够以结构化的形式输出&lt;/li&gt;
+&lt;li&gt;编译内容输出彩色且方便阅读&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;u5B89_u88C5XCTool&quot;&gt;&lt;a href=&quot;#u5B89_u88C5XCTool&quot; class=&quot;headerlink&quot; title=&quot;安装XCTool&quot;&gt;&lt;/a&gt;安装XCTool&lt;/h2&gt;&lt;p&gt;最简单的办法就是用homebrew安装xctool，这边就不介绍如何安装homebrew了。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;brew install xctool&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;注：在用brew安装xctool的时候可能会出现can not install with HEAD error，当时尝试很多办法都没有搞定，像卸了重装… 终极解决方案：直接删除/usr/local里面里面所有的文件，&lt;em&gt;这边会导致你之前安装的一些插件会被删除，像CocoaPods&lt;/em&gt;。&lt;/p&gt;
+&lt;h2 id=&quot;u7F16_u8BD1&quot;&gt;&lt;a href=&quot;#u7F16_u8BD1&quot; class=&quot;headerlink&quot; title=&quot;编译&quot;&gt;&lt;/a&gt;编译&lt;/h2&gt;&lt;p&gt;&lt;code&gt;xctool -workspace ${project_path}/${project_name}.xcworkspace -scheme ${project_name} archive -archivePath ${project_path}/build/Debug-iphoneos/${project_name}_Debug.xcarchive -configuration ${build_Mode} || exit&lt;/code&gt;&lt;/p&gt;
+&lt;h1 id=&quot;XcodeBuild&quot;&gt;&lt;a href=&quot;#XcodeBuild&quot; class=&quot;headerlink&quot; title=&quot;XcodeBuild&quot;&gt;&lt;/a&gt;XcodeBuild&lt;/h1&gt;&lt;p&gt;shell里面会利用xcodebuild进行打包、清理工程&lt;/p&gt;
+&lt;h2 id=&quot;u6253_u5305&quot;&gt;&lt;a href=&quot;#u6253_u5305&quot; class=&quot;headerlink&quot; title=&quot;打包&quot;&gt;&lt;/a&gt;打包&lt;/h2&gt;&lt;p&gt;&lt;code&gt;xcodebuild -exportArchive -archivePath ${project_path}/build/Debug-iphoneos/${project_name}_Debug.xcarchive -exportPath ${buildExportPath}/debug.ipa -exportFormat ipa \
+-exportProvisioningProfile &amp;quot;${profile_name}&amp;quot; || exit&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&quot;u6E05_u7406_u5DE5_u7A0B&quot;&gt;&lt;a href=&quot;#u6E05_u7406_u5DE5_u7A0B&quot; class=&quot;headerlink&quot; title=&quot;清理工程&quot;&gt;&lt;/a&gt;清理工程&lt;/h2&gt;&lt;p&gt;&lt;code&gt;xcodebuild clean -configuration ${build_Mode} || exit&lt;/code&gt;&lt;/p&gt;
+&lt;h1 id=&quot;Linux_u547D_u4EE4&quot;&gt;&lt;a href=&quot;#Linux_u547D_u4EE4&quot; class=&quot;headerlink&quot; title=&quot;Linux命令&quot;&gt;&lt;/a&gt;Linux命令&lt;/h1&gt;&lt;p&gt;shell里面会涉及到一些Linux命令：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;echo &amp;quot;输出内容&amp;quot;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;echo &amp;#39;输出内容&amp;#39;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;输出你想要输出的东西，&lt;em&gt;‘ ’表示要输出的内容为纯字符串，不可引用变量，“”表示输出的内容可包含变量&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;cd ..&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;回退上一级目录&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;makdir&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;新建一个目录&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;rm -rf &amp;quot;content&amp;quot;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;删除文件夹里面的所有内容&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;以上内容纯属虚构，若不感兴趣，完全可以跳过，直奔使用~&lt;/strong&gt;&lt;/p&gt;
+&lt;h1 id=&quot;u4F7F_u7528_u6559_u7A0B&quot;&gt;&lt;a href=&quot;#u4F7F_u7528_u6559_u7A0B&quot; class=&quot;headerlink&quot; title=&quot;使用教程&quot;&gt;&lt;/a&gt;使用教程&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;将ipa_build这个文件夹移到和.xcodeproj或.xcworkspace同一级目录&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;打开build_debug或者build_release文件，替换profile_name字段，替换为你要打包项目的profile name&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;打开你的字段  &lt;code&gt;cd 脚本所在的目录&lt;/code&gt; -&amp;gt; &lt;code&gt;chmod 777 build_debug.sh (仅第一次的时候需要)&lt;/code&gt; -&amp;gt; &lt;code&gt;./build_debug.sh&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;查看你的桌面即可以查看导出的IPA包&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;感谢大家花费时间来查看这篇blog，需要下载shell的同学请猛戳&lt;a href=&quot;https://github.com/PanXianyue/ipa_build&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Git&lt;/a&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;一个不会偷懒的程序员不是一个好程序员。每次编译打包都要花好长的时间，看了本篇博客后，就可以帮这些无聊的事情交给XCTool来做，我们喝喝茶，撩撩妹就行。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="iOS" scheme="http://yoursite.com/categories/iOS/"/>
+    
+    
+      <category term="LINUX命令" scheme="http://yoursite.com/tags/LINUX%E5%91%BD%E4%BB%A4/"/>
+    
+      <category term="SHELL" scheme="http://yoursite.com/tags/SHELL/"/>
+    
+      <category term="XCTOOL" scheme="http://yoursite.com/tags/XCTOOL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>迟来的2015总结</title>
+    <link href="http://yoursite.com/2016/01/17/Summary/"/>
+    <id>http://yoursite.com/2016/01/17/Summary/</id>
+    <published>2016-01-17T12:08:19.000Z</published>
+    <updated>2016-08-25T04:28:55.000Z</updated>
+    
+    <content type="html">&lt;p&gt;纪念逝去的2015！&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;  2016年已经过了半个月了，才抽出时间来写这篇总结。以前很少有写博客的习惯，每年基本上都是考虑下去年做了些什么事，学到了什么等等。可能前一个月内还属于记忆犹新的阶段，现在想想，却什么也记不起来了。就在前段时间，在简书上写了两篇博文感觉挺好的，写博客能让我知道我这段时间做了什么事，并且当我闲下来的时候还可以回味一下，这种感觉真的很好，我会带着这种感觉一直坚持下去。&lt;/p&gt;
+&lt;p&gt;  就在这周一天早上上班的路上，突然发现一片博客讲如何利用hexo搭建自己的博客，当时让我兴趣盎然，就有搭建自己博客的冲动，在工作的业余时间里慢慢的开始搭建自己的博客，搭建环境，购买域名，云储存等等。直到现在自己的博客终于有点样子了，不过说实话，身为一个处女座，一个追求完美主义者，一大半的时间花在主题了，换了一个不满意，换了一个还是不满意。最终，现在的这个样式自己感觉还是挺可以的。以后我会帮精力花在内容上，希望大家能够喜欢吧。&lt;/p&gt;
+&lt;p&gt;  说说我的2015年吧，2015年最大变化莫过于我的工作地点从合肥换到了上海，和合肥的一大帮朋友分割两地。说实话，当初要不是同事纷纷离开公司的话我也不会这么快来到上海，在合房网的时候，最幸运的是有一群比较给力的同事，让我迅速的进步了不少。坤坤：让我知道了什么是全能，宪：让我知道了英语的重要性还有一些学习方法。挺：让我知道了一些做人做事的方法还有他那丰富的项目经验。从他们的身上我真的学到了很多，虽然我现在来到了上海，在工作中遇到一些不解也会不时的去请教他们。&lt;/p&gt;
+&lt;p&gt;2015年也有很多遗憾：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;没能够看几本书&lt;/li&gt;
+&lt;li&gt;工作的业余时间也没有去锻炼&lt;/li&gt;
+&lt;li&gt;swift才开始学&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;2016年我要：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;多看几本书，虽然自己不太爱看书&lt;/li&gt;
+&lt;li&gt;和室友办张健身卡，每天抽出点时间健身去&lt;/li&gt;
+&lt;li&gt;努力学习swift&lt;/li&gt;
+&lt;li&gt;每个月写一篇博客&lt;/li&gt;
+&lt;li&gt;多掌握几门语言，像javascript&lt;/li&gt;
+&lt;li&gt;扩展自己的社交圈&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;不知不觉的扯了这么多，废话就不多说了， 洗洗睡了。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;纪念逝去的2015！&lt;br&gt;
+    
+    </summary>
+    
+      <category term="life" scheme="http://yoursite.com/categories/life/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>浅谈Socket学习中的那些事</title>
+    <link href="http://yoursite.com/2016/01/16/Socket/"/>
+    <id>http://yoursite.com/2016/01/16/Socket/</id>
+    <published>2016-01-16T13:17:20.000Z</published>
+    <updated>2016-08-25T03:50:32.000Z</updated>
+    
+    <content type="html">&lt;p&gt;Socket是为网络服务提供的一种机制，希望经过此次的学习，能够揭开Socket神秘面纱。在此仅想记录自己的学习历程和一些学习心得。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&quot;OSI_u3001TCP_5CIP_u53C2_u8003_u6A21_u578B&quot;&gt;&lt;a href=&quot;#OSI_u3001TCP_5CIP_u53C2_u8003_u6A21_u578B&quot; class=&quot;headerlink&quot; title=&quot;OSI、TCP\IP参考模型&quot;&gt;&lt;/a&gt;OSI、TCP\IP参考模型&lt;/h1&gt;&lt;p&gt;
+
+&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;http://7xq5ax.com1.z0.glb.clouddn.com/OSI%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;
+
+&lt;/p&gt;&lt;h2 id=&quot;u7B80_u5355_u89E3_u91CA&quot;&gt;&lt;a href=&quot;#u7B80_u5355_u89E3_u91CA&quot; class=&quot;headerlink&quot; title=&quot;简单解释&quot;&gt;&lt;/a&gt;简单解释&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;物理层：主要定义物理设备标准，如网线的接口类型、各种传输介质的传输速率等。2. &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;数据链路层：主要将从物理层接收的数据进行MAC地址的封装与解封装。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;网络层：选择合适的网间路由和交换结点，确保数据及时传送，将从下层接收到的数据进行IP地址的封装与解封装。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;传输层：定义了一些传输数据的协议和端口，如TCP、UDP协议，主要将从下层接收的数据进行分段和传输，到达目的地址后再进行重组，以往把这一层数据叫做段。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;会话层：通过传输层建立数据传输通路。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;表示层：主要是进行对接收的数据进行解释、压缩与解压缩等，即把计算机能够识别的东西转化成人能够识别的东西（如图片、声音等）。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;应用层：主要是一些终端的应用，比如说FTP（各种文件下载）、浏览器、QQ等，可以将其理解为在电脑屏幕上可以看到的东西，也就是终端应用。&lt;/p&gt;&lt;p&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;u7F51_u7EDC_u901A_u8BAF_u8981_u7D20&quot;&gt;&lt;a href=&quot;#u7F51_u7EDC_u901A_u8BAF_u8981_u7D20&quot; class=&quot;headerlink&quot; title=&quot;网络通讯要素&quot;&gt;&lt;/a&gt;网络通讯要素&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;IP地址&lt;/strong&gt;：网络中设备的标示&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;端口号&lt;/strong&gt;：用来标示进程的逻辑地址，不同进程的标示&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;传输协议&lt;/strong&gt;：用什么样的方式进行交互，常见协议TCP/UDP&lt;/p&gt;
+&lt;h1 id=&quot;TCP/UDP&quot;&gt;&lt;a href=&quot;#TCP/UDP&quot; class=&quot;headerlink&quot; title=&quot;TCP/UDP&quot;&gt;&lt;/a&gt;TCP/UDP&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;TCP（传输控制协议）&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;建立连接，形成数据传输的通道&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;在连接中可进行大数据传输（数据的大小不受限制）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;通过三次握手建立连接，可靠协议，安全送达&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;先建立连接，效率较低&lt;/p&gt;&lt;p&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;UDP（用户数据报协议）&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;不需要建立连接，将数据封装在数据包中&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;每个数据包得大小限制在64k之内&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;无需连接，是不可靠协议&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;不需要连接，速度较快&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&quot;Socket&quot;&gt;&lt;a href=&quot;#Socket&quot; class=&quot;headerlink&quot; title=&quot;Socket&quot;&gt;&lt;/a&gt;Socket&lt;/h1&gt;&lt;h2 id=&quot;u7B80_u5355_u89E3_u91CA-1&quot;&gt;&lt;a href=&quot;#u7B80_u5355_u89E3_u91CA-1&quot; class=&quot;headerlink&quot; title=&quot;简单解释&quot;&gt;&lt;/a&gt;简单解释&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;网络提供服务的一种机制&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;通信的两端都是socket&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;网络通信其实就是socket间的通信&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;数据在两个socket间通过IO传输&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xq5ax.com1.z0.glb.clouddn.com/%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%B5%81.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;iOS_u4E2D_u5E38_u7528_u7684_u4E24_u79CDSocket_u7C7B_u578B&quot;&gt;&lt;a href=&quot;#iOS_u4E2D_u5E38_u7528_u7684_u4E24_u79CDSocket_u7C7B_u578B&quot; class=&quot;headerlink&quot; title=&quot;iOS中常用的两种Socket类型&quot;&gt;&lt;/a&gt;iOS中常用的两种Socket类型&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;流式Socket（SOCK_STREAM）&lt;/strong&gt;：流式是一种面向连接的Socket，针对于面向连接的TCP服务应用&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;数据报式Socket（SOCK_DGRAM）&lt;/strong&gt;：数据报式Socket是一种无连接的Socket，对应于无连接的UDP服务应用&lt;/p&gt;
+&lt;h2 id=&quot;Http_u4E0ESocket_u7684_u533A_u522B&quot;&gt;&lt;a href=&quot;#Http_u4E0ESocket_u7684_u533A_u522B&quot; class=&quot;headerlink&quot; title=&quot;Http与Socket的区别&quot;&gt;&lt;/a&gt;Http与Socket的区别&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Http是基于Socket的实现；Http应用层协议，主要解决如何包装数据&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Http传输的数据格式是规定好的，Socket实现数据传输是最原始，Socket实现的数据传输格式可自定义&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Http建立的连接称为短连接，Socket建立的连接为长连接&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Socket是对TCP/IP协议的封装，Socket本身并不是协议，而是一个调用接口(API),通过Socket我们才能使用TCP/IP协议&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&quot;u6700_u540E&quot;&gt;&lt;a href=&quot;#u6700_u540E&quot; class=&quot;headerlink&quot; title=&quot;最后&quot;&gt;&lt;/a&gt;最后&lt;/h1&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;在学习的过程中会模仿微信做类似的demo，涉及到的一些相关地址如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;iOS XMPP框架：&lt;a href=&quot;https://github.com/robbiehanson/XMPPFramework&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/robbiehanson/XMPPFramework&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Server：&lt;a href=&quot;http://www.igniterealtime.org/downloads/index.jsp&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://www.igniterealtime.org/downloads/index.jsp&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;数据库：&lt;a href=&quot;http://dev.mysql.com/downloads/mysql/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;http://dev.mysql.com/downloads/mysql/&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Socket是为网络服务提供的一种机制，希望经过此次的学习，能够揭开Socket神秘面纱。在此仅想记录自己的学习历程和一些学习心得。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="iOS" scheme="http://yoursite.com/categories/iOS/"/>
+    
+    
+      <category term="HTTP" scheme="http://yoursite.com/tags/HTTP/"/>
+    
+      <category term="SOCKET" scheme="http://yoursite.com/tags/SOCKET/"/>
+    
+      <category term="TCP" scheme="http://yoursite.com/tags/TCP/"/>
+    
+      <category term="UDP" scheme="http://yoursite.com/tags/UDP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>一篇搞定RSA加密与SHA签名</title>
+    <link href="http://yoursite.com/2016/01/12/RSA-SHA/"/>
+    <id>http://yoursite.com/2016/01/12/RSA-SHA/</id>
+    <published>2016-01-12T09:19:25.000Z</published>
+    <updated>2016-08-25T03:51:16.000Z</updated>
+    
+    <content type="html">&lt;p&gt;看到这篇文章的同学可幸福了，当时在做RSA加密与签名的时候网上的资料简直不要太老，做完后实在是忍受不下去了，这篇文章我会详细讲解iOS如何实现RSA加密与签名，并且与Java完全同步。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&quot;u57FA_u7840_u77E5_u8BC6&quot;&gt;&lt;a href=&quot;#u57FA_u7840_u77E5_u8BC6&quot; class=&quot;headerlink&quot; title=&quot;基础知识&quot;&gt;&lt;/a&gt;基础知识&lt;/h1&gt; &lt;p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;什么是RSA？&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;答：RSA是一种非对称加密算法，常用来对传输数据进行加密，配合上数字摘要算法，也可以进行文字签名。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;RSA加密中padding？&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;答：padding即填充方式，由于RSA加密算法中要加密的明文是要比模数小的，padding就是通过一些填充方式来限制明文的长度。后面会详细介绍padding的几种模式以及分段加密。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;加密和加签有什么区别？&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;答：加密：公钥放在客户端，并使用公钥对数据进行加密，服务端拿到数据后用私钥进行解密；&lt;br&gt;   加签：私钥放在客户端，并使用私钥对数据进行加签，服务端拿到数据后用公钥进行验签。&lt;br&gt;前者完全为了加密；后者主要是为了防恶意攻击，防止别人模拟我们的客户端对我们的服务器进行攻击，导致服务器瘫痪。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/p&gt;&lt;h1 id=&quot;u57FA_u672C_u539F_u7406&quot;&gt;&lt;a href=&quot;#u57FA_u672C_u539F_u7406&quot; class=&quot;headerlink&quot; title=&quot;基本原理&quot;&gt;&lt;/a&gt;基本原理&lt;p&gt;&lt;/p&gt;&lt;/h1&gt;&lt;p&gt;RSA使用“密钥对”对数据进行加密解密，在加密解密前需要先生存公钥（Public Key）和私钥（Private Key）。&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;strong&gt;公钥(Public key):&lt;/strong&gt; 用于加密数据. 用于公开, 一般存放在数据提供方, 例如iOS客户端。&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;strong&gt;私钥(Private key):&lt;/strong&gt; 用于解密数据. 必须保密, 私钥泄露会造成安全问题。&lt;/p&gt;&lt;p&gt;&lt;br&gt;iOS中的Security.framework提供了对RSA算法的支持，这种方式需要对密匙对进行处理, 根据public key生成证书, 通过private key生成p12格式的密匙。想想jave直接用字符串进行加密解密简单多了。(⊙o⊙)…&lt;/p&gt;
+&lt;h1 id=&quot;u5B9E_u6218&quot;&gt;&lt;a href=&quot;#u5B9E_u6218&quot; class=&quot;headerlink&quot; title=&quot;实战&quot;&gt;&lt;/a&gt;实战&lt;/h1&gt;&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;/p&gt;
+&lt;h2 id=&quot;u8BC1_u4E66_u751F_u6210&quot;&gt;&lt;a href=&quot;#u8BC1_u4E66_u751F_u6210&quot; class=&quot;headerlink&quot; title=&quot;证书生成&quot;&gt;&lt;/a&gt;证书生成&lt;/h2&gt;&lt;p&gt;RSA加密这块公钥、私钥必不可少的。&lt;strong&gt;Apple是不支持直接使用字符串进行加密解密的，推荐使用p12文件&lt;/strong&gt;。这边教大家去生成在加密中使用到的所有文件，并提供给Java使用，想当年这个公钥私钥搞了半天了。 %&amp;gt;_&amp;lt;%&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;ul&gt;
+&lt;li&gt;生成模长为1024bit的私钥&lt;br&gt;openssl genrsa -out private_key.pem 1024&lt;/li&gt;
+&lt;li&gt;生成certification require file&lt;br&gt;openssl req -new -key private_key.pem -out rsaCertReq.csr &lt;/li&gt;
+&lt;li&gt;生成certification 并指定过期时间&lt;br&gt;openssl x509 -req -days3650-in rsaCertReq.csr -signkey private_key.pem -out rsaCert.crt&lt;/li&gt;
+&lt;li&gt;生成公钥供iOS使用&lt;br&gt;openssl x509 -outform der -in rsaCert.crt -out public_key.der&lt;/li&gt;
+&lt;li&gt;生成私钥供iOS使用 这边会让你输入密码，后期用到在生成secKeyRef的时候会用到这个密码&lt;br&gt;openssl pkcs12 -export -out private_key.p12 -inkey private_key.pem -in rsaCert.crt&lt;/li&gt;
+&lt;li&gt;生成pem结尾的公钥供Java使用&lt;br&gt;openssl rsa -in private_key.pem -out rsa_public_key.pem -pubout&lt;/li&gt;
+&lt;li&gt;生成pem结尾的私钥供Java使用openssl pkcs8 -topk8 -in private_key.pem -out pkcs8_private_key.pem -nocrypt&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;以上所有的步骤都是在终端下完成的哦  (&lt;em&gt;^__^&lt;/em&gt;)&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&quot;u751F_u6210_u516C_u94A5_u548C_u79C1_u94A5_u7684secKeyRef&quot;&gt;&lt;a href=&quot;#u751F_u6210_u516C_u94A5_u548C_u79C1_u94A5_u7684secKeyRef&quot; class=&quot;headerlink&quot; title=&quot;生成公钥和私钥的secKeyRef&quot;&gt;&lt;/a&gt;生成公钥和私钥的secKeyRef&lt;p&gt;&lt;/p&gt;&lt;/h2&gt;   &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;   //&amp;#26681;&amp;#25454;&amp;#20320;&amp;#30340;p12&amp;#25991;&amp;#20214;&amp;#29983;&amp;#25104;&amp;#31169;&amp;#38053;&amp;#23545;&amp;#24212;&amp;#30340;SecKeyRef &amp;#36825;&amp;#36793;&amp;#36820;&amp;#22238;&amp;#33509;&amp;#26159;nil &amp;#35831;&amp;#26816;&amp;#26597;&amp;#20320;p12&amp;#25991;&amp;#20214;&amp;#30340;&amp;#29983;&amp;#25104;&amp;#27493;&amp;#39588;&amp;#10;- (SecKeyRef)getPrivateKeyRefrenceFromData:(NSData*)p12Data password:(NSString*)password &amp;#123;&amp;#10;&amp;#10;SecKeyRef privateKeyRef = NULL;&amp;#10;NSMutableDictionary * options = [[NSMutableDictionary alloc] init];&amp;#10;[options setObject: password forKey:(__bridge id)kSecImportExportPassphrase];&amp;#10;CFArrayRef items = CFArrayCreate(NULL, 0, 0, NULL);&amp;#10;OSStatus securityError = SecPKCS12Import((__bridge CFDataRef) p12Data, (__bridge CFDictionaryRef)options, &amp;#38;items);&amp;#10;if (securityError == noErr &amp;#38;&amp;#38; CFArrayGetCount(items) &amp;#62; 0) &amp;#123;&amp;#10;    CFDictionaryRef identityDict = CFArrayGetValueAtIndex(items, 0);&amp;#10;    SecIdentityRef identityApp = (SecIdentityRef)CFDictionaryGetValue(identityDict, kSecImportItemIdentity);&amp;#10;    securityError = SecIdentityCopyPrivateKey(identityApp, &amp;#38;privateKeyRef);&amp;#10;    if (securityError != noErr) &amp;#123;&amp;#10;        privateKeyRef = NULL;&amp;#10;    &amp;#125;&amp;#10;&amp;#125;&amp;#10;CFRelease(items);&amp;#10;&amp;#10;return privateKeyRef;&amp;#10;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+   &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;    //&amp;#26681;&amp;#25454;&amp;#20320;&amp;#30340;der&amp;#25991;&amp;#20214;&amp;#20844;&amp;#38053;&amp;#23545;&amp;#24212;&amp;#30340;SecKeyRef&amp;#10; - (SecKeyRef)getPublicKeyRefrenceFromeData:    (NSData*)derData &amp;#123;&amp;#10;&amp;#10;SecCertificateRef myCertificate = SecCertificateCreateWithData(kCFAllocatorDefault, (__bridge CFDataRef)derData);&amp;#10;SecPolicyRef myPolicy = SecPolicyCreateBasicX509();&amp;#10;SecTrustRef myTrust;&amp;#10;OSStatus status = SecTrustCreateWithCertificates(myCertificate,myPolicy,&amp;#38;myTrust);&amp;#10;SecTrustResultType trustResult;&amp;#10;if (status == noErr) &amp;#123;&amp;#10;    status = SecTrustEvaluate(myTrust, &amp;#38;trustResult);&amp;#10;&amp;#125;&amp;#10;SecKeyRef securityKey = SecTrustCopyPublicKey(myTrust);&amp;#10;CFRelease(myCertificate);&amp;#10;CFRelease(myPolicy);&amp;#10;CFRelease(myTrust);&amp;#10;&amp;#10;return securityKey;&amp;#10;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;u52A0_u5BC6_u4E0E_u89E3_u5BC6&quot;&gt;&lt;a href=&quot;#u52A0_u5BC6_u4E0E_u89E3_u5BC6&quot; class=&quot;headerlink&quot; title=&quot;加密与解密&quot;&gt;&lt;/a&gt;加密与解密 &lt;p&gt;&lt;/p&gt;&lt;/h2&gt; &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;- (NSData*)rsaEncryptData:(NSData*)data &amp;#123;&amp;#10;   SecKeyRef key = [self getPublicKey];&amp;#10;   size_t cipherBufferSize = SecKeyGetBlockSize(key);&amp;#10;   uint8_t *cipherBuffer = malloc(cipherBufferSize * sizeof(uint8_t));&amp;#10;   size_t blockSize = cipherBufferSize - 11;&amp;#10;     size_t blockCount = (size_t)ceil([data length] / (double)blockSize);&amp;#10;     NSMutableData *encryptedData = [[NSMutableData alloc] init];&amp;#10;   for (int i=0; i&amp;#60;blockCount; i++) &amp;#123;&amp;#10;   unsigned long bufferSize = MIN(blockSize , [data length] - i * blockSize);&amp;#10;   NSData *buffer = [data subdataWithRange:NSMakeRange(i * blockSize, bufferSize)];&amp;#10;   OSStatus status = SecKeyEncrypt(key, kSecPaddingPKCS1, (const uint8_t *)[buffer bytes], [buffer length], cipherBuffer, &amp;#38;cipherBufferSize);&amp;#10;&amp;#10;   if (status != noErr) &amp;#123;&amp;#10;       return nil;&amp;#10;   &amp;#125;&amp;#10;&amp;#10;   NSData *encryptedBytes = [[NSData alloc] initWithBytes:(const void *)cipherBuffer length:cipherBufferSize];&amp;#10;   [encryptedData appendData:encryptedBytes];&amp;#10;   &amp;#125;&amp;#10;&amp;#10; if (cipherBuffer)&amp;#123;&amp;#10;   free(cipherBuffer);&amp;#10; &amp;#125;&amp;#10;&amp;#10; return encryptedData;&amp;#10; &amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+ &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt; - (NSData*)rsaDecryptData:(NSData*)data &amp;#123;&amp;#10;SecKeyRef key = [self getPrivatKey];&amp;#10;&amp;#10;size_t cipherBufferSize = SecKeyGetBlockSize(key);&amp;#10;size_t blockSize = cipherBufferSize;&amp;#10;size_t blockCount = (size_t)ceil([data length] / (double)blockSize);&amp;#10;&amp;#10;NSMutableData *decryptedData = [[NSMutableData alloc] init];&amp;#10;&amp;#10;for (int i = 0; i &amp;#60; blockCount; i++) &amp;#123;&amp;#10;    unsigned long bufferSize = MIN(blockSize , [data length] - i * blockSize);&amp;#10;    NSData *buffer = [data subdataWithRange:NSMakeRange(i * blockSize, bufferSize)];&amp;#10;&amp;#10;    size_t cipherLen = [buffer length];&amp;#10;    void *cipher = malloc(cipherLen);&amp;#10;    [buffer getBytes:cipher length:cipherLen];&amp;#10;    size_t plainLen = SecKeyGetBlockSize(key);&amp;#10;    void *plain = malloc(plainLen);&amp;#10;&amp;#10;    OSStatus status = SecKeyDecrypt(key, kSecPaddingPKCS1, cipher, cipherLen, plain, &amp;#38;plainLen);&amp;#10;&amp;#10;    if (status != noErr) &amp;#123;&amp;#10;        return nil;&amp;#10;    &amp;#125;&amp;#10;&amp;#10;    NSData *decryptedBytes = [[NSData alloc] initWithBytes:(const void *)plain length:plainLen];&amp;#10;    [decryptedData appendData:decryptedBytes];&amp;#10;&amp;#125;&amp;#10;&amp;#10;return decryptedData;&amp;#10;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;RSA_u52A0_u5BC6_u4E2D_u7684Padding&quot;&gt;&lt;a href=&quot;#RSA_u52A0_u5BC6_u4E2D_u7684Padding&quot; class=&quot;headerlink&quot; title=&quot;RSA加密中的Padding&quot;&gt;&lt;/a&gt;RSA加密中的Padding&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;RSA_PKCS1_PADDING 填充模式，最常用的模式&lt;/p&gt;&lt;p&gt;&lt;br&gt;要求: 输入：必须 比 RSA 钥模长(modulus) 短至少11个字节, 也就是　RSA_size(rsa) – 11 如果输入的明文过长，必须切割，然后填充。&lt;/p&gt;&lt;p&gt;&lt;br&gt;输出：和modulus一样长&lt;/p&gt;&lt;p&gt;&lt;br&gt;根据这个要求，对于1024bit的密钥，block length = 1024/8 – 11 = 117 字节&lt;/p&gt;&lt;p&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;RSA_PKCS1_OAEP_PADDING&lt;/p&gt;&lt;p&gt;&lt;br&gt;输入：RSA_size(rsa) – 41&lt;/p&gt;&lt;p&gt;&lt;br&gt;输出：和modulus一样长&lt;/p&gt;&lt;p&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;RSA_NO_PADDING　　不填充&lt;/p&gt;&lt;p&gt;&lt;br&gt;输入：可以和RSA钥模长一样长，如果输入的明文过长，必须切割，　然后填充&lt;/p&gt;&lt;p&gt;&lt;br&gt;输出：和modulus一样长&lt;/p&gt;&lt;p&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;u7B7E_u540D_u4E0E_u9A8C_u8BC1&quot;&gt;&lt;a href=&quot;#u7B7E_u540D_u4E0E_u9A8C_u8BC1&quot; class=&quot;headerlink&quot; title=&quot;签名与验证&quot;&gt;&lt;/a&gt;签名与验证&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt; //&amp;#23545;&amp;#25968;&amp;#25454;&amp;#36827;&amp;#34892;sha256&amp;#31614;&amp;#21517;&amp;#10;- (NSData *)rsaSHA256SignData:(NSData *)plainData &amp;#123;&amp;#10;&amp;#160;    &amp;#160;SecKeyRef key = [self getPrivatKey];&amp;#10;&amp;#160;&amp;#160; &amp;#160;&amp;#10;&amp;#160; &amp;#160;   size_t signedHashBytesSize = SecKeyGetBlockSize(key);&amp;#10;&amp;#160; &amp;#160;   uint8_t* signedHashBytes = malloc(signedHashBytesSize);&amp;#10;&amp;#160; &amp;#160;   memset(signedHashBytes, 0x0, signedHashBytesSize);&amp;#10;&amp;#160;&amp;#160; &amp;#160;&amp;#10;&amp;#160; &amp;#160;   size_t hashBytesSize = CC_SHA256_DIGEST_LENGTH;&amp;#10;&amp;#160; &amp;#160;   uint8_t* hashBytes = malloc(hashBytesSize);&amp;#10;&amp;#160; &amp;#160;   if (!CC_SHA256([plainData bytes], (CC_LONG)[plainData length], hashBytes)) &amp;#123;&amp;#10;&amp;#160; &amp;#160; &amp;#160; &amp;#160; return nil;&amp;#10;&amp;#160; &amp;#160; &amp;#125;&amp;#10;&amp;#160;&amp;#160; &amp;#160;&amp;#10;&amp;#160; &amp;#160;        SecKeyRawSign(key,&amp;#10;&amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; kSecPaddingPKCS1SHA256,&amp;#10;&amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; hashBytes,&amp;#10;&amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; hashBytesSize,&amp;#10;&amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; signedHashBytes,&amp;#10;&amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#38;signedHashBytesSize);&amp;#10;&amp;#160;&amp;#160; &amp;#160;&amp;#10;&amp;#160; &amp;#160;     NSData* signedHash = [NSData dataWithBytes:signedHashBytes&amp;#10;&amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; length:(NSUInteger)signedHashBytesSize];&amp;#10;&amp;#160;&amp;#160; &amp;#160;&amp;#10;&amp;#160; &amp;#160;     if (hashBytes)&amp;#10;&amp;#160; &amp;#160; &amp;#160; &amp;#160; free(hashBytes);&amp;#10;&amp;#160; &amp;#160; if (signedHashBytes)&amp;#10;&amp;#160; &amp;#160; &amp;#160; &amp;#160; free(signedHashBytes);&amp;#10;&amp;#160;&amp;#160; &amp;#160;&amp;#10;&amp;#160; &amp;#160;     return signedHash;&amp;#10;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;&amp;#10;//&amp;#36825;&amp;#36793;&amp;#23545;&amp;#31614;&amp;#21517;&amp;#30340;&amp;#25968;&amp;#25454;&amp;#36827;&amp;#34892;&amp;#39564;&amp;#35777; &amp;#39564;&amp;#31614;&amp;#25104;&amp;#21151;&amp;#65292;&amp;#21017;&amp;#36820;&amp;#22238;YES&amp;#10;- (BOOL)rsaSHA256VerifyData:(NSData *)plainData     withSignature:(NSData *)signature &amp;#123;&amp;#10;&amp;#160; &amp;#160;     SecKeyRef key = [self getPublicKey];&amp;#10;  &amp;#10;&amp;#160;     &amp;#160; size_t signedHashBytesSize = SecKeyGetBlockSize(key);&amp;#10;&amp;#160; &amp;#160;     const void* signedHashBytes = [signature bytes];&amp;#10;&amp;#160;&amp;#160; &amp;#160;&amp;#10;&amp;#160; &amp;#160;     size_t hashBytesSize = CC_SHA256_DIGEST_LENGTH;&amp;#10;&amp;#160; &amp;#160;     uint8_t* hashBytes = malloc(hashBytesSize);&amp;#10;&amp;#160;     &amp;#160; if (!CC_SHA256([plainData bytes], (CC_LONG)[plainData length], hashBytes)) &amp;#123;&amp;#10;&amp;#160; &amp;#160; &amp;#160; &amp;#160;    return NO;&amp;#10;&amp;#160; &amp;#160;     &amp;#125;&amp;#10;&amp;#160;&amp;#160; &amp;#160;&amp;#10;&amp;#160; &amp;#160;       OSStatus status = SecKeyRawVerify(key,&amp;#10;&amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; kSecPaddingPKCS1SHA256,&amp;#10;&amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; hashBytes,&amp;#10;&amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; hashBytesSize,&amp;#10;&amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; signedHashBytes,&amp;#10;&amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; &amp;#160; signedHashBytesSize);&amp;#10;&amp;#160;&amp;#160; &amp;#160;&amp;#10;&amp;#160; &amp;#160;     return status == errSecSuccess;&amp;#10;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;strong&gt;文章到此就结束了，希望大家能够喜欢。请点击&lt;a href=&quot;https://github.com/PanXianyue/XYCryption&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Git&lt;/a&gt;获取相关demo&lt;/strong&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;看到这篇文章的同学可幸福了，当时在做RSA加密与签名的时候网上的资料简直不要太老，做完后实在是忍受不下去了，这篇文章我会详细讲解iOS如何实现RSA加密与签名，并且与Java完全同步。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="iOS" scheme="http://yoursite.com/categories/iOS/"/>
+    
+    
+      <category term="RSA加密" scheme="http://yoursite.com/tags/RSA%E5%8A%A0%E5%AF%86/"/>
+    
+      <category term="SHA签名" scheme="http://yoursite.com/tags/SHA%E7%AD%BE%E5%90%8D/"/>
+    
+  </entry>
+  
+</feed>

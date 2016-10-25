@@ -4,8 +4,8 @@ date: 2016-05-11 22:17:26
 categories: iOS
 tags:
 ---
+本篇blog主要讲解如何定制TabBarItem的大小，最终实现AppStore各大主流APP TabBarItem超出TabBar的效果。
 <!--more-->
-> 本篇blog主要讲解如何定制TabBarItem的大小，最终实现AppStore各大主流APP TabBarItem超出TabBar的效果。希望对大家有所帮助。
 
 # 方案一：UIEdgeInsets
 **适用场景：** <br>

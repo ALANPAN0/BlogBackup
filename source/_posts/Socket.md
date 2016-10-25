@@ -4,9 +4,9 @@ date: 2016-01-16 21:17:20
 categories: iOS
 tags: [SOCKET, HTTP, TCP, UDP]
 ---
-<!--more-->
 
-Socket是为网络服务提供的一种机制，学习之前对Socket基本上没有任何的理解，希望经过此次的学习，能够揭开Socket神秘面纱。在此仅想记录自己的学习历程和一些学习心得。
+Socket是为网络服务提供的一种机制，希望经过此次的学习，能够揭开Socket神秘面纱。在此仅想记录自己的学习历程和一些学习心得。
+<!--more-->
 
 # OSI、TCP\IP参考模型
 <p>

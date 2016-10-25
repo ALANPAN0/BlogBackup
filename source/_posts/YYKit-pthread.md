@@ -4,9 +4,10 @@ date: 2016-06-21 17:43:18
 categories: iOS
 tags: [YYKit, pthread]
 ---
-<!--mored-->
 
-> 大家都知道ibireme的[YYKit](https://github.com/ibireme/YYKit)很强大，个人也特别佩服ibireme。大神常常教导我们这样的小白说：多读源码能够大幅度的提高功力。 <p>每当项目上线后，需求还没有下来时，都会有一段闲暇时间。这段时间学习是极佳的。YYKit这个框架刚开始看的时候就遇到pthread这个玩意，之前很少接触。在此，记录自己的所学所得，并分享给大家。
+大家都知道ibireme的[YYKit](https://github.com/ibireme/YYKit)很强大，个人也特别佩服ibireme。大神常常教导我们这样的小白说：多读源码能够大幅度的提高功力。 <p>每当项目上线后，需求还没有下来时，都会有一段闲暇时间。这段时间学习是极佳的。YYKit这个框架刚开始看的时候就遇到pthread这个玩意，之前很少接触。在此，记录自己的所学所得，并分享给大家。
+<!--more-->
+
 
 ## 先来看下YY定义的宏
 ```
