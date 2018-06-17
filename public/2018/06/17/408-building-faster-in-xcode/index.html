@@ -83,13 +83,11 @@
 <h6 id="Keep_Your_Generated_Header_Minimal"><a href="#Keep_Your_Generated_Header_Minimal" class="headerlink" title="Keep Your Generated Header Minimal"></a>Keep Your Generated Header Minimal</h6><ul>
 <li><p>Use private when possible</p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`@objc private func keyboardWillShow(_: Notification) &#123; // Important keyboard setup code here.&#10;&#125;.&#10;// ...&#10;NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), ...)</span><br></pre></td></tr></table></figure>
-<ul>
+</li>
 <li><p>Use block-based APIs</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`self.observer = NotificationCenter.default.addObserver( forName: UIKeyboardWillShow, object: nil, queue: nil) &#123;&#10;// Important keyboard setup code here.&#10;&#125;.</span><br></pre></td></tr></table></figure>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`self.observer = NotificationCenter.default.addObserver( forName: UIKeyboardWillShow, object: nil, queue: nil) &#123;&#10;// Important keyboard setup code here.&#10;&#125;.</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>Turn off “Swift 3 @objc Inference”<br><img src="/images/15292355397528.jpg" alt=""></p>
-</li>
-</ul>
+<li><p>Turn off “Swift 3 @objc Inference”<br>  <img src="/images/15292355397528.jpg" alt=""></p>
 </li>
 <li>Keep Your Bridging Header Minimal<ul>
 <li>Use categories to break up your interface</li>

@@ -142,14 +142,14 @@ Session 408
 	// ...
 	NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), ...)
 	```
-	* Use block-based APIs
+* Use block-based APIs
 
 	```
 	`self.observer = NotificationCenter.default.addObserver( forName: UIKeyboardWillShow, object: nil, queue: nil) {
 	// Important keyboard setup code here.
 	}.
 	```
-	* Turn off “Swift 3 @objc Inference”
+* Turn off “Swift 3 @objc Inference”
 	![][image-21]
 * Keep Your Bridging Header Minimal
 	* Use categories to break up your interface

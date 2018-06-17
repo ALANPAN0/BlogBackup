@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-06-17T12:31:29.059Z</updated>
+  <updated>2018-06-17T14:06:16.815Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2018/06/17/408-building-faster-in-xcode/"/>
     <id>http://yoursite.com/2018/06/17/408-building-faster-in-xcode/</id>
     <published>2018-06-17T12:09:54.000Z</published>
-    <updated>2018-06-17T12:31:29.059Z</updated>
+    <updated>2018-06-17T14:06:16.815Z</updated>
     
     <content type="html">&lt;p&gt;Session 408&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;/images/Building%20Faster%20in%20Xcode_.png&quot; alt=&quot;Building Faster in Xcode_&quot;&gt;&lt;/p&gt;
@@ -107,13 +107,11 @@
 &lt;h6 id=&quot;Keep_Your_Generated_Header_Minimal&quot;&gt;&lt;a href=&quot;#Keep_Your_Generated_Header_Minimal&quot; class=&quot;headerlink&quot; title=&quot;Keep Your Generated Header Minimal&quot;&gt;&lt;/a&gt;Keep Your Generated Header Minimal&lt;/h6&gt;&lt;ul&gt;
 &lt;li&gt;&lt;p&gt;Use private when possible&lt;/p&gt;
   &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;`@objc private func keyboardWillShow(_: Notification) &amp;#123; // Important keyboard setup code here.&amp;#10;&amp;#125;.&amp;#10;// ...&amp;#10;NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), ...)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;ul&gt;
+&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Use block-based APIs&lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;`self.observer = NotificationCenter.default.addObserver( forName: UIKeyboardWillShow, object: nil, queue: nil) &amp;#123;&amp;#10;// Important keyboard setup code here.&amp;#10;&amp;#125;.&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+  &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;`self.observer = NotificationCenter.default.addObserver( forName: UIKeyboardWillShow, object: nil, queue: nil) &amp;#123;&amp;#10;// Important keyboard setup code here.&amp;#10;&amp;#125;.&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Turn off “Swift 3 @objc Inference”&lt;br&gt;&lt;img src=&quot;/images/15292355397528.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
+&lt;li&gt;&lt;p&gt;Turn off “Swift 3 @objc Inference”&lt;br&gt;  &lt;img src=&quot;/images/15292355397528.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;Keep Your Bridging Header Minimal&lt;ul&gt;
 &lt;li&gt;Use categories to break up your interface&lt;/li&gt;
