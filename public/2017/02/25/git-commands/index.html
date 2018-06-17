@@ -1,0 +1,43 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> git命令 · dreamerpanda</title><meta name="description" content="git命令 - panda"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://yoursite.com/atom.xml" title="dreamerpanda"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/avatar.jpg"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/2792583194" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/PanXianyue" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">git命令</h1><div class="post-info">Feb 25, 2017</div><div class="post-content"><p>常用git命令梳理篇<br><a id="more"></a></p>
+<blockquote>
+<p>阮一峰这篇<a href="http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html" target="_blank" rel="external">常用命令清单</a>清晰的总结了常用的命令，这边我就不在赘述了，这边主要补充并整理个人的一些命令</p>
+</blockquote>
+<h3 id="u6E05_u5355"><a href="#u6E05_u5355" class="headerlink" title="清单"></a>清单</h3><p><code>$ git commit --amend -m [message]</code><br> # 使用一次新的commit，代替上一次的提交<br># <strong>如果代码没有任何变化，则用来改写上一次commit的提交信息</strong></p>
+<p><code>$ git commit --amend [file1] [file2] ...</code><br> # 重新做上次的commit， 并包括指定文件的新变化</p>
+<p><code>$ git branch [branch] [commit]</code><br># 新建一个分支，指向指定commit</p>
+<p><code>$ git branch --set-upstream [branch] [remote-branch]</code><br># 建立追踪关系，在现有分支与指定的远程分支之间</p>
+<p><code>$ git cherry-pick [commit]</code><br># 选择一个commit，合并进当前分支</p>
+<p><code>$ git push -u [remote] [branch]</code><br># 推送到remote仓库下的branch分支，并当前分支tracking到remote仓库下的branch分支</p>
+<p><code>$ git push &lt;remote&gt; &lt;local branch name&gt;:&lt;remote branch to push into&gt;</code><br># 上传本地的分支到远程的分支</p>
+<p><code>$ git reflog/git log -g</code><br># 查看所有的历史操作，这个命名比较实用。比如新来的同事经常误操作git导致不想发生的结果，这个时候你可以使用git reflog查看其进行的所有操作，然后进行reset</p>
+<h3 id="u5E38_u89C1_u95EE_u9898"><a href="#u5E38_u89C1_u95EE_u9898" class="headerlink" title="常见问题"></a>常见问题</h3><ul>
+<li>git每次要求你输入密码，Enter passphrase for key ‘/Users/XY/.ssh/id_rsa’:？<br>  直接敲<code>ssh-add</code>然后输入密码即可， 详情<a href="http://unix.stackexchange.com/questions/12195/how-to-avoid-being-asked-passphrase-each-tim%E2%80%A6" target="_blank" rel="external">点击</a></li>
+</ul>
+<ul>
+<li>git rebase 冲突?<ol>
+<li>解决一个补丁的应用冲突后，标记冲突已解决 git add -u</li>
+<li>继续rebase   git rebase —continue</li>
+<li>push到远端就ok了，add后不需要commit</li>
+<li>git rebase —about 放弃rebase<br> git rebase —skip   忽略本地冲突的补丁</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><p>git fetch 和 git pull 区别？<br>  pull = fetch + merge，git pull 相当于 git fetch 加上一个git merge的操作<br>  git fetch 创建并更新所有远端分支的本地远端分支，创建远端分支时，会自动获取新加入的分支，这个操作并不会改变本地的工作区，详情<a href="http://stackoverflow.com/questions/292357/what-is-the-difference-between-git-pull-and-git-fetch" target="_blank" rel="external">点击</a></p>
+</li>
+<li><p>git revert 和 git reset 区别？<br>  revert：通过创建一次新的 commit 来撤销一次 commit 所做出的修改。这种撤销的方式是安全的，因为它并不修改 commit history  </p>
+<p>  reset：还原index的状态或者修改本地分支HEAD的位置。比如， 某个提交之后的代码都不要了，就可以在本地直接reset至指定的commit<br>  补充：<br>   <code>git reset --soft</code><br>  # staged snapshot 和 working directory 都未被改变<br>  <code>git reset --mixed</code><br>  # staged snapshot 被更新， working directory 未被更改<br>  <code>git reset --hard</code><br>  # staged snapshot 和 working directory 都将回退<br>  这些标记经常和HEAD一起使用。例如，git reset –mixed HEAD可撤销所有缓存改动，但是保留他们在工作目录下。git reset –hard HEAD可彻底删除没有提交的改动  </p>
+</li>
+</ul>
+<h3 id="u76D7_u7528_u4E00_u4E0B_uD83D_uDE02"><a href="#u76D7_u7528_u4E00_u4E0B_uD83D_uDE02" class="headerlink" title="盗用一下😂"></a>盗用一下😂</h3><p><img src="http://7xq5ax.com1.z0.glb.clouddn.com/e55477eejw1f07e4ffienj21cv2funfq.jpg" alt=""></p>
+</div></article></div></section><footer><div class="paginator"><a href="/2018/06/17/408-building-faster-in-xcode/" class="prev">上一篇</a><a href="/2017/01/03/alfred-use/" class="next">下一篇</a></div><div data-thread-key="2017/02/25/git-commands/" data-title="git命令" data-url="http://yoursite.com/2017/02/25/git-commands/" data-author-key="1" class="ds-thread"></div><script>var duoshuoQuery = {short_name:"iipanda"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+
+</script><div class="copyright"><p>© 2015 - 2018 <a href="http://yoursite.com">panda</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-83145135-1",'auto');ga('send','pageview');</script></body></html>

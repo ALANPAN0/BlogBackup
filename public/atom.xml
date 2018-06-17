@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-10-25T07:16:59.000Z</updated>
+  <updated>2018-06-17T12:31:29.059Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,220 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>Building Faster in Xcode</title>
+    <link href="http://yoursite.com/2018/06/17/408-building-faster-in-xcode/"/>
+    <id>http://yoursite.com/2018/06/17/408-building-faster-in-xcode/</id>
+    <published>2018-06-17T12:09:54.000Z</published>
+    <updated>2018-06-17T12:31:29.059Z</updated>
+    
+    <content type="html">&lt;p&gt;Session 408&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/Building%20Faster%20in%20Xcode_.png&quot; alt=&quot;Building Faster in Xcode_&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Parallelizing_Your_Build&quot;&gt;&lt;a href=&quot;#Parallelizing_Your_Build&quot; class=&quot;headerlink&quot; title=&quot;Parallelizing Your Build&quot;&gt;&lt;/a&gt;Parallelizing Your Build&lt;/h3&gt;&lt;h6 id=&quot;Xcode_u2019s_Targets_and_Dependencies&quot;&gt;&lt;a href=&quot;#Xcode_u2019s_Targets_and_Dependencies&quot; class=&quot;headerlink&quot; title=&quot;Xcode’s Targets and Dependencies&quot;&gt;&lt;/a&gt;Xcode’s Targets and Dependencies&lt;/h6&gt;&lt;ul&gt;
+&lt;li&gt;Target specifies a product to build&lt;ul&gt;
+&lt;li&gt;iOS App &lt;/li&gt;
+&lt;li&gt;Framework&lt;/li&gt;
+&lt;li&gt;Unit Tests&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Target dependency requires another target&lt;ul&gt;
+&lt;li&gt;Explicit via Target Dependencies &lt;/li&gt;
+&lt;li&gt;Implicit via Link Binary with Libraries&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6 id=&quot;Game_Dependency_Graph&quot;&gt;&lt;a href=&quot;#Game_Dependency_Graph&quot; class=&quot;headerlink&quot; title=&quot;Game Dependency Graph&quot;&gt;&lt;/a&gt;Game Dependency Graph&lt;/h6&gt;&lt;p&gt;&lt;img src=&quot;/images/QQ20180617-164649@2x.png&quot; alt=&quot;QQ20180617-164649@2x&quot;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;List of all targets to build &lt;/li&gt;
+&lt;li&gt;Dependency between targets&lt;/li&gt;
+&lt;li&gt;Build order can be derived&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&quot;/images/QQ20180617-165008@2x.png&quot; alt=&quot;QQ20180617-165008@2x&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/QQ20180617-165142@2x.png&quot; alt=&quot;QQ20180617-165142@2x&quot;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Amount of work did not change &lt;/li&gt;
+&lt;li&gt;Time to build decreased &lt;/li&gt;
+&lt;li&gt;Increased hardware utilization&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6 id=&quot;How_do_we_get_there_3F&quot;&gt;&lt;a href=&quot;#How_do_we_get_there_3F&quot; class=&quot;headerlink&quot; title=&quot;How do we get there?&quot;&gt;&lt;/a&gt;How do we get there?&lt;/h6&gt;&lt;ul&gt;
+&lt;li&gt;edit scheme&lt;/li&gt;
+&lt;li&gt;build&lt;/li&gt;
+&lt;li&gt;build option&lt;ol&gt;
+&lt;li&gt;Parallelize build&lt;/li&gt;
+&lt;li&gt;Find implicit Dependencies&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6 id=&quot;Parallelized_Target_Build_Process&quot;&gt;&lt;a href=&quot;#Parallelized_Target_Build_Process&quot; class=&quot;headerlink&quot; title=&quot;Parallelized Target Build Process&quot;&gt;&lt;/a&gt;Parallelized Target Build Process&lt;/h6&gt;&lt;ul&gt;
+&lt;li&gt;Compile sources can start earlier&lt;/li&gt;
+&lt;li&gt;Waits only for what it needs &lt;/li&gt;
+&lt;li&gt;Must wait for Run Script phases&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;Run_Script_Phases__28Reducing_the_work_on_rebuilds_29&quot;&gt;&lt;a href=&quot;#Run_Script_Phases__28Reducing_the_work_on_rebuilds_29&quot; class=&quot;headerlink&quot; title=&quot;Run Script Phases (Reducing the work on rebuilds)&quot;&gt;&lt;/a&gt;Run Script Phases (Reducing the work on rebuilds)&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;Allows you to customize your build process for your exact needs.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;img src=&quot;/images/QQ20180617-174124@2x.png&quot; alt=&quot;QQ20180617-174124@2x&quot;&gt;&lt;/p&gt;
+&lt;h6 id=&quot;File_Lists&quot;&gt;&lt;a href=&quot;#File_Lists&quot; class=&quot;headerlink&quot; title=&quot;File Lists&quot;&gt;&lt;/a&gt;File Lists&lt;/h6&gt;&lt;p&gt;&lt;img src=&quot;/images/QQ20180617-173229@2x.png&quot; alt=&quot;QQ20180617-173229@2x&quot;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Newline separated&lt;/li&gt;
+&lt;li&gt;Support for build setting variables &lt;/li&gt;
+&lt;li&gt;Cannot be generated during the build&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;Measuring_Build_Time&quot;&gt;&lt;a href=&quot;#Measuring_Build_Time&quot; class=&quot;headerlink&quot; title=&quot;Measuring Build Time&quot;&gt;&lt;/a&gt;Measuring Build Time&lt;/h3&gt;&lt;h6 id=&quot;Build_With_Timing_Summary&quot;&gt;&lt;a href=&quot;#Build_With_Timing_Summary&quot; class=&quot;headerlink&quot; title=&quot;Build With Timing Summary&quot;&gt;&lt;/a&gt;Build With Timing Summary&lt;/h6&gt;&lt;p&gt;&lt;img src=&quot;/images/15292293472562.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/15292295109399.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Source-Level_Improvements&quot;&gt;&lt;a href=&quot;#Source-Level_Improvements&quot; class=&quot;headerlink&quot; title=&quot;Source-Level Improvements&quot;&gt;&lt;/a&gt;Source-Level Improvements&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Dealing with complex expressions&lt;/li&gt;
+&lt;li&gt;Understanding dependencies in Swift&lt;/li&gt;
+&lt;li&gt;Limiting your Objective-C/Swift interface&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6 id=&quot;Turn_off_Whole_Module_Mode_For_Debug_Builds&quot;&gt;&lt;a href=&quot;#Turn_off_Whole_Module_Mode_For_Debug_Builds&quot; class=&quot;headerlink&quot; title=&quot;Turn off Whole Module Mode For Debug Builds&quot;&gt;&lt;/a&gt;Turn off Whole Module Mode For Debug Builds&lt;/h6&gt;&lt;p&gt; &lt;img src=&quot;/images/15292297716350.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h6 id=&quot;Use_Explicit_Types_for_Complex_Properties&quot;&gt;&lt;a href=&quot;#Use_Explicit_Types_for_Complex_Properties&quot; class=&quot;headerlink&quot; title=&quot;Use Explicit Types for Complex Properties&quot;&gt;&lt;/a&gt;Use Explicit Types for Complex Properties&lt;/h6&gt;&lt;p&gt;&lt;img src=&quot;/images/15292304002286.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h6 id=&quot;Provide_Types_in_Complex_Closures&quot;&gt;&lt;a href=&quot;#Provide_Types_in_Complex_Closures&quot; class=&quot;headerlink&quot; title=&quot;Provide Types in Complex Closures&quot;&gt;&lt;/a&gt;Provide Types in Complex Closures&lt;/h6&gt;&lt;p&gt;&lt;img src=&quot;/images/15292304507458.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h6 id=&quot;Break_Apart_Complex_Expressions&quot;&gt;&lt;a href=&quot;#Break_Apart_Complex_Expressions&quot; class=&quot;headerlink&quot; title=&quot;Break Apart Complex Expressions&quot;&gt;&lt;/a&gt;Break Apart Complex Expressions&lt;/h6&gt;&lt;p&gt;&lt;img src=&quot;/images/15292305166448.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h6 id=&quot;Use_AnyObject_Methods_and_Properties_Sparingly&quot;&gt;&lt;a href=&quot;#Use_AnyObject_Methods_and_Properties_Sparingly&quot; class=&quot;headerlink&quot; title=&quot;Use AnyObject Methods and Properties Sparingly&quot;&gt;&lt;/a&gt;Use AnyObject Methods and Properties Sparingly&lt;/h6&gt;&lt;p&gt;&lt;img src=&quot;/images/15292305743843.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;调用 &lt;code&gt;AnyObject&lt;/code&gt; 的方法时, 会去所有的文件中去查找该方法, 编译效率低&lt;/p&gt;
+&lt;p&gt;解决方案:&lt;br&gt;&lt;img src=&quot;/images/15292308090026.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;通过定义 &lt;code&gt;protocol&lt;/code&gt;, 然后查找方法就会去此 &lt;code&gt;protocol&lt;/code&gt; 的声明里面直接去找&lt;/p&gt;
+&lt;h3 id=&quot;Understanding_Dependencies_in_Swift&quot;&gt;&lt;a href=&quot;#Understanding_Dependencies_in_Swift&quot; class=&quot;headerlink&quot; title=&quot;Understanding Dependencies in Swift&quot;&gt;&lt;/a&gt;Understanding Dependencies in Swift&lt;/h3&gt;&lt;h6 id=&quot;Incremental_Builds_Are_File-Based&quot;&gt;&lt;a href=&quot;#Incremental_Builds_Are_File-Based&quot; class=&quot;headerlink&quot; title=&quot;Incremental Builds Are File-Based&quot;&gt;&lt;/a&gt;Incremental Builds Are File-Based&lt;/h6&gt;&lt;p&gt;&lt;img src=&quot;/images/15292312274443.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/15292312680309.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;增加方法此时会重新编译&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/15292313035255.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;改变方法的 bodies 不会影响到其他的文件&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/15292313838157.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;不关联的改变在方法外部也会导致重新编译&lt;/p&gt;
+&lt;h6 id=&quot;Dependencies_Within_a_Target_Are_Per-File__28_u76EE_u6807_u6587_u4EF6_u7684_u4F9D_u8D56_u5173_u7CFB_29&quot;&gt;&lt;a href=&quot;#Dependencies_Within_a_Target_Are_Per-File__28_u76EE_u6807_u6587_u4EF6_u7684_u4F9D_u8D56_u5173_u7CFB_29&quot; class=&quot;headerlink&quot; title=&quot;Dependencies Within a Target Are Per-File (目标文件的依赖关系)&quot;&gt;&lt;/a&gt;Dependencies Within a Target Are Per-File (目标文件的依赖关系)&lt;/h6&gt;&lt;p&gt;&lt;img src=&quot;/images/15292346436023.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h6 id=&quot;Cross-Target_Dependencies_Are_Coarse-Grained&quot;&gt;&lt;a href=&quot;#Cross-Target_Dependencies_Are_Coarse-Grained&quot; class=&quot;headerlink&quot; title=&quot;Cross-Target Dependencies Are Coarse-Grained&quot;&gt;&lt;/a&gt;Cross-Target Dependencies Are Coarse-Grained&lt;/h6&gt;&lt;p&gt;&lt;img src=&quot;/images/15292346898606.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h6 id=&quot;Swift_Dependency_Rules&quot;&gt;&lt;a href=&quot;#Swift_Dependency_Rules&quot; class=&quot;headerlink&quot; title=&quot;Swift Dependency Rules&quot;&gt;&lt;/a&gt;Swift Dependency Rules&lt;/h6&gt;&lt;ul&gt;
+&lt;li&gt;Compiler must be conservative&lt;/li&gt;
+&lt;li&gt;Changes in function bodies do not affect the file’s interface  &lt;/li&gt;
+&lt;li&gt;Dependencies within a module are per-file&lt;/li&gt;
+&lt;li&gt;Dependencies across targets are for the whole target&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h6 id=&quot;Mixed-Source_App_Targets&quot;&gt;&lt;a href=&quot;#Mixed-Source_App_Targets&quot; class=&quot;headerlink&quot; title=&quot;Mixed-Source App Targets&quot;&gt;&lt;/a&gt;Mixed-Source App Targets&lt;/h6&gt;&lt;p&gt;&lt;img src=&quot;/images/15292351447821.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h6 id=&quot;Keep_Your_Generated_Header_Minimal&quot;&gt;&lt;a href=&quot;#Keep_Your_Generated_Header_Minimal&quot; class=&quot;headerlink&quot; title=&quot;Keep Your Generated Header Minimal&quot;&gt;&lt;/a&gt;Keep Your Generated Header Minimal&lt;/h6&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Use private when possible&lt;/p&gt;
+  &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;`@objc private func keyboardWillShow(_: Notification) &amp;#123; // Important keyboard setup code here.&amp;#10;&amp;#125;.&amp;#10;// ...&amp;#10;NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), ...)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Use block-based APIs&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;`self.observer = NotificationCenter.default.addObserver( forName: UIKeyboardWillShow, object: nil, queue: nil) &amp;#123;&amp;#10;// Important keyboard setup code here.&amp;#10;&amp;#125;.&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Turn off “Swift 3 @objc Inference”&lt;br&gt;&lt;img src=&quot;/images/15292355397528.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Keep Your Bridging Header Minimal&lt;ul&gt;
+&lt;li&gt;Use categories to break up your interface&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;img src=&quot;/images/15292356504822.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;More_Information&quot;&gt;&lt;a href=&quot;#More_Information&quot; class=&quot;headerlink&quot; title=&quot;More Information&quot;&gt;&lt;/a&gt;More Information&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://developer.apple.com/wwdc18/408&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://developer.apple.com/wwdc18/408&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Session 408&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="WWDC" scheme="http://yoursite.com/tags/WWDC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>git命令</title>
+    <link href="http://yoursite.com/2017/02/25/git-commands/"/>
+    <id>http://yoursite.com/2017/02/25/git-commands/</id>
+    <published>2017-02-25T09:33:33.000Z</published>
+    <updated>2017-03-08T14:12:39.000Z</updated>
+    
+    <content type="html">&lt;p&gt;常用git命令梳理篇&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;阮一峰这篇&lt;a href=&quot;http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;常用命令清单&lt;/a&gt;清晰的总结了常用的命令，这边我就不在赘述了，这边主要补充并整理个人的一些命令&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&quot;u6E05_u5355&quot;&gt;&lt;a href=&quot;#u6E05_u5355&quot; class=&quot;headerlink&quot; title=&quot;清单&quot;&gt;&lt;/a&gt;清单&lt;/h3&gt;&lt;p&gt;&lt;code&gt;$ git commit --amend -m [message]&lt;/code&gt;&lt;br&gt; # 使用一次新的commit，代替上一次的提交&lt;br&gt;# &lt;strong&gt;如果代码没有任何变化，则用来改写上一次commit的提交信息&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;$ git commit --amend [file1] [file2] ...&lt;/code&gt;&lt;br&gt; # 重新做上次的commit， 并包括指定文件的新变化&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;$ git branch [branch] [commit]&lt;/code&gt;&lt;br&gt;# 新建一个分支，指向指定commit&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;$ git branch --set-upstream [branch] [remote-branch]&lt;/code&gt;&lt;br&gt;# 建立追踪关系，在现有分支与指定的远程分支之间&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;$ git cherry-pick [commit]&lt;/code&gt;&lt;br&gt;# 选择一个commit，合并进当前分支&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;$ git push -u [remote] [branch]&lt;/code&gt;&lt;br&gt;# 推送到remote仓库下的branch分支，并当前分支tracking到remote仓库下的branch分支&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;$ git push &amp;lt;remote&amp;gt; &amp;lt;local branch name&amp;gt;:&amp;lt;remote branch to push into&amp;gt;&lt;/code&gt;&lt;br&gt;# 上传本地的分支到远程的分支&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;$ git reflog/git log -g&lt;/code&gt;&lt;br&gt;# 查看所有的历史操作，这个命名比较实用。比如新来的同事经常误操作git导致不想发生的结果，这个时候你可以使用git reflog查看其进行的所有操作，然后进行reset&lt;/p&gt;
+&lt;h3 id=&quot;u5E38_u89C1_u95EE_u9898&quot;&gt;&lt;a href=&quot;#u5E38_u89C1_u95EE_u9898&quot; class=&quot;headerlink&quot; title=&quot;常见问题&quot;&gt;&lt;/a&gt;常见问题&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;git每次要求你输入密码，Enter passphrase for key ‘/Users/XY/.ssh/id_rsa’:？&lt;br&gt;  直接敲&lt;code&gt;ssh-add&lt;/code&gt;然后输入密码即可， 详情&lt;a href=&quot;http://unix.stackexchange.com/questions/12195/how-to-avoid-being-asked-passphrase-each-tim%E2%80%A6&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;点击&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;git rebase 冲突?&lt;ol&gt;
+&lt;li&gt;解决一个补丁的应用冲突后，标记冲突已解决 git add -u&lt;/li&gt;
+&lt;li&gt;继续rebase   git rebase —continue&lt;/li&gt;
+&lt;li&gt;push到远端就ok了，add后不需要commit&lt;/li&gt;
+&lt;li&gt;git rebase —about 放弃rebase&lt;br&gt; git rebase —skip   忽略本地冲突的补丁&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;git fetch 和 git pull 区别？&lt;br&gt;  pull = fetch + merge，git pull 相当于 git fetch 加上一个git merge的操作&lt;br&gt;  git fetch 创建并更新所有远端分支的本地远端分支，创建远端分支时，会自动获取新加入的分支，这个操作并不会改变本地的工作区，详情&lt;a href=&quot;http://stackoverflow.com/questions/292357/what-is-the-difference-between-git-pull-and-git-fetch&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;点击&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;git revert 和 git reset 区别？&lt;br&gt;  revert：通过创建一次新的 commit 来撤销一次 commit 所做出的修改。这种撤销的方式是安全的，因为它并不修改 commit history  &lt;/p&gt;
+&lt;p&gt;  reset：还原index的状态或者修改本地分支HEAD的位置。比如， 某个提交之后的代码都不要了，就可以在本地直接reset至指定的commit&lt;br&gt;  补充：&lt;br&gt;   &lt;code&gt;git reset --soft&lt;/code&gt;&lt;br&gt;  # staged snapshot 和 working directory 都未被改变&lt;br&gt;  &lt;code&gt;git reset --mixed&lt;/code&gt;&lt;br&gt;  # staged snapshot 被更新， working directory 未被更改&lt;br&gt;  &lt;code&gt;git reset --hard&lt;/code&gt;&lt;br&gt;  # staged snapshot 和 working directory 都将回退&lt;br&gt;  这些标记经常和HEAD一起使用。例如，git reset –mixed HEAD可撤销所有缓存改动，但是保留他们在工作目录下。git reset –hard HEAD可彻底删除没有提交的改动  &lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;u76D7_u7528_u4E00_u4E0B_uD83D_uDE02&quot;&gt;&lt;a href=&quot;#u76D7_u7528_u4E00_u4E0B_uD83D_uDE02&quot; class=&quot;headerlink&quot; title=&quot;盗用一下😂&quot;&gt;&lt;/a&gt;盗用一下😂&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xq5ax.com1.z0.glb.clouddn.com/e55477eejw1f07e4ffienj21cv2funfq.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;常用git命令梳理篇&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="GIT" scheme="http://yoursite.com/tags/GIT/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Alfred</title>
+    <link href="http://yoursite.com/2017/01/03/alfred-use/"/>
+    <id>http://yoursite.com/2017/01/03/alfred-use/</id>
+    <published>2017-01-03T04:30:11.000Z</published>
+    <updated>2017-01-03T10:50:15.000Z</updated>
+    
+    <content type="html">&lt;p&gt;一款你用上就爱不释手的软件&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;u5E38_u7528_u547D_u4EE4&quot;&gt;&lt;a href=&quot;#u5E38_u7528_u547D_u4EE4&quot; class=&quot;headerlink&quot; title=&quot;常用命令&quot;&gt;&lt;/a&gt;常用命令&lt;/h2&gt;&lt;p&gt;&lt;code&gt;open&lt;/code&gt; : 关键字用来打开文件或者文件夹&lt;br&gt;&lt;code&gt;find&lt;/code&gt; : 关键字用来查询文件或者文件夹的位置&lt;br&gt;&lt;code&gt;in&lt;/code&gt; : 关键字用来查找文本文件内含有查询文字的文件（这个功能很强大啊）&lt;br&gt;&lt;code&gt;tags&lt;/code&gt; :关键字用来查询含有查询tags的文件或者文件夹 &lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xq5ax.com1.z0.glb.clouddn.com/alfread-1.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;code&gt;/&lt;/code&gt; : 来直接定位到根目录或者使用&lt;br&gt;&lt;code&gt;~&lt;/code&gt; : 来直接定位到当前用户的home目录&lt;br&gt;&lt;strong&gt;在文件定位工具中我们可以设置是否使用左右建来作为前进或者后退功能 &lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;screensaver&lt;/code&gt; : 屏幕保护程序&lt;br&gt;&lt;code&gt;trash&lt;/code&gt; : 显示回收站&lt;br&gt;&lt;code&gt;emptytrash&lt;/code&gt; : 清空回收站&lt;br&gt;&lt;code&gt;logout&lt;/code&gt; : 登出&lt;br&gt;&lt;code&gt;sleep&lt;/code&gt; : 睡眠&lt;br&gt;&lt;code&gt;lock&lt;/code&gt; : 锁定&lt;br&gt;&lt;code&gt;restart&lt;/code&gt; : 重启&lt;br&gt;&lt;code&gt;shutdown&lt;/code&gt; : 关机&lt;br&gt;&lt;code&gt;hide&lt;/code&gt; : 隐藏&lt;br&gt;&lt;code&gt;quit&lt;/code&gt; : 关闭&lt;br&gt;&lt;code&gt;forcequit&lt;/code&gt; : 强制关闭&lt;br&gt;&lt;code&gt;quitall&lt;/code&gt; : 关闭所有应用程序&lt;br&gt;&lt;code&gt;&amp;gt;&lt;/code&gt; : 关键字和使用的默认控制台程序&lt;br&gt;&lt;code&gt;di&lt;/code&gt; : 关键字来查询中英字典 &lt;/p&gt;
+&lt;h3 id=&quot;Quick_Search&quot;&gt;&lt;a href=&quot;#Quick_Search&quot; class=&quot;headerlink&quot; title=&quot;Quick Search&quot;&gt;&lt;/a&gt;Quick Search&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xq5ax.com1.z0.glb.clouddn.com/Alfred-Quick%20Search.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;启用了Quick Search选项后我们可以使用’单引号或者space空格快速启用打开文件或者文件夹功能类似于使用open关键字&lt;/p&gt;
+&lt;h3 id=&quot;Buffer&quot;&gt;&lt;a href=&quot;#Buffer&quot; class=&quot;headerlink&quot; title=&quot;Buffer&quot;&gt;&lt;/a&gt;Buffer&lt;/h3&gt;&lt;p&gt;&lt;img src=&quot;http://7xq5ax.com1.z0.glb.clouddn.com/Alfred-buffer.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;这个功能非常的实用，个人表示很喜欢，能够很大程度的提高效率。将查找到的文件或者文件夹加入到缓存中，然后就可以对搜索到的结果做批量处理了。这里的设置也很简单主要就是是否启用缓存功能和缓存功能的几个快捷键，并且可以设置使用完后是否清空缓存等设置。 &lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xq5ax.com1.z0.glb.clouddn.com/Alfred-search.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;strong&gt;通过option键 + ⬆️来将选中的文件夹或者文件加入到缓存，我们可以看到如果存在缓存的话Alfred搜索界面上会出现选中文件的小图标&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xq5ax.com1.z0.glb.clouddn.com/Alfred-buffer2.png&quot; alt=&quot;&quot;&gt;&lt;br&gt;&lt;strong&gt;通过option键 + ➡️来批量处理缓存中的文件夹和文件。我们可以打开、发邮件、拷贝、移动、删除（是不是感觉到这个功能就是代替鼠标选中文件然后右键的功能 )&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&quot;1Password&quot;&gt;&lt;a href=&quot;#1Password&quot; class=&quot;headerlink&quot; title=&quot;1Password&quot;&gt;&lt;/a&gt;1Password&lt;/h3&gt;&lt;p&gt;使用1p关键字来查询密码库&lt;br&gt;&lt;img src=&quot;http://7xq5ax.com1.z0.glb.clouddn.com/Alfred-1p.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://7xq5ax.com1.z0.glb.clouddn.com/Alfred-1p-search.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;很容易忘记，索性就将笔记整理成blog了。后续有时间再进行扩展，不足之处还望见谅。&lt;/p&gt;
+&lt;/blockquote&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;一款你用上就爱不释手的软件&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="Tool" scheme="http://yoursite.com/tags/Tool/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Sketch--makeicons</title>
     <link href="http://yoursite.com/2016/09/26/sketch-makeicons/"/>
     <id>http://yoursite.com/2016/09/26/sketch-makeicons/</id>
     <published>2016-09-26T09:05:53.000Z</published>
-    <updated>2016-10-25T07:16:59.000Z</updated>
+    <updated>2017-01-03T04:28:56.000Z</updated>
     
     <content type="html">&lt;p&gt;一枚不务正业的iOS工程师&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;makeiconswithsketch&quot;&gt;&lt;a href=&quot;#makeiconswithsketch&quot; class=&quot;headerlink&quot; title=&quot;makeiconswithsketch&quot;&gt;&lt;/a&gt;makeiconswithsketch&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;http://7xq5ax.com1.z0.glb.clouddn.com/sketch-symbol&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
@@ -50,7 +259,7 @@
     <link href="http://yoursite.com/2016/08/25/%E6%89%A7%E7%9D%80/"/>
     <id>http://yoursite.com/2016/08/25/执着/</id>
     <published>2016-08-25T13:16:00.000Z</published>
-    <updated>2016-08-25T13:18:39.000Z</updated>
+    <updated>2017-01-03T04:28:56.000Z</updated>
     
     <content type="html">&lt;p&gt;有些东西明明一文不值，却不舍得丢掉，&lt;br&gt;&lt;br&gt;有时候找不着还会急得坐立不安。&lt;br&gt;&lt;br&gt;问题是它们越来越旧，越来越老，而我已经渐渐不敢看它们。&lt;br&gt;&lt;br&gt;它们装在盒子里，放在角落里，像一部部电影，&lt;br&gt;&lt;br&gt;随时都能让我重新看到一场大雨，&lt;br&gt;&lt;br&gt;一次分离，一杯咖啡，一个拥抱……&lt;br&gt;&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;</content>
@@ -69,7 +278,7 @@
     <link href="http://yoursite.com/2016/07/18/YYCache-analyzing/"/>
     <id>http://yoursite.com/2016/07/18/YYCache-analyzing/</id>
     <published>2016-07-18T14:47:35.000Z</published>
-    <updated>2016-08-25T03:46:24.000Z</updated>
+    <updated>2017-01-03T04:28:56.000Z</updated>
     
     <content type="html">&lt;p&gt;&lt;a href=&quot;https://github.com/ibireme/YYCache&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;YYCache&lt;/a&gt;是用于Objective-C中用于缓存的第三方框架。此文主要用来讲解该框架的实现细节，性能分析、设计思路ibireme已经讲得很清楚了，我这边就不在分析了。&lt;/p&gt;
 &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
@@ -173,7 +382,7 @@
     <link href="http://yoursite.com/2016/06/21/YYKit-pthread/"/>
     <id>http://yoursite.com/2016/06/21/YYKit-pthread/</id>
     <published>2016-06-21T09:43:18.000Z</published>
-    <updated>2016-08-25T03:48:20.000Z</updated>
+    <updated>2017-01-03T04:28:56.000Z</updated>
     
     <content type="html">&lt;p&gt;大家都知道ibireme的&lt;a href=&quot;https://github.com/ibireme/YYKit&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;YYKit&lt;/a&gt;很强大，个人也特别佩服ibireme。大神常常教导我们这样的小白说：多读源码能够大幅度的提高功力。 &lt;/p&gt;&lt;p&gt;每当项目上线后，需求还没有下来时，都会有一段闲暇时间。这段时间学习是极佳的。YYKit这个框架刚开始看的时候就遇到pthread这个玩意，之前很少接触。在此，记录自己的所学所得，并分享给大家。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;u5148_u6765_u770B_u4E0BYY_u5B9A_u4E49_u7684_u5B8F&quot;&gt;&lt;a href=&quot;#u5148_u6765_u770B_u4E0BYY_u5B9A_u4E49_u7684_u5B8F&quot; class=&quot;headerlink&quot; title=&quot;先来看下YY定义的宏&quot;&gt;&lt;/a&gt;先来看下YY定义的宏&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;static inline void pthread_mutex_init_recursive(pthread_mutex_t *mutex, bool recursive) &amp;#123;&amp;#10;#define YYMUTEX_ASSERT_ON_ERROR(x_) do &amp;#123; \&amp;#10;__unused volatile int res = (x_); \&amp;#10;assert(res == 0); \&amp;#10;&amp;#125; while (0)&amp;#10;    assert(mutex != NULL);&amp;#10;    if (!recursive) &amp;#123;&amp;#10;        YYMUTEX_ASSERT_ON_ERROR(pthread_mutex_init(mutex, NULL));&amp;#10;    &amp;#125; else &amp;#123;&amp;#10;        pthread_mutexattr_t attr;&amp;#10;        &amp;#10;        YYMUTEX_ASSERT_ON_ERROR(pthread_mutexattr_init (&amp;#38;attr));&amp;#10;        YYMUTEX_ASSERT_ON_ERROR(pthread_mutexattr_settype (&amp;#38;attr, PTHREAD_MUTEX_RECURSIVE));&amp;#10;        YYMUTEX_ASSERT_ON_ERROR(pthread_mutex_init (mutex, &amp;#38;attr));&amp;#10;        YYMUTEX_ASSERT_ON_ERROR(pthread_mutexattr_destroy (&amp;#38;attr));&amp;#10;    &amp;#125;&amp;#10;#undef YYMUTEX_ASSERT_ON_ERROR&amp;#10;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
@@ -227,7 +436,7 @@
     <link href="http://yoursite.com/2016/05/11/Runtime-tabBarItem/"/>
     <id>http://yoursite.com/2016/05/11/Runtime-tabBarItem/</id>
     <published>2016-05-11T14:17:26.000Z</published>
-    <updated>2016-08-25T13:12:23.000Z</updated>
+    <updated>2017-01-03T04:28:56.000Z</updated>
     
     <content type="html">&lt;p&gt;本篇blog主要讲解如何定制TabBarItem的大小，最终实现AppStore各大主流APP TabBarItem超出TabBar的效果。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h1 id=&quot;u65B9_u6848_u4E00_uFF1AUIEdgeInsets&quot;&gt;&lt;a href=&quot;#u65B9_u6848_u4E00_uFF1AUIEdgeInsets&quot; class=&quot;headerlink&quot; title=&quot;方案一：UIEdgeInsets&quot;&gt;&lt;/a&gt;方案一：UIEdgeInsets&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;适用场景：&lt;/strong&gt; &lt;br&gt;&lt;/p&gt;
@@ -293,7 +502,7 @@
     <link href="http://yoursite.com/2016/02/13/xctool-package/"/>
     <id>http://yoursite.com/2016/02/13/xctool-package/</id>
     <published>2016-02-13T05:17:21.000Z</published>
-    <updated>2016-08-25T07:25:30.000Z</updated>
+    <updated>2017-01-03T04:28:56.000Z</updated>
     
     <content type="html">&lt;p&gt;一个不会偷懒的程序员不是一个好程序员。每次编译打包都要花好长的时间，看了本篇博客后，就可以帮这些无聊的事情交给XCTool来做，我们喝喝茶，撩撩妹就行。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h1 id=&quot;XCTool&quot;&gt;&lt;a href=&quot;#XCTool&quot; class=&quot;headerlink&quot; title=&quot;XCTool&quot;&gt;&lt;/a&gt;XCTool&lt;/h1&gt;&lt;p&gt;xctool是Facebook开源的一个命令行工具，用来代替苹果的xcodebuild工具。&lt;/p&gt;
@@ -356,51 +565,11 @@
   </entry>
   
   <entry>
-    <title>迟来的2015总结</title>
-    <link href="http://yoursite.com/2016/01/17/Summary/"/>
-    <id>http://yoursite.com/2016/01/17/Summary/</id>
-    <published>2016-01-17T12:08:19.000Z</published>
-    <updated>2016-08-25T04:28:55.000Z</updated>
-    
-    <content type="html">&lt;p&gt;纪念逝去的2015！&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;  2016年已经过了半个月了，才抽出时间来写这篇总结。以前很少有写博客的习惯，每年基本上都是考虑下去年做了些什么事，学到了什么等等。可能前一个月内还属于记忆犹新的阶段，现在想想，却什么也记不起来了。就在前段时间，在简书上写了两篇博文感觉挺好的，写博客能让我知道我这段时间做了什么事，并且当我闲下来的时候还可以回味一下，这种感觉真的很好，我会带着这种感觉一直坚持下去。&lt;/p&gt;
-&lt;p&gt;  就在这周一天早上上班的路上，突然发现一片博客讲如何利用hexo搭建自己的博客，当时让我兴趣盎然，就有搭建自己博客的冲动，在工作的业余时间里慢慢的开始搭建自己的博客，搭建环境，购买域名，云储存等等。直到现在自己的博客终于有点样子了，不过说实话，身为一个处女座，一个追求完美主义者，一大半的时间花在主题了，换了一个不满意，换了一个还是不满意。最终，现在的这个样式自己感觉还是挺可以的。以后我会帮精力花在内容上，希望大家能够喜欢吧。&lt;/p&gt;
-&lt;p&gt;  说说我的2015年吧，2015年最大变化莫过于我的工作地点从合肥换到了上海，和合肥的一大帮朋友分割两地。说实话，当初要不是同事纷纷离开公司的话我也不会这么快来到上海，在合房网的时候，最幸运的是有一群比较给力的同事，让我迅速的进步了不少。坤坤：让我知道了什么是全能，宪：让我知道了英语的重要性还有一些学习方法。挺：让我知道了一些做人做事的方法还有他那丰富的项目经验。从他们的身上我真的学到了很多，虽然我现在来到了上海，在工作中遇到一些不解也会不时的去请教他们。&lt;/p&gt;
-&lt;p&gt;2015年也有很多遗憾：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;没能够看几本书&lt;/li&gt;
-&lt;li&gt;工作的业余时间也没有去锻炼&lt;/li&gt;
-&lt;li&gt;swift才开始学&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;2016年我要：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;多看几本书，虽然自己不太爱看书&lt;/li&gt;
-&lt;li&gt;和室友办张健身卡，每天抽出点时间健身去&lt;/li&gt;
-&lt;li&gt;努力学习swift&lt;/li&gt;
-&lt;li&gt;每个月写一篇博客&lt;/li&gt;
-&lt;li&gt;多掌握几门语言，像javascript&lt;/li&gt;
-&lt;li&gt;扩展自己的社交圈&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;不知不觉的扯了这么多，废话就不多说了， 洗洗睡了。&lt;/p&gt;
-</content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;纪念逝去的2015！&lt;br&gt;
-    
-    </summary>
-    
-      <category term="life" scheme="http://yoursite.com/categories/life/"/>
-    
-    
-  </entry>
-  
-  <entry>
     <title>浅谈Socket学习中的那些事</title>
     <link href="http://yoursite.com/2016/01/16/Socket/"/>
     <id>http://yoursite.com/2016/01/16/Socket/</id>
     <published>2016-01-16T13:17:20.000Z</published>
-    <updated>2016-08-25T03:50:32.000Z</updated>
+    <updated>2017-01-03T04:28:56.000Z</updated>
     
     <content type="html">&lt;p&gt;Socket是为网络服务提供的一种机制，希望经过此次的学习，能够揭开Socket神秘面纱。在此仅想记录自己的学习历程和一些学习心得。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h1 id=&quot;OSI_u3001TCP_5CIP_u53C2_u8003_u6A21_u578B&quot;&gt;&lt;a href=&quot;#OSI_u3001TCP_5CIP_u53C2_u8003_u6A21_u578B&quot; class=&quot;headerlink&quot; title=&quot;OSI、TCP\IP参考模型&quot;&gt;&lt;/a&gt;OSI、TCP\IP参考模型&lt;/h1&gt;&lt;p&gt;
@@ -507,7 +676,7 @@
     <link href="http://yoursite.com/2016/01/12/RSA-SHA/"/>
     <id>http://yoursite.com/2016/01/12/RSA-SHA/</id>
     <published>2016-01-12T09:19:25.000Z</published>
-    <updated>2016-08-25T03:51:16.000Z</updated>
+    <updated>2017-01-03T04:28:56.000Z</updated>
     
     <content type="html">&lt;p&gt;看到这篇文章的同学可幸福了，当时在做RSA加密与签名的时候网上的资料简直不要太老，做完后实在是忍受不下去了，这篇文章我会详细讲解iOS如何实现RSA加密与签名，并且与Java完全同步。&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h1 id=&quot;u57FA_u7840_u77E5_u8BC6&quot;&gt;&lt;a href=&quot;#u57FA_u7840_u77E5_u8BC6&quot; class=&quot;headerlink&quot; title=&quot;基础知识&quot;&gt;&lt;/a&gt;基础知识&lt;/h1&gt; &lt;p&gt;

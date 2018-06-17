@@ -1,0 +1,114 @@
+<!DOCTYPE html><html lang="zh-Hans"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title> Building Faster in Xcode · dreamerpanda</title><meta name="description" content="Building Faster in Xcode - panda"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.png"><link rel="stylesheet" href="/css/apollo.css"><link rel="search" type="application/opensearchdescription+xml" href="http://yoursite.com/atom.xml" title="dreamerpanda"></head><body><div class="wrap"><header><a href="/" class="logo-link"><img src="/avatar.jpg"></a><ul class="nav nav-list"><li class="nav-list-item"><a href="/" target="_self" class="nav-list-link">BLOG</a></li><li class="nav-list-item"><a href="/archives/" target="_self" class="nav-list-link">ARCHIVE</a></li><li class="nav-list-item"><a href="http://weibo.com/2792583194" target="_blank" class="nav-list-link">WEIBO</a></li><li class="nav-list-item"><a href="https://github.com/PanXianyue" target="_blank" class="nav-list-link">GITHUB</a></li><li class="nav-list-item"><a href="/atom.xml" target="_self" class="nav-list-link">RSS</a></li></ul></header><section class="container"><div class="post"><article class="post-block"><h1 class="post-title">Building Faster in Xcode</h1><div class="post-info">Jun 17, 2018</div><div class="post-content"><p>Session 408<br><a id="more"></a></p>
+<p><img src="/images/Building%20Faster%20in%20Xcode_.png" alt="Building Faster in Xcode_"></p>
+<h3 id="Parallelizing_Your_Build"><a href="#Parallelizing_Your_Build" class="headerlink" title="Parallelizing Your Build"></a>Parallelizing Your Build</h3><h6 id="Xcode_u2019s_Targets_and_Dependencies"><a href="#Xcode_u2019s_Targets_and_Dependencies" class="headerlink" title="Xcode’s Targets and Dependencies"></a>Xcode’s Targets and Dependencies</h6><ul>
+<li>Target specifies a product to build<ul>
+<li>iOS App </li>
+<li>Framework</li>
+<li>Unit Tests</li>
+</ul>
+</li>
+<li>Target dependency requires another target<ul>
+<li>Explicit via Target Dependencies </li>
+<li>Implicit via Link Binary with Libraries</li>
+</ul>
+</li>
+</ul>
+<h6 id="Game_Dependency_Graph"><a href="#Game_Dependency_Graph" class="headerlink" title="Game Dependency Graph"></a>Game Dependency Graph</h6><p><img src="/images/QQ20180617-164649@2x.png" alt="QQ20180617-164649@2x"></p>
+<ul>
+<li>List of all targets to build </li>
+<li>Dependency between targets</li>
+<li>Build order can be derived</li>
+</ul>
+<p><img src="/images/QQ20180617-165008@2x.png" alt="QQ20180617-165008@2x"></p>
+<p><img src="/images/QQ20180617-165142@2x.png" alt="QQ20180617-165142@2x"></p>
+<ul>
+<li>Amount of work did not change </li>
+<li>Time to build decreased </li>
+<li>Increased hardware utilization</li>
+</ul>
+<h6 id="How_do_we_get_there_3F"><a href="#How_do_we_get_there_3F" class="headerlink" title="How do we get there?"></a>How do we get there?</h6><ul>
+<li>edit scheme</li>
+<li>build</li>
+<li>build option<ol>
+<li>Parallelize build</li>
+<li>Find implicit Dependencies</li>
+</ol>
+</li>
+</ul>
+<h6 id="Parallelized_Target_Build_Process"><a href="#Parallelized_Target_Build_Process" class="headerlink" title="Parallelized Target Build Process"></a>Parallelized Target Build Process</h6><ul>
+<li>Compile sources can start earlier</li>
+<li>Waits only for what it needs </li>
+<li>Must wait for Run Script phases</li>
+</ul>
+<h3 id="Run_Script_Phases__28Reducing_the_work_on_rebuilds_29"><a href="#Run_Script_Phases__28Reducing_the_work_on_rebuilds_29" class="headerlink" title="Run Script Phases (Reducing the work on rebuilds)"></a>Run Script Phases (Reducing the work on rebuilds)</h3><blockquote>
+<p>Allows you to customize your build process for your exact needs.</p>
+</blockquote>
+<p><img src="/images/QQ20180617-174124@2x.png" alt="QQ20180617-174124@2x"></p>
+<h6 id="File_Lists"><a href="#File_Lists" class="headerlink" title="File Lists"></a>File Lists</h6><p><img src="/images/QQ20180617-173229@2x.png" alt="QQ20180617-173229@2x"></p>
+<ul>
+<li>Newline separated</li>
+<li>Support for build setting variables </li>
+<li>Cannot be generated during the build</li>
+</ul>
+<h3 id="Measuring_Build_Time"><a href="#Measuring_Build_Time" class="headerlink" title="Measuring Build Time"></a>Measuring Build Time</h3><h6 id="Build_With_Timing_Summary"><a href="#Build_With_Timing_Summary" class="headerlink" title="Build With Timing Summary"></a>Build With Timing Summary</h6><p><img src="/images/15292293472562.jpg" alt=""></p>
+<p><img src="/images/15292295109399.jpg" alt=""></p>
+<h3 id="Source-Level_Improvements"><a href="#Source-Level_Improvements" class="headerlink" title="Source-Level Improvements"></a>Source-Level Improvements</h3><ul>
+<li>Dealing with complex expressions</li>
+<li>Understanding dependencies in Swift</li>
+<li>Limiting your Objective-C/Swift interface</li>
+</ul>
+<h6 id="Turn_off_Whole_Module_Mode_For_Debug_Builds"><a href="#Turn_off_Whole_Module_Mode_For_Debug_Builds" class="headerlink" title="Turn off Whole Module Mode For Debug Builds"></a>Turn off Whole Module Mode For Debug Builds</h6><p> <img src="/images/15292297716350.jpg" alt=""></p>
+<h6 id="Use_Explicit_Types_for_Complex_Properties"><a href="#Use_Explicit_Types_for_Complex_Properties" class="headerlink" title="Use Explicit Types for Complex Properties"></a>Use Explicit Types for Complex Properties</h6><p><img src="/images/15292304002286.jpg" alt=""></p>
+<h6 id="Provide_Types_in_Complex_Closures"><a href="#Provide_Types_in_Complex_Closures" class="headerlink" title="Provide Types in Complex Closures"></a>Provide Types in Complex Closures</h6><p><img src="/images/15292304507458.jpg" alt=""></p>
+<h6 id="Break_Apart_Complex_Expressions"><a href="#Break_Apart_Complex_Expressions" class="headerlink" title="Break Apart Complex Expressions"></a>Break Apart Complex Expressions</h6><p><img src="/images/15292305166448.jpg" alt=""></p>
+<h6 id="Use_AnyObject_Methods_and_Properties_Sparingly"><a href="#Use_AnyObject_Methods_and_Properties_Sparingly" class="headerlink" title="Use AnyObject Methods and Properties Sparingly"></a>Use AnyObject Methods and Properties Sparingly</h6><p><img src="/images/15292305743843.jpg" alt=""></p>
+<p>调用 <code>AnyObject</code> 的方法时, 会去所有的文件中去查找该方法, 编译效率低</p>
+<p>解决方案:<br><img src="/images/15292308090026.jpg" alt=""><br>通过定义 <code>protocol</code>, 然后查找方法就会去此 <code>protocol</code> 的声明里面直接去找</p>
+<h3 id="Understanding_Dependencies_in_Swift"><a href="#Understanding_Dependencies_in_Swift" class="headerlink" title="Understanding Dependencies in Swift"></a>Understanding Dependencies in Swift</h3><h6 id="Incremental_Builds_Are_File-Based"><a href="#Incremental_Builds_Are_File-Based" class="headerlink" title="Incremental Builds Are File-Based"></a>Incremental Builds Are File-Based</h6><p><img src="/images/15292312274443.jpg" alt=""></p>
+<p><img src="/images/15292312680309.jpg" alt=""></p>
+<p>增加方法此时会重新编译</p>
+<p><img src="/images/15292313035255.jpg" alt=""></p>
+<p>改变方法的 bodies 不会影响到其他的文件</p>
+<p><img src="/images/15292313838157.jpg" alt=""></p>
+<p>不关联的改变在方法外部也会导致重新编译</p>
+<h6 id="Dependencies_Within_a_Target_Are_Per-File__28_u76EE_u6807_u6587_u4EF6_u7684_u4F9D_u8D56_u5173_u7CFB_29"><a href="#Dependencies_Within_a_Target_Are_Per-File__28_u76EE_u6807_u6587_u4EF6_u7684_u4F9D_u8D56_u5173_u7CFB_29" class="headerlink" title="Dependencies Within a Target Are Per-File (目标文件的依赖关系)"></a>Dependencies Within a Target Are Per-File (目标文件的依赖关系)</h6><p><img src="/images/15292346436023.jpg" alt=""></p>
+<h6 id="Cross-Target_Dependencies_Are_Coarse-Grained"><a href="#Cross-Target_Dependencies_Are_Coarse-Grained" class="headerlink" title="Cross-Target Dependencies Are Coarse-Grained"></a>Cross-Target Dependencies Are Coarse-Grained</h6><p><img src="/images/15292346898606.jpg" alt=""></p>
+<h6 id="Swift_Dependency_Rules"><a href="#Swift_Dependency_Rules" class="headerlink" title="Swift Dependency Rules"></a>Swift Dependency Rules</h6><ul>
+<li>Compiler must be conservative</li>
+<li>Changes in function bodies do not affect the file’s interface  </li>
+<li>Dependencies within a module are per-file</li>
+<li>Dependencies across targets are for the whole target</li>
+</ul>
+<h6 id="Mixed-Source_App_Targets"><a href="#Mixed-Source_App_Targets" class="headerlink" title="Mixed-Source App Targets"></a>Mixed-Source App Targets</h6><p><img src="/images/15292351447821.jpg" alt=""></p>
+<h6 id="Keep_Your_Generated_Header_Minimal"><a href="#Keep_Your_Generated_Header_Minimal" class="headerlink" title="Keep Your Generated Header Minimal"></a>Keep Your Generated Header Minimal</h6><ul>
+<li><p>Use private when possible</p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`@objc private func keyboardWillShow(_: Notification) &#123; // Important keyboard setup code here.&#10;&#125;.&#10;// ...&#10;NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), ...)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>Use block-based APIs</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">`self.observer = NotificationCenter.default.addObserver( forName: UIKeyboardWillShow, object: nil, queue: nil) &#123;&#10;// Important keyboard setup code here.&#10;&#125;.</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Turn off “Swift 3 @objc Inference”<br><img src="/images/15292355397528.jpg" alt=""></p>
+</li>
+</ul>
+</li>
+<li>Keep Your Bridging Header Minimal<ul>
+<li>Use categories to break up your interface</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p><img src="/images/15292356504822.jpg" alt=""></p>
+<h3 id="More_Information"><a href="#More_Information" class="headerlink" title="More Information"></a>More Information</h3><blockquote>
+<p><a href="https://developer.apple.com/wwdc18/408" target="_blank" rel="external">https://developer.apple.com/wwdc18/408</a></p>
+</blockquote>
+</div></article></div></section><footer><div class="paginator"><a href="/2017/02/25/git-commands/" class="next">下一篇</a></div><div data-thread-key="2018/06/17/408-building-faster-in-xcode/" data-title="Building Faster in Xcode" data-url="http://yoursite.com/2018/06/17/408-building-faster-in-xcode/" data-author-key="1" class="ds-thread"></div><script>var duoshuoQuery = {short_name:"iipanda"};
+(function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+     || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();
+
+</script><div class="copyright"><p>© 2015 - 2018 <a href="http://yoursite.com">panda</a>, powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/pinggod/hexo-theme-apollo" target="_blank">hexo-theme-apollo</a>.</p></div></footer></div><script async src="//cdn.bootcss.com/mathjax/2.6.1/MathJax.js?config=TeX-MML-AM_CHTML"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-83145135-1",'auto');ga('send','pageview');</script></body></html>
